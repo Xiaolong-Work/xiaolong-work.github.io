@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="王小龙">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2025/03/20/vulkan/多帧并行/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="多帧并行在一个渲染循环中如果只使用一个命令缓冲区会存在一些问题，在开始渲染下一帧之前，必须等待前一帧完成，这会导致 CPU 在提交一个命令缓冲区之后需要等待 GPU 执行完成以获得下一个可用的命令缓冲区，同时 GPU 执行完成一帧的渲染命令之后，也需要等待 CPU 完成下一帧渲染命令的录制。 这个问题的解决方案是**允许多帧同时进行 (Frames in Flight)**，也就是说在渲染一帧的同">
+<meta property="og:type" content="article">
+<meta property="og:title" content="多帧并行">
+<meta property="og:url" content="http://example.com/2025/03/20/Vulkan/%E5%A4%9A%E5%B8%A7%E5%B9%B6%E8%A1%8C/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="多帧并行在一个渲染循环中如果只使用一个命令缓冲区会存在一些问题，在开始渲染下一帧之前，必须等待前一帧完成，这会导致 CPU 在提交一个命令缓冲区之后需要等待 GPU 执行完成以获得下一个可用的命令缓冲区，同时 GPU 执行完成一帧的渲染命令之后，也需要等待 CPU 完成下一帧渲染命令的录制。 这个问题的解决方案是**允许多帧同时进行 (Frames in Flight)**，也就是说在渲染一帧的同">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-03-20T06:52:08.868Z">
+<meta property="article:modified_time" content="2025-03-20T07:37:50.196Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Vulkan">
+<meta name="twitter:card" content="summary">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            多帧并行 -
+        
+        小龙的笔记本
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/css/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/fonts.css">
+
+    
+<link rel="stylesheet" href="/fonts/Satoshi/satoshi.css">
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    let Global = window.Global || {};
+    Global.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.xml"};
+    Global.theme_config = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":true,"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"小龙的笔记本","subtitle":{"text":[],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.4.1","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"links":null},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
+    Global.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    Global.data_config = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="swup-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+    
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="http://example.com/">
+                
+                小龙的笔记本
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        首页
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i></div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer">
+        <ul class="drawer-navbar-list">
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                首页
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            
+                <h1 class="article-title-regular">多帧并行</h1>
+            
+            </div>
+            
+                    
+        
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/%E5%A4%B4%E5%83%8F.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">王小龙</span>
+                        
+                            <span class="author-label">Lv3</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2025-03-20 14:52:08</span>
+        <span class="mobile">2025-03-20 14:52:08</span>
+        <span class="hover-info">创建</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-03-20 15:37:50</span>
+            <span class="mobile">2025-03-20 15:37:50</span>
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Vulkan/">Vulkan</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>910 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>4 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body">
+            <h1 id="多帧并行"><a href="#多帧并行" class="headerlink" title="多帧并行"></a>多帧并行</h1><p>在一个渲染循环中如果只使用一个命令缓冲区会存在一些问题，在开始渲染下一帧之前，必须等待前一帧完成，这会导致 CPU 在提交一个命令缓冲区之后需要等待 GPU 执行完成以获得下一个可用的命令缓冲区，同时 GPU 执行完成一帧的渲染命令之后，也需要等待 CPU 完成下一帧渲染命令的录制。</p>
+<p>这个问题的解决方案是**允许多帧同时进行 (Frames in Flight)**，也就是说在渲染一帧的同时，可以开始录制下一帧的命令缓冲区，使得GPU 和 CPU 上的工作能够并发的进行。</p>
+<p>通常来说，并发帧数选择 <code>2</code> ，其主要的原因是当并发帧数过多时会增加<strong>输入延迟</strong>。当帧并发数太多时，当前的输入被录制到命令缓冲区之后，可能需要等待多个帧之后才能被渲染到屏幕上。对于高帧率的应用，可以适当将并发帧数提高到 <code>3</code> 来提高 CPU 和 GPU 之间的数据吞吐量。</p>
+<h2 id="多帧并行的实现"><a href="#多帧并行的实现" class="headerlink" title="多帧并行的实现"></a>多帧并行的实现</h2><p>为了能够实现多帧并行，所有在渲染过程中被访问和修改的资源都需要复制以避免数据冲突。因此，需要为每个帧维护一组独立的资源，包括：</p>
+<ol>
+<li><p>命令缓冲 (Command Buffer)</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">VkDevice device; 								<span class="comment">// 逻辑设备</span></span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> MAX_FRAMES_IN_FLIGHT = <span class="number">2</span>; 			<span class="comment">// 并发帧数</span></span><br><span class="line">std::vector&lt;VkCommandBuffer&gt; commandBuffers; 	<span class="comment">// 多个命令缓冲区</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">createCommandBuffers</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    commandBuffers.<span class="built_in">resize</span>(MAX_FRAMES_IN_FLIGHT);</span><br><span class="line"></span><br><span class="line">    VkCommandBufferAllocateInfo allocInfo&#123;&#125;;</span><br><span class="line">    allocInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;</span><br><span class="line">    allocInfo.pNext = <span class="literal">nullptr</span>;</span><br><span class="line">    allocInfo.commandPool = commandPool;</span><br><span class="line">    allocInfo.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;</span><br><span class="line">    allocInfo.commandBufferCount = (<span class="type">uint32_t</span>)commandBuffers.<span class="built_in">size</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">vkAllocateCommandBuffers</span>(device, &amp;allocInfo, commandBuffers.<span class="built_in">data</span>()) != VK_SUCCESS)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">throw</span> std::<span class="built_in">runtime_error</span>(<span class="string">&quot;failed to allocate command buffers!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>同步量：信号量 (Semaphore) 和 栅栏 (Fence)</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">VkDevice device; 									<span class="comment">// 逻辑设备</span></span><br><span class="line"></span><br><span class="line">...</span><br><span class="line">    </span><br><span class="line"><span class="type">const</span> <span class="type">int</span> MAX_FRAMES_IN_FLIGHT = <span class="number">2</span>; 				<span class="comment">// 并发帧数</span></span><br><span class="line">std::vector&lt;VkSemaphore&gt; imageAvailableSemaphores;	<span class="comment">// 图形可用信号量</span></span><br><span class="line">std::vector&lt;VkSemaphore&gt; renderFinishedSemaphores;	<span class="comment">// 渲染完成信号量</span></span><br><span class="line">std::vector&lt;VkFence&gt; inFlightFences;				<span class="comment">// 下一帧可用栅栏</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">createSyncObjects</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    imageAvailableSemaphores.<span class="built_in">resize</span>(MAX_FRAMES_IN_FLIGHT);</span><br><span class="line">    renderFinishedSemaphores.<span class="built_in">resize</span>(MAX_FRAMES_IN_FLIGHT);</span><br><span class="line">    inFlightFences.<span class="built_in">resize</span>(MAX_FRAMES_IN_FLIGHT);</span><br><span class="line"></span><br><span class="line">    VkSemaphoreCreateInfo semaphoreInfo&#123;&#125;;</span><br><span class="line">    semaphoreInfo.sType = VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO;</span><br><span class="line">    semaphoreInfo.pNext = <span class="literal">nullptr</span>;</span><br><span class="line">    semaphoreInfo.flags = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    VkFenceCreateInfo fenceInfo&#123;&#125;;</span><br><span class="line">    fenceInfo.sType = VK_STRUCTURE_TYPE_FENCE_CREATE_INFO;</span><br><span class="line">    fenceInfo.pNext = <span class="literal">nullptr</span>;</span><br><span class="line">    fenceInfo.flags = VK_FENCE_CREATE_SIGNALED_BIT;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">size_t</span> i = <span class="number">0</span>; i &lt; MAX_FRAMES_IN_FLIGHT; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">vkCreateSemaphore</span>(device, &amp;semaphoreInfo, <span class="literal">nullptr</span>, &amp;imageAvailableSemaphores[i]) != VK_SUCCESS ||</span><br><span class="line">            <span class="built_in">vkCreateSemaphore</span>(device, &amp;semaphoreInfo, <span class="literal">nullptr</span>, &amp;renderFinishedSemaphores[i]) != VK_SUCCESS ||</span><br><span class="line">            <span class="built_in">vkCreateFence</span>(device, &amp;fenceInfo, <span class="literal">nullptr</span>, &amp;inFlightFences[i]) != VK_SUCCESS)</span><br><span class="line">        &#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">throw</span> std::<span class="built_in">runtime_error</span>(<span class="string">&quot;failed to create synchronization objects for a frame!&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">...</span><br><span class="line">    </span><br><span class="line"><span class="keyword">for</span> (<span class="type">size_t</span> i = <span class="number">0</span>; i &lt; MAX_FRAMES_IN_FLIGHT; i++) &#123;</span><br><span class="line">        <span class="built_in">vkDestroySemaphore</span>(device, renderFinishedSemaphores[i], <span class="literal">nullptr</span>);</span><br><span class="line">        <span class="built_in">vkDestroySemaphore</span>(device, imageAvailableSemaphores[i], <span class="literal">nullptr</span>);</span><br><span class="line">        <span class="built_in">vkDestroyFence</span>(device, inFlightFences[i], <span class="literal">nullptr</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></div></li>
+</ol>
+<p>对于多个资源，采用索引进行管理，并在每次提交命令缓冲区之后切换索引，从而实现渲染循环中交替使用这些资源，确保 GPU 和 CPU 能够最大程度地并行运行：</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> MAX_FRAMES_IN_FLIGHT = <span class="number">2</span>; <span class="comment">// 并发帧数</span></span><br><span class="line"></span><br><span class="line"><span class="type">uint32_t</span> currentFrame = <span class="number">0</span>;			<span class="comment">// 记录当前帧索引</span></span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">currentFrame = (currentFrame + <span class="number">1</span>) % MAX_FRAMES_IN_FLIGHT;  <span class="comment">// 切换到另一组资源</span></span><br></pre></td></tr></table></figure></div>
+
+<p>一个渲染循环示例如下：</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">drawFrame</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">uint32_t</span> currentFrame = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">vkWaitForFences</span>(device, <span class="number">1</span>, &amp;inFlightFences[currentFrame], VK_TRUE, UINT64_MAX);</span><br><span class="line">    <span class="built_in">vkResetFences</span>(device, <span class="number">1</span>, &amp;inFlightFences[currentFrame]);</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 获取交换链图像 */</span></span><br><span class="line">    <span class="type">uint32_t</span> imageIndex;</span><br><span class="line">    <span class="built_in">vkAcquireNextImageKHR</span>(</span><br><span class="line">        device, swapChain, UINT64_MAX, imageAvailableSemaphores[currentFrame], VK_NULL_HANDLE, &amp;imageIndex);</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 记录命令缓冲区 */</span></span><br><span class="line">    <span class="built_in">vkResetCommandBuffer</span>(commandBuffers[currentFrame], <span class="number">0</span>);</span><br><span class="line">    <span class="built_in">recordCommandBuffer</span>(commandBuffers[currentFrame], imageIndex);</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 提交命令缓冲区 */</span></span><br><span class="line">    VkSubmitInfo submitInfo&#123;&#125;;</span><br><span class="line">    submitInfo.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;</span><br><span class="line">    submitInfo.pNext = <span class="literal">nullptr</span>;</span><br><span class="line"></span><br><span class="line">    VkSemaphore waitSemaphores[] = &#123;imageAvailableSemaphores[currentFrame]&#125;;</span><br><span class="line">    VkPipelineStageFlags waitStages[] = &#123;VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT&#125;;</span><br><span class="line">    submitInfo.waitSemaphoreCount = <span class="number">1</span>;</span><br><span class="line">    submitInfo.pWaitSemaphores = waitSemaphores;</span><br><span class="line">    submitInfo.pWaitDstStageMask = waitStages;</span><br><span class="line">    submitInfo.commandBufferCount = <span class="number">1</span>;</span><br><span class="line">    submitInfo.pCommandBuffers = &amp;commandBuffers[currentFrame];</span><br><span class="line">    VkSemaphore signalSemaphores[] = &#123;renderFinishedSemaphores[currentFrame]&#125;;</span><br><span class="line">    submitInfo.signalSemaphoreCount = <span class="number">1</span>;</span><br><span class="line">    submitInfo.pSignalSemaphores = signalSemaphores;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">vkQueueSubmit</span>(graphicsQueue, <span class="number">1</span>, &amp;submitInfo, inFlightFences[currentFrame]) != VK_SUCCESS)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">throw</span> std::<span class="built_in">runtime_error</span>(<span class="string">&quot;failed to submit draw command buffer!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/* 进行呈现 */</span></span><br><span class="line">    VkPresentInfoKHR presentInfo&#123;&#125;;</span><br><span class="line">    presentInfo.sType = VK_STRUCTURE_TYPE_PRESENT_INFO_KHR;</span><br><span class="line">    presentInfo.pNext = <span class="literal">nullptr</span>;</span><br><span class="line"></span><br><span class="line">    presentInfo.waitSemaphoreCount = <span class="number">1</span>;</span><br><span class="line">    presentInfo.pWaitSemaphores = signalSemaphores;</span><br><span class="line"></span><br><span class="line">    VkSwapchainKHR swapChains[] = &#123;swapChain&#125;;</span><br><span class="line">    presentInfo.swapchainCount = <span class="number">1</span>;</span><br><span class="line">    presentInfo.pSwapchains = swapChains;</span><br><span class="line">    presentInfo.pImageIndices = &amp;imageIndex;</span><br><span class="line">    presentInfo.pResults = <span class="literal">nullptr</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">vkQueuePresentKHR</span>(presentQueue, &amp;presentInfo);</span><br><span class="line"></span><br><span class="line">	currentFrame = (currentFrame + <span class="number">1</span>) % MAX_FRAMES_IN_FLIGHT;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>标题:</strong> 多帧并行</li>
+        <li><strong>作者:</strong> 王小龙</li>
+        <li><strong>创建于
+                :</strong> 2025-03-20 14:52:08</li>
+        
+            <li>
+                <strong>更新于
+                    :</strong> 2025-03-20 15:37:50
+            </li>
+        
+        <li>
+            <strong>链接:</strong> https://xiaolong-work.github.io/2025/03/20/Vulkan/多帧并行/
+        </li>
+        <li>
+            <strong>
+                版权声明:
+            </strong>
+            
+            本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a> 进行许可。
+            
+
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/Vulkan/">#Vulkan</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                        rel="prev"
+                        href="/2025/03/20/Vulkan/%E5%9B%BE%E5%BD%A2%E7%AE%A1%E7%BA%BF/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">图形管线</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                        rel="next"
+                        href="/2025/03/20/Vulkan/%E5%9B%BA%E5%AE%9A%E5%8A%9F%E8%83%BD/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">固定功能</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">此页目录</div>
+        <div class="page-title">多帧并行</div>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%9A%E5%B8%A7%E5%B9%B6%E8%A1%8C"><span class="nav-text">多帧并行</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E5%B8%A7%E5%B9%B6%E8%A1%8C%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-text">多帧并行的实现</span></a></li></ol></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2025&nbsp;&nbsp;<i class="fa-regular fa-computer-classic"></i>&nbsp;&nbsp;<a href="/">王小龙</a>
+        </div>
+        
+            <script data-swup-reload-script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">访问人数</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">总访问量</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
+            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.4.1</a></span>
+        </div>
+        
+        
+            <div>
+                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+        ],
+        containers: ["#swup"],
+    });
+
+    swup.hooks.on("page:view", () => {
+        Global.refresh();
+    });
+
+    // if (document.readyState === "complete") {
+    //
+    // } else {
+    //     document.addEventListener("DOMContentLoaded", () => init());
+    // }
+</script>
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/layouts/navbarShrink.js"></script>
+
+<script src="/js/tools/scrollTopBottom.js"></script>
+
+<script src="/js/tools/lightDarkSwitch.js"></script>
+
+<script src="/js/layouts/categoryList.js"></script>
+
+
+
+    
+<script src="/js/tools/localSearch.js"></script>
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js"></script>
+
+
+
+
+
+
+
+<div class="post-scripts" data-swup-reload-script>
+    
+        
+<script src="/js/tools/tocToggle.js"></script>
+
+<script src="/js/layouts/toc.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/plugins/tabs.js"></script>
+
+    
+</div>
+
+
+</body>
+</html>
