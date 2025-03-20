@@ -9,7 +9,7 @@
     <!-- preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
+
     
     <!--- Seo Part-->
     
@@ -18,6 +18,9 @@
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
+    
+    
+        
         <meta name="description" content="固定功能在 Vulkan 中，需要对于图形管线中的每个部分显示地进行配置。 动态状态大部分管线状态都需要预设，但部分管线状态可以在绘制时进行改变而无需重新创建管线，例如视口大小。对于需要动态使用的状态，需要使用 VkPipelineDynamicStateCreateInfo 来显示指定，其声明如下： 1234567typedef struct VkPipelineDynamicStateCrea">
 <meta property="og:type" content="article">
 <meta property="og:title" content="固定功能">
@@ -41,43 +44,46 @@
     
     <title>
         
-            固定功能 -
+            固定功能 | 小龙的笔记本
         
-        小龙的笔记本
     </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
     
 <link rel="stylesheet" href="/css/style.css">
 
 
     
         
-<link rel="stylesheet" href="/css/build/styles.css">
+<link rel="stylesheet" href="/css/build/tailwind.css">
 
     
 
     
-<link rel="stylesheet" href="/fonts/fonts.css">
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
 
     
-<link rel="stylesheet" href="/fonts/Satoshi/satoshi.css">
-
-    
-<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
 
     <!--- Font Part-->
     
     
     
     
-
-    <!--- Inject Part-->
     
+    
+
     <script id="hexo-configurations">
-    let Global = window.Global || {};
-    Global.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.xml"};
-    Global.theme_config = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":true,"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"小龙的笔记本","subtitle":{"text":[],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.4.1","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"links":null},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
-    Global.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
-    Global.data_config = {"masonry":false};
+    window.config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.xml"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":true,"lazyload":true,"pangu_js":false,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"小龙的笔记本","subtitle":{"text":[],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.8.2","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
+    window.lang_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    window.data = {"masonry":false};
   </script>
     
     <!--- Fontawesome Part-->
@@ -100,33 +106,30 @@
 <meta name="generator" content="Hexo 6.3.0"></head>
 
 
+
 <body>
-<div class="progress-bar-container">
-    
+	<div class="progress-bar-container">
+	
 
-    
-        <span class="pjax-progress-bar"></span>
-        <span class="swup-progress-icon">
-            <i class="fa-solid fa-circle-notch fa-spin"></i>
-        </span>
-    
+	
+	<span class="pjax-progress-bar"></span>
+	<!--        <span class="swup-progress-icon">-->
+	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+	<!--        </span>-->
+	
 </div>
-
 
 <main class="page-container" id="swup">
 
-    
+	
 
-    <div class="main-content-container">
-
-
-        <div class="main-content-header">
-            <header class="navbar-container">
-    
-    <div class="navbar-content">
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
         <div class="left">
             
-            <a class="logo-title" href="http://example.com/">
+            <a class="logo-title" href="/">
                 
                 小龙的笔记本
                 
@@ -139,17 +142,18 @@
                 <ul class="navbar-list">
                     
                         
+                            
+
                             <li class="navbar-item">
                                 <!-- Menu -->
-                                <a class="" 
-                                    href="/"  >
-                                    
-                                        
-                                            <i class="fa-regular fa-house"></i>
-                                        
-                                        首页
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    首页
                                     
                                 </a>
+
                                 <!-- Submenu -->
                                 
                             </li>
@@ -164,7 +168,8 @@
             <!-- Mobile -->
             <div class="mobile">
                 
-                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i></div>
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
                 
                 <div class="icon-item navbar-bar">
                     <div class="navbar-bar-middle"></div>
@@ -173,27 +178,49 @@
         </div>
     </div>
 
-    <!-- Mobile drawer -->
-    <div class="navbar-drawer">
-        <ul class="drawer-navbar-list">
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
             
                 
-                    <li class="drawer-navbar-item flex-center">
-                        <a class="" 
-                        href="/"  >
-                             
-                                
-                                    <i class="fa-regular fa-house"></i>
-                                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
                                 首页
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
                             
                         </a>
+                        
+
+                        
                     </li>
-                    <!-- Submenu -->
-                    
             
 
+            
+            
         </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">2</div>
+        <div class="label text-third-text-color text-sm">标签</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">分类</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">23</div>
+        <div class="label text-third-text-color text-sm">文章</div>
+    </a>
+</div>
     </div>
 
     <div class="window-mask"></div>
@@ -201,40 +228,37 @@
 </header>
 
 
-        </div>
+		</div>
 
-        <div class="main-content-body">
+		<div class="main-content-body transition-fade-up">
+			
 
-            
+			<div class="main-content">
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
 
-            <div class="main-content">
+		<div class="article-title relative w-full">
+			
+			<div class="w-full flex items-center pt-6 justify-start">
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">固定功能</h1>
+			</div>
+			
+		</div>
 
-                
-                    <div class="post-page-container">
-    <div class="article-content-container">
-
-        <div class="article-title">
-            
-                <h1 class="article-title-regular">固定功能</h1>
-            
-            </div>
-            
-                    
-        
-        
-            <div class="article-header">
-                <div class="avatar">
-                    <img src="/image/avatar.jpg">
-                </div>
-                <div class="info">
-                    <div class="author">
-                        <span class="name">王小龙</span>
-                        
-                            <span class="author-label">Lv3</span>
-                        
-                    </div>
-                    <div class="meta-info">
-                        <div class="article-meta-info">
+		
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+				<img src="/image/avatar.jpg">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">王小龙</span>
+					
+					<span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv3</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
         <span class="desktop">2025-03-20 14:52:08</span>
@@ -282,18 +306,18 @@
     
 </div>
 
-                    </div>
-                </div>
-            </div>
-        
+				</div>
+			</div>
+		</div>
+		
 
-        
+		
 
 
-        <div class="article-content markdown-body">
-            <h1 id="固定功能"><a href="#固定功能" class="headerlink" title="固定功能"></a>固定功能</h1><p>在 Vulkan 中，需要对于图形管线中的每个部分显示地进行配置。</p>
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<h1 id="固定功能"><a href="#固定功能" class="headerlink" title="固定功能"></a>固定功能</h1><p>在 Vulkan 中，需要对于图形管线中的每个部分显示地进行配置。</p>
 <h2 id="动态状态"><a href="#动态状态" class="headerlink" title="动态状态"></a>动态状态</h2><p>大部分管线状态都需要预设，但部分管线状态可以在绘制时进行改变而无需重新创建管线，例如视口大小。对于需要动态使用的状态，需要使用 <a target="_blank" rel="noopener" href="https://www.khronos.org/registry/vulkan/specs/1.0/man/html/VkPipelineDynamicStateCreateInfo.html"><code>VkPipelineDynamicStateCreateInfo</code></a> 来显示指定，其声明如下：</p>
-<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">VkPipelineDynamicStateCreateInfo</span> &#123;</span><br><span class="line">    VkStructureType                      sType;</span><br><span class="line">    <span class="type">const</span> <span class="type">void</span>*                          pNext;</span><br><span class="line">    VkPipelineDynamicStateCreateFlags    flags;</span><br><span class="line">    <span class="type">uint32_t</span>                             dynamicStateCount;</span><br><span class="line">    <span class="type">const</span> VkDynamicState*                pDynamicStates;</span><br><span class="line">&#125; VkPipelineDynamicStateCreateInfo;</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">VkPipelineDynamicStateCreateInfo</span> &#123;</span><br><span class="line">    VkStructureType                      sType;</span><br><span class="line">    <span class="type">const</span> <span class="type">void</span>*                          pNext;</span><br><span class="line">    VkPipelineDynamicStateCreateFlags    flags;</span><br><span class="line">    <span class="type">uint32_t</span>                             dynamicStateCount;</span><br><span class="line">    <span class="type">const</span> VkDynamicState*                pDynamicStates;</span><br><span class="line">&#125; VkPipelineDynamicStateCreateInfo;</span><br></pre></td></tr></table></figure></div>
 
 <table>
 <thead>
@@ -330,10 +354,10 @@
 </tr>
 </tbody></table>
 <p>调用示例：</p>
-<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">std::vector&lt;VkDynamicState&gt; dynamicStates = &#123;VK_DYNAMIC_STATE_VIEWPORT, VK_DYNAMIC_STATE_SCISSOR&#125;;</span><br><span class="line"></span><br><span class="line">VkPipelineDynamicStateCreateInfo dynamicState&#123;&#125;;</span><br><span class="line">dynamicState.sType = VK_STRUCTURE_TYPE_PIPELINE_DYNAMIC_STATE_CREATE_INFO;</span><br><span class="line">dynamicState.pNext = <span class="literal">nullptr</span>;</span><br><span class="line">dynamicState.flags = <span class="number">0</span>;</span><br><span class="line">dynamicState.dynamicStateCount = <span class="built_in">static_cast</span>&lt;<span class="type">uint32_t</span>&gt;(dynamicStates.<span class="built_in">size</span>());</span><br><span class="line">dynamicState.pDynamicStates = dynamicStates.<span class="built_in">data</span>();</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">std::vector&lt;VkDynamicState&gt; dynamicStates = &#123;VK_DYNAMIC_STATE_VIEWPORT, VK_DYNAMIC_STATE_SCISSOR&#125;;</span><br><span class="line"></span><br><span class="line">VkPipelineDynamicStateCreateInfo dynamicState&#123;&#125;;</span><br><span class="line">dynamicState.sType = VK_STRUCTURE_TYPE_PIPELINE_DYNAMIC_STATE_CREATE_INFO;</span><br><span class="line">dynamicState.pNext = <span class="literal">nullptr</span>;</span><br><span class="line">dynamicState.flags = <span class="number">0</span>;</span><br><span class="line">dynamicState.dynamicStateCount = <span class="built_in">static_cast</span>&lt;<span class="type">uint32_t</span>&gt;(dynamicStates.<span class="built_in">size</span>());</span><br><span class="line">dynamicState.pDynamicStates = dynamicStates.<span class="built_in">data</span>();</span><br></pre></td></tr></table></figure></div>
 
 <h2 id="顶点输入"><a href="#顶点输入" class="headerlink" title="顶点输入"></a>顶点输入</h2><p>通过结构体 <a target="_blank" rel="noopener" href="https://www.khronos.org/registry/vulkan/specs/1.0/man/html/VkPipelineVertexInputStateCreateInfo.html"><code>VkPipelineVertexInputStateCreateInfo</code></a> 完成着色器管线<strong>顶点输入</strong>状态的创建，其描述了传递给顶点着色器的数据格式，声明如下：</p>
-<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">VkPipelineVertexInputStateCreateInfo</span> &#123;</span><br><span class="line">    VkStructureType                             sType;</span><br><span class="line">    <span class="type">const</span> <span class="type">void</span>*                                 pNext;</span><br><span class="line">    VkPipelineVertexInputStateCreateFlags       flags;</span><br><span class="line">    <span class="type">uint32_t</span>                                    vertexBindingDescriptionCount;</span><br><span class="line">    <span class="type">const</span> VkVertexInputBindingDescription*      pVertexBindingDescriptions;</span><br><span class="line">    <span class="type">uint32_t</span>                                    vertexAttributeDescriptionCount;</span><br><span class="line">    <span class="type">const</span> VkVertexInputAttributeDescription*    pVertexAttributeDescriptions;</span><br><span class="line">&#125; VkPipelineVertexInputStateCreateInfo;</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">VkPipelineVertexInputStateCreateInfo</span> &#123;</span><br><span class="line">    VkStructureType                             sType;</span><br><span class="line">    <span class="type">const</span> <span class="type">void</span>*                                 pNext;</span><br><span class="line">    VkPipelineVertexInputStateCreateFlags       flags;</span><br><span class="line">    <span class="type">uint32_t</span>                                    vertexBindingDescriptionCount;</span><br><span class="line">    <span class="type">const</span> VkVertexInputBindingDescription*      pVertexBindingDescriptions;</span><br><span class="line">    <span class="type">uint32_t</span>                                    vertexAttributeDescriptionCount;</span><br><span class="line">    <span class="type">const</span> VkVertexInputAttributeDescription*    pVertexAttributeDescriptions;</span><br><span class="line">&#125; VkPipelineVertexInputStateCreateInfo;</span><br></pre></td></tr></table></figure></div>
 
 <table>
 <thead>
@@ -380,7 +404,7 @@
 </tr>
 </tbody></table>
 <h3 id="顶点绑定"><a href="#顶点绑定" class="headerlink" title="顶点绑定"></a>顶点绑定</h3><p> 结构体 <code>vertexBindingDescriptionCount</code> 描述了<strong>顶点绑定</strong>的详细信息，描述了数据之间的间距，以及数据是按顶点（per-vertex）还是按实例（per-instance）传递的，其声明如下：</p>
-<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">VkVertexInputBindingDescription</span> &#123;</span><br><span class="line">    <span class="type">uint32_t</span>             binding;</span><br><span class="line">    <span class="type">uint32_t</span>             stride;</span><br><span class="line">    VkVertexInputRate    inputRate;</span><br><span class="line">&#125; VkVertexInputBindingDescription;</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">VkVertexInputBindingDescription</span> &#123;</span><br><span class="line">    <span class="type">uint32_t</span>             binding;</span><br><span class="line">    <span class="type">uint32_t</span>             stride;</span><br><span class="line">    VkVertexInputRate    inputRate;</span><br><span class="line">&#125; VkVertexInputBindingDescription;</span><br></pre></td></tr></table></figure></div>
 
 <table>
 <thead>
@@ -407,7 +431,7 @@
 </tr>
 </tbody></table>
 <h3 id="顶点属性"><a href="#顶点属性" class="headerlink" title="顶点属性"></a>顶点属性</h3><p>结构体 <code>VkVertexInputAttributeDescription</code> 描述了<strong>顶点属性</strong>的详细信息，描述了传递给顶点着色器的属性类型，指定数据应从哪个绑定（binding）加载，并指定数据的偏移量，其声明如下：</p>
-<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">VkVertexInputAttributeDescription</span> &#123;</span><br><span class="line">    <span class="type">uint32_t</span>    location;</span><br><span class="line">    <span class="type">uint32_t</span>    binding;</span><br><span class="line">    VkFormat    format;</span><br><span class="line">    <span class="type">uint32_t</span>    offset;</span><br><span class="line">&#125; VkVertexInputAttributeDescription;</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">VkVertexInputAttributeDescription</span> &#123;</span><br><span class="line">    <span class="type">uint32_t</span>    location;</span><br><span class="line">    <span class="type">uint32_t</span>    binding;</span><br><span class="line">    VkFormat    format;</span><br><span class="line">    <span class="type">uint32_t</span>    offset;</span><br><span class="line">&#125; VkVertexInputAttributeDescription;</span><br></pre></td></tr></table></figure></div>
 
 <table>
 <thead>
@@ -439,7 +463,7 @@
 </tr>
 </tbody></table>
 <h2 id="输入装配"><a href="#输入装配" class="headerlink" title="输入装配"></a>输入装配</h2><p>通过结构体 <a target="_blank" rel="noopener" href="https://www.khronos.org/registry/vulkan/specs/1.0/man/html/VkPipelineInputAssemblyStateCreateInfo.html"><code>VkPipelineInputAssemblyStateCreateInfo</code></a> 来描述<strong>输入装配</strong>（Input Assembly）信息，描述了<strong>几何图形类型（Geometry Type）</strong> 以及<strong>是否启用原语重启（Primitive Restart）</strong>。其描述了从顶点生成的几何图形类型，是否允许在一些拓扑模式下通过指定特殊的索引值来重启图形原语，声明如下：</p>
-<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">VkPipelineInputAssemblyStateCreateInfo</span> &#123;</span><br><span class="line">    VkStructureType                            sType;</span><br><span class="line">    <span class="type">const</span> <span class="type">void</span>*                                pNext;</span><br><span class="line">    VkPipelineInputAssemblyStateCreateFlags    flags;</span><br><span class="line">    VkPrimitiveTopology                        topology;</span><br><span class="line">    VkBool32                                   primitiveRestartEnable;</span><br><span class="line">&#125; VkPipelineInputAssemblyStateCreateInfo;</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">VkPipelineInputAssemblyStateCreateInfo</span> &#123;</span><br><span class="line">    VkStructureType                            sType;</span><br><span class="line">    <span class="type">const</span> <span class="type">void</span>*                                pNext;</span><br><span class="line">    VkPipelineInputAssemblyStateCreateFlags    flags;</span><br><span class="line">    VkPrimitiveTopology                        topology;</span><br><span class="line">    VkBool32                                   primitiveRestartEnable;</span><br><span class="line">&#125; VkPipelineInputAssemblyStateCreateInfo;</span><br></pre></td></tr></table></figure></div>
 
 <table>
 <thead>
@@ -476,7 +500,7 @@
 </tr>
 </tbody></table>
 <h2 id="视口和裁剪矩形"><a href="#视口和裁剪矩形" class="headerlink" title="视口和裁剪矩形"></a>视口和裁剪矩形</h2><h3 id="视口"><a href="#视口" class="headerlink" title="视口"></a>视口</h3><p>视口描述了帧缓冲区的大小，其通常从  <code>(0, 0)</code> 到 <code>(width, height)</code> （以像素为单位），其定义了从图像到帧缓冲区的映射。需要注意的是，视口的大小应该是交换链中图像的大小，而不是窗口的大小。通过结构体 <code>VkViewport</code> 可以定义视口的属性，其声明如下：</p>
-<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">VkViewport</span> &#123;</span><br><span class="line">    <span class="type">float</span>    x;</span><br><span class="line">    <span class="type">float</span>    y;</span><br><span class="line">    <span class="type">float</span>    width;</span><br><span class="line">    <span class="type">float</span>    height;</span><br><span class="line">    <span class="type">float</span>    minDepth;</span><br><span class="line">    <span class="type">float</span>    maxDepth;</span><br><span class="line">&#125; VkViewport;</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">VkViewport</span> &#123;</span><br><span class="line">    <span class="type">float</span>    x;</span><br><span class="line">    <span class="type">float</span>    y;</span><br><span class="line">    <span class="type">float</span>    width;</span><br><span class="line">    <span class="type">float</span>    height;</span><br><span class="line">    <span class="type">float</span>    minDepth;</span><br><span class="line">    <span class="type">float</span>    maxDepth;</span><br><span class="line">&#125; VkViewport;</span><br></pre></td></tr></table></figure></div>
 
 <table>
 <thead>
@@ -518,10 +542,10 @@
 </tr>
 </tbody></table>
 <p>注意：根据需求，最小值可以大于最大值。一个声明示例如下：</p>
-<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">VkViewport viewport&#123;&#125;;</span><br><span class="line">viewport.x = <span class="number">0.0f</span>;</span><br><span class="line">viewport.y = <span class="number">0.0f</span>;</span><br><span class="line">viewport.width = (<span class="type">float</span>) swapChainExtent.width;</span><br><span class="line">viewport.height = (<span class="type">float</span>) swapChainExtent.height;</span><br><span class="line">viewport.minDepth = <span class="number">0.0f</span>;</span><br><span class="line">viewport.maxDepth = <span class="number">1.0f</span>;</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">VkViewport viewport&#123;&#125;;</span><br><span class="line">viewport.x = <span class="number">0.0f</span>;</span><br><span class="line">viewport.y = <span class="number">0.0f</span>;</span><br><span class="line">viewport.width = (<span class="type">float</span>) swapChainExtent.width;</span><br><span class="line">viewport.height = (<span class="type">float</span>) swapChainExtent.height;</span><br><span class="line">viewport.minDepth = <span class="number">0.0f</span>;</span><br><span class="line">viewport.maxDepth = <span class="number">1.0f</span>;</span><br></pre></td></tr></table></figure></div>
 
 <h3 id="裁剪矩形"><a href="#裁剪矩形" class="headerlink" title="裁剪矩形"></a>裁剪矩形</h3><p><strong>剪裁矩形</strong>（Scissor Rectangles）定义了哪些区域的像素会实际存储。任何位于剪裁矩形之外的像素都会被光栅化器丢弃。裁剪区域由结构体 <code>VkRect2D</code> 定义，其声明如下：</p>
-<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">VkRect2D</span> &#123;</span><br><span class="line">    VkOffset2D    offset;</span><br><span class="line">    VkExtent2D    extent;</span><br><span class="line">&#125; VkRect2D;</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">VkRect2D</span> &#123;</span><br><span class="line">    VkOffset2D    offset;</span><br><span class="line">    VkExtent2D    extent;</span><br><span class="line">&#125; VkRect2D;</span><br></pre></td></tr></table></figure></div>
 
 <table>
 <thead>
@@ -543,10 +567,10 @@
 </tr>
 </tbody></table>
 <p>一个声明示例如下：</p>
-<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">VkRect2D scissor&#123;&#125;;</span><br><span class="line">scissor.offset = &#123;<span class="number">0</span>, <span class="number">0</span>&#125;;</span><br><span class="line">scissor.extent = swapChainExtent;</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">VkRect2D scissor&#123;&#125;;</span><br><span class="line">scissor.offset = &#123;<span class="number">0</span>, <span class="number">0</span>&#125;;</span><br><span class="line">scissor.extent = swapChainExtent;</span><br></pre></td></tr></table></figure></div>
 
 <h3 id="视口创建"><a href="#视口创建" class="headerlink" title="视口创建"></a>视口创建</h3><p>通过结构体 <a target="_blank" rel="noopener" href="https://www.khronos.org/registry/vulkan/specs/1.0/man/html/VkPipelineViewportStateCreateInfo.html"><code>VkPipelineViewportStateCreateInfo</code></a> 完成管线<strong>视口</strong>信息的描述，其声明如下：</p>
-<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">VkPipelineViewportStateCreateInfo</span> &#123;</span><br><span class="line">    VkStructureType                       sType;</span><br><span class="line">    <span class="type">const</span> <span class="type">void</span>*                           pNext;</span><br><span class="line">    VkPipelineViewportStateCreateFlags    flags;</span><br><span class="line">    <span class="type">uint32_t</span>                              viewportCount;</span><br><span class="line">    <span class="type">const</span> VkViewport*                     pViewports;</span><br><span class="line">    <span class="type">uint32_t</span>                              scissorCount;</span><br><span class="line">    <span class="type">const</span> VkRect2D*                       pScissors;</span><br><span class="line">&#125; VkPipelineViewportStateCreateInfo;</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">VkPipelineViewportStateCreateInfo</span> &#123;</span><br><span class="line">    VkStructureType                       sType;</span><br><span class="line">    <span class="type">const</span> <span class="type">void</span>*                           pNext;</span><br><span class="line">    VkPipelineViewportStateCreateFlags    flags;</span><br><span class="line">    <span class="type">uint32_t</span>                              viewportCount;</span><br><span class="line">    <span class="type">const</span> VkViewport*                     pViewports;</span><br><span class="line">    <span class="type">uint32_t</span>                              scissorCount;</span><br><span class="line">    <span class="type">const</span> VkRect2D*                       pScissors;</span><br><span class="line">&#125; VkPipelineViewportStateCreateInfo;</span><br></pre></td></tr></table></figure></div>
 
 <table>
 <thead>
@@ -593,13 +617,13 @@
 </tr>
 </tbody></table>
 <p>在渲染管线创建时，视口和裁剪矩形能够以<strong>静态</strong>或者<strong>动态</strong>的方式指明，通常采取动态的方式。在动态方式下，需要在动态状态中指明视口 <code>VK_DYNAMIC_STATE_VIEWPORT</code> 和裁剪矩形 <code>VK_DYNAMIC_STATE_SCISSOR</code>，示例如下：</p>
-<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">std::vector&lt;VkDynamicState&gt; dynamicStates = &#123;</span><br><span class="line">    VK_DYNAMIC_STATE_VIEWPORT,</span><br><span class="line">    VK_DYNAMIC_STATE_SCISSOR</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">VkPipelineDynamicStateCreateInfo dynamicState&#123;&#125;;</span><br><span class="line">dynamicState.sType = VK_STRUCTURE_TYPE_PIPELINE_DYNAMIC_STATE_CREATE_INFO;</span><br><span class="line">dynamicState.dynamicStateCount = <span class="built_in">static_cast</span>&lt;<span class="type">uint32_t</span>&gt;(dynamicStates.<span class="built_in">size</span>());</span><br><span class="line">dynamicState.pDynamicStates = dynamicStates.<span class="built_in">data</span>();</span><br><span class="line"></span><br><span class="line">VkPipelineViewportStateCreateInfo viewportState&#123;&#125;;</span><br><span class="line">viewportState.sType = VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO;</span><br><span class="line">viewportState.pNext = <span class="literal">nullptr</span>;</span><br><span class="line">viewportState.flags = <span class="number">0</span>;</span><br><span class="line">viewportState.viewportCount = <span class="number">1</span>;</span><br><span class="line">viewportState.scissorCount = <span class="number">1</span>;</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">std::vector&lt;VkDynamicState&gt; dynamicStates = &#123;</span><br><span class="line">    VK_DYNAMIC_STATE_VIEWPORT,</span><br><span class="line">    VK_DYNAMIC_STATE_SCISSOR</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">VkPipelineDynamicStateCreateInfo dynamicState&#123;&#125;;</span><br><span class="line">dynamicState.sType = VK_STRUCTURE_TYPE_PIPELINE_DYNAMIC_STATE_CREATE_INFO;</span><br><span class="line">dynamicState.dynamicStateCount = <span class="built_in">static_cast</span>&lt;<span class="type">uint32_t</span>&gt;(dynamicStates.<span class="built_in">size</span>());</span><br><span class="line">dynamicState.pDynamicStates = dynamicStates.<span class="built_in">data</span>();</span><br><span class="line"></span><br><span class="line">VkPipelineViewportStateCreateInfo viewportState&#123;&#125;;</span><br><span class="line">viewportState.sType = VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO;</span><br><span class="line">viewportState.pNext = <span class="literal">nullptr</span>;</span><br><span class="line">viewportState.flags = <span class="number">0</span>;</span><br><span class="line">viewportState.viewportCount = <span class="number">1</span>;</span><br><span class="line">viewportState.scissorCount = <span class="number">1</span>;</span><br></pre></td></tr></table></figure></div>
 
 <p>如果使用静态方式，则需要向 <code>VkPipelineViewportStateCreateInfo</code> 中传递视口和裁剪矩形数组，示例如下：</p>
-<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">VkPipelineViewportStateCreateInfo viewportState&#123;&#125;;</span><br><span class="line">viewportState.sType = VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO;</span><br><span class="line">viewportState.viewportCount = <span class="number">1</span>;</span><br><span class="line">viewportState.pViewports = &amp;viewport;</span><br><span class="line">viewportState.scissorCount = <span class="number">1</span>;</span><br><span class="line">viewportState.pScissors = &amp;scissor;</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">VkPipelineViewportStateCreateInfo viewportState&#123;&#125;;</span><br><span class="line">viewportState.sType = VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO;</span><br><span class="line">viewportState.viewportCount = <span class="number">1</span>;</span><br><span class="line">viewportState.pViewports = &amp;viewport;</span><br><span class="line">viewportState.scissorCount = <span class="number">1</span>;</span><br><span class="line">viewportState.pScissors = &amp;scissor;</span><br></pre></td></tr></table></figure></div>
 
 <h2 id="光栅化器"><a href="#光栅化器" class="headerlink" title="光栅化器"></a>光栅化器</h2><p><strong>光栅化器</strong>（Rasterizer）将由顶点着色器生成的几何体转换为片段（Fragments），以供片段着色器使用。在光栅化阶段，光栅化器还会执行<strong>深度测试</strong>、<strong>剔除</strong>、<strong>裁剪测试</strong>。通过结构体 <a target="_blank" rel="noopener" href="https://www.khronos.org/registry/vulkan/specs/1.0/man/html/VkPipelineRasterizationStateCreateInfo.html"><code>VkPipelineRasterizationStateCreateInfo</code></a> 可以定义一个光栅化器，其声明如下：</p>
-<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">VkPipelineRasterizationStateCreateInfo</span> &#123;</span><br><span class="line">    VkStructureType                            sType;</span><br><span class="line">    <span class="type">const</span> <span class="type">void</span>*                                pNext;</span><br><span class="line">    VkPipelineRasterizationStateCreateFlags    flags;</span><br><span class="line">    VkBool32                                   depthClampEnable;</span><br><span class="line">    VkBool32                                   rasterizerDiscardEnable;</span><br><span class="line">    VkPolygonMode                              polygonMode;</span><br><span class="line">    VkCullModeFlags                            cullMode;</span><br><span class="line">    VkFrontFace                                frontFace;</span><br><span class="line">    VkBool32                                   depthBiasEnable;</span><br><span class="line">    <span class="type">float</span>                                      depthBiasConstantFactor;</span><br><span class="line">    <span class="type">float</span>                                      depthBiasClamp;</span><br><span class="line">    <span class="type">float</span>                                      depthBiasSlopeFactor;</span><br><span class="line">    <span class="type">float</span>                                      lineWidth;</span><br><span class="line">&#125; VkPipelineRasterizationStateCreateInfo;</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">VkPipelineRasterizationStateCreateInfo</span> &#123;</span><br><span class="line">    VkStructureType                            sType;</span><br><span class="line">    <span class="type">const</span> <span class="type">void</span>*                                pNext;</span><br><span class="line">    VkPipelineRasterizationStateCreateFlags    flags;</span><br><span class="line">    VkBool32                                   depthClampEnable;</span><br><span class="line">    VkBool32                                   rasterizerDiscardEnable;</span><br><span class="line">    VkPolygonMode                              polygonMode;</span><br><span class="line">    VkCullModeFlags                            cullMode;</span><br><span class="line">    VkFrontFace                                frontFace;</span><br><span class="line">    VkBool32                                   depthBiasEnable;</span><br><span class="line">    <span class="type">float</span>                                      depthBiasConstantFactor;</span><br><span class="line">    <span class="type">float</span>                                      depthBiasClamp;</span><br><span class="line">    <span class="type">float</span>                                      depthBiasSlopeFactor;</span><br><span class="line">    <span class="type">float</span>                                      lineWidth;</span><br><span class="line">&#125; VkPipelineRasterizationStateCreateInfo;</span><br></pre></td></tr></table></figure></div>
 
 <table>
 <thead>
@@ -676,10 +700,10 @@
 </tr>
 </tbody></table>
 <p>一个调用示例如下：</p>
-<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">VkPipelineRasterizationStateCreateInfo rasterizer&#123;&#125;;</span><br><span class="line">rasterizer.sType = VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_CREATE_INFO;</span><br><span class="line">rasterizer.pNext = <span class="literal">nullptr</span>;</span><br><span class="line">rasterizer.flags = <span class="number">0</span>;</span><br><span class="line">rasterizer.depthClampEnable = VK_FALSE;</span><br><span class="line">rasterizer.rasterizerDiscardEnable = VK_FALSE;</span><br><span class="line">rasterizer.polygonMode = VK_POLYGON_MODE_FILL;</span><br><span class="line">rasterizer.cullMode = VK_CULL_MODE_BACK_BIT;</span><br><span class="line">rasterizer.frontFace = VK_FRONT_FACE_CLOCKWISE;</span><br><span class="line">rasterizer.depthBiasEnable = VK_FALSE;</span><br><span class="line">rasterizer.depthBiasConstantFactor = <span class="number">0.0f</span>; <span class="comment">// Optional</span></span><br><span class="line">rasterizer.depthBiasClamp = <span class="number">0.0f</span>;          <span class="comment">// Optional</span></span><br><span class="line">rasterizer.depthBiasSlopeFactor = <span class="number">0.0f</span>;    <span class="comment">// Optional</span></span><br><span class="line">rasterizer.lineWidth = <span class="number">1.0f</span>;</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">VkPipelineRasterizationStateCreateInfo rasterizer&#123;&#125;;</span><br><span class="line">rasterizer.sType = VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_CREATE_INFO;</span><br><span class="line">rasterizer.pNext = <span class="literal">nullptr</span>;</span><br><span class="line">rasterizer.flags = <span class="number">0</span>;</span><br><span class="line">rasterizer.depthClampEnable = VK_FALSE;</span><br><span class="line">rasterizer.rasterizerDiscardEnable = VK_FALSE;</span><br><span class="line">rasterizer.polygonMode = VK_POLYGON_MODE_FILL;</span><br><span class="line">rasterizer.cullMode = VK_CULL_MODE_BACK_BIT;</span><br><span class="line">rasterizer.frontFace = VK_FRONT_FACE_CLOCKWISE;</span><br><span class="line">rasterizer.depthBiasEnable = VK_FALSE;</span><br><span class="line">rasterizer.depthBiasConstantFactor = <span class="number">0.0f</span>; <span class="comment">// Optional</span></span><br><span class="line">rasterizer.depthBiasClamp = <span class="number">0.0f</span>;          <span class="comment">// Optional</span></span><br><span class="line">rasterizer.depthBiasSlopeFactor = <span class="number">0.0f</span>;    <span class="comment">// Optional</span></span><br><span class="line">rasterizer.lineWidth = <span class="number">1.0f</span>;</span><br></pre></td></tr></table></figure></div>
 
 <h2 id="多重采样"><a href="#多重采样" class="headerlink" title="多重采样"></a>多重采样</h2><p>多重采样（Multisample）是实现抗锯齿的一种方式，其通过将多个多边形的片段着色器结果组合在一起，来减少锯齿现象。多重采样主要在边缘区域工作，因为这些区域通常是最容易出现锯齿伪影的地方。通过结构体 <a target="_blank" rel="noopener" href="https://www.khronos.org/registry/vulkan/specs/1.0/man/html/VkPipelineMultisampleStateCreateInfo.html"><code>VkPipelineMultisampleStateCreateInfo</code></a> 来配置多重采样，其声明如下：</p>
-<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">VkPipelineMultisampleStateCreateInfo</span> &#123;</span><br><span class="line">    VkStructureType                          sType;</span><br><span class="line">    <span class="type">const</span> <span class="type">void</span>*                              pNext;</span><br><span class="line">    VkPipelineMultisampleStateCreateFlags    flags;</span><br><span class="line">    VkSampleCountFlagBits                    rasterizationSamples;</span><br><span class="line">    VkBool32                                 sampleShadingEnable;</span><br><span class="line">    <span class="type">float</span>                                    minSampleShading;</span><br><span class="line">    <span class="type">const</span> VkSampleMask*                      pSampleMask;</span><br><span class="line">    VkBool32                                 alphaToCoverageEnable;</span><br><span class="line">    VkBool32                                 alphaToOneEnable;</span><br><span class="line">&#125; VkPipelineMultisampleStateCreateInfo;</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">VkPipelineMultisampleStateCreateInfo</span> &#123;</span><br><span class="line">    VkStructureType                          sType;</span><br><span class="line">    <span class="type">const</span> <span class="type">void</span>*                              pNext;</span><br><span class="line">    VkPipelineMultisampleStateCreateFlags    flags;</span><br><span class="line">    VkSampleCountFlagBits                    rasterizationSamples;</span><br><span class="line">    VkBool32                                 sampleShadingEnable;</span><br><span class="line">    <span class="type">float</span>                                    minSampleShading;</span><br><span class="line">    <span class="type">const</span> VkSampleMask*                      pSampleMask;</span><br><span class="line">    VkBool32                                 alphaToCoverageEnable;</span><br><span class="line">    VkBool32                                 alphaToOneEnable;</span><br><span class="line">&#125; VkPipelineMultisampleStateCreateInfo;</span><br></pre></td></tr></table></figure></div>
 
 <table>
 <thead>
@@ -736,10 +760,10 @@
 </tr>
 </tbody></table>
 <p>一个调用示例如下：</p>
-<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">VkPipelineMultisampleStateCreateInfo multisampling&#123;&#125;;</span><br><span class="line">multisampling.sType = VK_STRUCTURE_TYPE_PIPELINE_MULTISAMPLE_STATE_CREATE_INFO;</span><br><span class="line">multisampling.pNext = <span class="literal">nullptr</span>;</span><br><span class="line">multisampling.flags = <span class="number">0</span>;</span><br><span class="line">multisampling.sampleShadingEnable = VK_FALSE;</span><br><span class="line">multisampling.rasterizationSamples = VK_SAMPLE_COUNT_1_BIT;</span><br><span class="line">multisampling.minSampleShading = <span class="number">1.0f</span>;          </span><br><span class="line">multisampling.pSampleMask = <span class="literal">nullptr</span>;            </span><br><span class="line">multisampling.alphaToCoverageEnable = VK_FALSE; </span><br><span class="line">multisampling.alphaToOneEnable = VK_FALSE; </span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">VkPipelineMultisampleStateCreateInfo multisampling&#123;&#125;;</span><br><span class="line">multisampling.sType = VK_STRUCTURE_TYPE_PIPELINE_MULTISAMPLE_STATE_CREATE_INFO;</span><br><span class="line">multisampling.pNext = <span class="literal">nullptr</span>;</span><br><span class="line">multisampling.flags = <span class="number">0</span>;</span><br><span class="line">multisampling.sampleShadingEnable = VK_FALSE;</span><br><span class="line">multisampling.rasterizationSamples = VK_SAMPLE_COUNT_1_BIT;</span><br><span class="line">multisampling.minSampleShading = <span class="number">1.0f</span>;          </span><br><span class="line">multisampling.pSampleMask = <span class="literal">nullptr</span>;            </span><br><span class="line">multisampling.alphaToCoverageEnable = VK_FALSE; </span><br><span class="line">multisampling.alphaToOneEnable = VK_FALSE; </span><br></pre></td></tr></table></figure></div>
 
 <h2 id="深度和模版测试"><a href="#深度和模版测试" class="headerlink" title="深度和模版测试"></a>深度和模版测试</h2><h3 id="模版测试"><a href="#模版测试" class="headerlink" title="模版测试"></a>模版测试</h3><p>通过结构体 <code>VkStencilOpState</code> 完成对于模版测试的配置，其定义了如何在模板测试阶段对模板缓冲区进行处理，包括模板比较、模板操作等，声明如下：</p>
-<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">VkStencilOpState</span> &#123;</span><br><span class="line">    VkStencilOp    failOp;</span><br><span class="line">    VkStencilOp    passOp;</span><br><span class="line">    VkStencilOp    depthFailOp;</span><br><span class="line">    VkCompareOp    compareOp;</span><br><span class="line">    <span class="type">uint32_t</span>       compareMask;</span><br><span class="line">    <span class="type">uint32_t</span>       writeMask;</span><br><span class="line">    <span class="type">uint32_t</span>       reference;</span><br><span class="line">&#125; VkStencilOpState;</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">VkStencilOpState</span> &#123;</span><br><span class="line">    VkStencilOp    failOp;</span><br><span class="line">    VkStencilOp    passOp;</span><br><span class="line">    VkStencilOp    depthFailOp;</span><br><span class="line">    VkCompareOp    compareOp;</span><br><span class="line">    <span class="type">uint32_t</span>       compareMask;</span><br><span class="line">    <span class="type">uint32_t</span>       writeMask;</span><br><span class="line">    <span class="type">uint32_t</span>       reference;</span><br><span class="line">&#125; VkStencilOpState;</span><br></pre></td></tr></table></figure></div>
 
 <table>
 <thead>
@@ -786,7 +810,7 @@
 </tr>
 </tbody></table>
 <h3 id="深度测试"><a href="#深度测试" class="headerlink" title="深度测试"></a>深度测试</h3><p>通过结构体<a target="_blank" rel="noopener" href="https://www.khronos.org/registry/vulkan/specs/1.0/man/html/VkPipelineDepthStencilStateCreateInfo.html"><code>VkPipelineDepthStencilStateCreateInfo</code></a> 完成对于深度测试和模版测试的配置，控制如何进行深度比较、模板操作以及深度和模板的写入，声明如下：</p>
-<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">VkPipelineDepthStencilStateCreateInfo</span> &#123;</span><br><span class="line">    VkStructureType                           sType;</span><br><span class="line">    <span class="type">const</span> <span class="type">void</span>*                               pNext;</span><br><span class="line">    VkPipelineDepthStencilStateCreateFlags    flags;</span><br><span class="line">    VkBool32                                  depthTestEnable;</span><br><span class="line">    VkBool32                                  depthWriteEnable;</span><br><span class="line">    VkCompareOp                               depthCompareOp;</span><br><span class="line">    VkBool32                                  depthBoundsTestEnable;</span><br><span class="line">    VkBool32                                  stencilTestEnable;</span><br><span class="line">    VkStencilOpState                          front;</span><br><span class="line">    VkStencilOpState                          back;</span><br><span class="line">    <span class="type">float</span>                                     minDepthBounds;</span><br><span class="line">    <span class="type">float</span>                                     maxDepthBounds;</span><br><span class="line">&#125; VkPipelineDepthStencilStateCreateInfo;</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">VkPipelineDepthStencilStateCreateInfo</span> &#123;</span><br><span class="line">    VkStructureType                           sType;</span><br><span class="line">    <span class="type">const</span> <span class="type">void</span>*                               pNext;</span><br><span class="line">    VkPipelineDepthStencilStateCreateFlags    flags;</span><br><span class="line">    VkBool32                                  depthTestEnable;</span><br><span class="line">    VkBool32                                  depthWriteEnable;</span><br><span class="line">    VkCompareOp                               depthCompareOp;</span><br><span class="line">    VkBool32                                  depthBoundsTestEnable;</span><br><span class="line">    VkBool32                                  stencilTestEnable;</span><br><span class="line">    VkStencilOpState                          front;</span><br><span class="line">    VkStencilOpState                          back;</span><br><span class="line">    <span class="type">float</span>                                     minDepthBounds;</span><br><span class="line">    <span class="type">float</span>                                     maxDepthBounds;</span><br><span class="line">&#125; VkPipelineDepthStencilStateCreateInfo;</span><br></pre></td></tr></table></figure></div>
 
 <table>
 <thead>
@@ -860,7 +884,7 @@
 <h2 id="颜色混合"><a href="#颜色混合" class="headerlink" title="颜色混合"></a>颜色混合</h2><p>在片段着色器返回颜色之后，它需要与已经存在于帧缓冲区中的颜色进行合成。这一转换过程称为颜色混合（Color Blending）。颜色混合有两种方式来实现：1.将旧的颜色值与新的颜色值混合，生成最终的颜色；2.使用位操作将旧的颜色值与新的颜色值组合。</p>
 <p>在颜色混合中，可以通过结构体 <a target="_blank" rel="noopener" href="https://www.khronos.org/registry/vulkan/specs/1.0/man/html/VkPipelineColorBlendAttachmentState.html"><code>VkPipelineColorBlendAttachmentState</code></a> 来配置每一个附加缓冲区的混合设置，也可以通过结构体 <a target="_blank" rel="noopener" href="https://www.khronos.org/registry/vulkan/specs/1.0/man/html/VkPipelineColorBlendStateCreateInfo.html"><code>VkPipelineColorBlendStateCreateInfo</code></a> 来配置全局的混色设置。</p>
 <p>结构体 <code>VkPipelineColorBlendAttachmentState</code> 的声明如下：</p>
-<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">VkPipelineColorBlendAttachmentState</span> &#123;</span><br><span class="line">    VkBool32                 blendEnable;</span><br><span class="line">    VkBlendFactor            srcColorBlendFactor;</span><br><span class="line">    VkBlendFactor            dstColorBlendFactor;</span><br><span class="line">    VkBlendOp                colorBlendOp;</span><br><span class="line">    VkBlendFactor            srcAlphaBlendFactor;</span><br><span class="line">    VkBlendFactor            dstAlphaBlendFactor;</span><br><span class="line">    VkBlendOp                alphaBlendOp;</span><br><span class="line">    VkColorComponentFlags    colorWriteMask;</span><br><span class="line">&#125; VkPipelineColorBlendAttachmentState;</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">VkPipelineColorBlendAttachmentState</span> &#123;</span><br><span class="line">    VkBool32                 blendEnable;</span><br><span class="line">    VkBlendFactor            srcColorBlendFactor;</span><br><span class="line">    VkBlendFactor            dstColorBlendFactor;</span><br><span class="line">    VkBlendOp                colorBlendOp;</span><br><span class="line">    VkBlendFactor            srcAlphaBlendFactor;</span><br><span class="line">    VkBlendFactor            dstAlphaBlendFactor;</span><br><span class="line">    VkBlendOp                alphaBlendOp;</span><br><span class="line">    VkColorComponentFlags    colorWriteMask;</span><br><span class="line">&#125; VkPipelineColorBlendAttachmentState;</span><br></pre></td></tr></table></figure></div>
 
 <table>
 <thead>
@@ -912,10 +936,10 @@
 </tr>
 </tbody></table>
 <p>一种常用的颜色混合方式为 alpha 混合，在这种情况下，新颜色根据其透明度与旧颜色混合，示例如下：</p>
-<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">VkPipelineColorBlendAttachmentState colorBlendAttachment&#123;&#125;;</span><br><span class="line">colorBlendAttachment.blendEnable = VK_TRUE;</span><br><span class="line">colorBlendAttachment.srcColorBlendFactor = VK_BLEND_FACTOR_SRC_ALPHA;</span><br><span class="line">colorBlendAttachment.dstColorBlendFactor = VK_BLEND_FACTOR_ONE_MINUS_SRC_ALPHA;</span><br><span class="line">colorBlendAttachment.colorBlendOp = VK_BLEND_OP_ADD;</span><br><span class="line">colorBlendAttachment.srcAlphaBlendFactor = VK_BLEND_FACTOR_ONE;</span><br><span class="line">colorBlendAttachment.dstAlphaBlendFactor = VK_BLEND_FACTOR_ZERO;</span><br><span class="line">colorBlendAttachment.alphaBlendOp = VK_BLEND_OP_ADD;</span><br><span class="line">colorBlendAttachment.colorWriteMask = VK_COLOR_COMPONENT_R_BIT | VK_COLOR_COMPONENT_G_BIT | VK_COLOR_COMPONENT_B_BIT | VK_COLOR_COMPONENT_A_BIT;</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">VkPipelineColorBlendAttachmentState colorBlendAttachment&#123;&#125;;</span><br><span class="line">colorBlendAttachment.blendEnable = VK_TRUE;</span><br><span class="line">colorBlendAttachment.srcColorBlendFactor = VK_BLEND_FACTOR_SRC_ALPHA;</span><br><span class="line">colorBlendAttachment.dstColorBlendFactor = VK_BLEND_FACTOR_ONE_MINUS_SRC_ALPHA;</span><br><span class="line">colorBlendAttachment.colorBlendOp = VK_BLEND_OP_ADD;</span><br><span class="line">colorBlendAttachment.srcAlphaBlendFactor = VK_BLEND_FACTOR_ONE;</span><br><span class="line">colorBlendAttachment.dstAlphaBlendFactor = VK_BLEND_FACTOR_ZERO;</span><br><span class="line">colorBlendAttachment.alphaBlendOp = VK_BLEND_OP_ADD;</span><br><span class="line">colorBlendAttachment.colorWriteMask = VK_COLOR_COMPONENT_R_BIT | VK_COLOR_COMPONENT_G_BIT | VK_COLOR_COMPONENT_B_BIT | VK_COLOR_COMPONENT_A_BIT;</span><br></pre></td></tr></table></figure></div>
 
 <p>结构体 <code>VkPipelineColorBlendStateCreateInfo</code> 的声明如下：</p>
-<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">VkPipelineColorBlendStateCreateInfo</span> &#123;</span><br><span class="line">    VkStructureType                               sType;</span><br><span class="line">    <span class="type">const</span> <span class="type">void</span>*                                   pNext;</span><br><span class="line">    VkPipelineColorBlendStateCreateFlags          flags;</span><br><span class="line">    VkBool32                                      logicOpEnable;</span><br><span class="line">    VkLogicOp                                     logicOp;</span><br><span class="line">    <span class="type">uint32_t</span>                                      attachmentCount;</span><br><span class="line">    <span class="type">const</span> VkPipelineColorBlendAttachmentState*    pAttachments;</span><br><span class="line">    <span class="type">float</span>                                         blendConstants[<span class="number">4</span>];</span><br><span class="line">&#125; VkPipelineColorBlendStateCreateInfo;</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">VkPipelineColorBlendStateCreateInfo</span> &#123;</span><br><span class="line">    VkStructureType                               sType;</span><br><span class="line">    <span class="type">const</span> <span class="type">void</span>*                                   pNext;</span><br><span class="line">    VkPipelineColorBlendStateCreateFlags          flags;</span><br><span class="line">    VkBool32                                      logicOpEnable;</span><br><span class="line">    VkLogicOp                                     logicOp;</span><br><span class="line">    <span class="type">uint32_t</span>                                      attachmentCount;</span><br><span class="line">    <span class="type">const</span> VkPipelineColorBlendAttachmentState*    pAttachments;</span><br><span class="line">    <span class="type">float</span>                                         blendConstants[<span class="number">4</span>];</span><br><span class="line">&#125; VkPipelineColorBlendStateCreateInfo;</span><br></pre></td></tr></table></figure></div>
 
 <table>
 <thead>
@@ -967,10 +991,10 @@
 </tr>
 </tbody></table>
 <p>注意：当 <code>logicOpEnable</code> 设置为 <code>VK_TRUE</code> 时，对于 <code>pAttachments</code> 中的每个元素，<code>blendEnable</code> 将默认为 <code>VK_FALSE</code>。一个调用示例如下：</p>
-<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">VkPipelineColorBlendStateCreateInfo colorBlending&#123;&#125;;</span><br><span class="line">colorBlending.sType = VK_STRUCTURE_TYPE_PIPELINE_COLOR_BLEND_STATE_CREATE_INFO;</span><br><span class="line">colorBlending.pNext = <span class="literal">nullptr</span>;</span><br><span class="line">colorBlending.flags = <span class="number">0</span>;</span><br><span class="line">colorBlending.logicOpEnable = VK_FALSE;</span><br><span class="line">colorBlending.logicOp = VK_LOGIC_OP_COPY; <span class="comment">// Optional</span></span><br><span class="line">colorBlending.attachmentCount = <span class="number">1</span>;</span><br><span class="line">colorBlending.pAttachments = &amp;colorBlendAttachment;</span><br><span class="line">colorBlending.blendConstants[<span class="number">0</span>] = <span class="number">0.0f</span>; <span class="comment">// Optional</span></span><br><span class="line">colorBlending.blendConstants[<span class="number">1</span>] = <span class="number">0.0f</span>; <span class="comment">// Optional</span></span><br><span class="line">colorBlending.blendConstants[<span class="number">2</span>] = <span class="number">0.0f</span>; <span class="comment">// Optional</span></span><br><span class="line">colorBlending.blendConstants[<span class="number">3</span>] = <span class="number">0.0f</span>; <span class="comment">// Optional</span></span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">VkPipelineColorBlendStateCreateInfo colorBlending&#123;&#125;;</span><br><span class="line">colorBlending.sType = VK_STRUCTURE_TYPE_PIPELINE_COLOR_BLEND_STATE_CREATE_INFO;</span><br><span class="line">colorBlending.pNext = <span class="literal">nullptr</span>;</span><br><span class="line">colorBlending.flags = <span class="number">0</span>;</span><br><span class="line">colorBlending.logicOpEnable = VK_FALSE;</span><br><span class="line">colorBlending.logicOp = VK_LOGIC_OP_COPY; <span class="comment">// Optional</span></span><br><span class="line">colorBlending.attachmentCount = <span class="number">1</span>;</span><br><span class="line">colorBlending.pAttachments = &amp;colorBlendAttachment;</span><br><span class="line">colorBlending.blendConstants[<span class="number">0</span>] = <span class="number">0.0f</span>; <span class="comment">// Optional</span></span><br><span class="line">colorBlending.blendConstants[<span class="number">1</span>] = <span class="number">0.0f</span>; <span class="comment">// Optional</span></span><br><span class="line">colorBlending.blendConstants[<span class="number">2</span>] = <span class="number">0.0f</span>; <span class="comment">// Optional</span></span><br><span class="line">colorBlending.blendConstants[<span class="number">3</span>] = <span class="number">0.0f</span>; <span class="comment">// Optional</span></span><br></pre></td></tr></table></figure></div>
 
 <h2 id="管线布局"><a href="#管线布局" class="headerlink" title="管线布局"></a>管线布局</h2><p>在着色器中，可以使用统一值（uniform values）来动态的决定着色器的行为，比如在顶点着色器中应用<strong>变换矩阵</strong>。在 Vulkan 中，对于统一值的管理需要在着色器创建时通过<strong>管线布局</strong>（Pipeline Layout）来管理。通过 <a target="_blank" rel="noopener" href="https://www.khronos.org/registry/vulkan/specs/1.0/man/html/VkPipelineLayout.html"><code>VkPipelineLayout</code></a> 结构体来描述管线布局信息，其声明如下：</p>
-<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">VkPipelineLayoutCreateInfo</span> &#123;</span><br><span class="line">    VkStructureType                 sType;</span><br><span class="line">    <span class="type">const</span> <span class="type">void</span>*                     pNext;</span><br><span class="line">    VkPipelineLayoutCreateFlags     flags;</span><br><span class="line">    <span class="type">uint32_t</span>                        setLayoutCount;</span><br><span class="line">    <span class="type">const</span> VkDescriptorSetLayout*    pSetLayouts;</span><br><span class="line">    <span class="type">uint32_t</span>                        pushConstantRangeCount;</span><br><span class="line">    <span class="type">const</span> VkPushConstantRange*      pPushConstantRanges;</span><br><span class="line">&#125; VkPipelineLayoutCreateInfo;</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">VkPipelineLayoutCreateInfo</span> &#123;</span><br><span class="line">    VkStructureType                 sType;</span><br><span class="line">    <span class="type">const</span> <span class="type">void</span>*                     pNext;</span><br><span class="line">    VkPipelineLayoutCreateFlags     flags;</span><br><span class="line">    <span class="type">uint32_t</span>                        setLayoutCount;</span><br><span class="line">    <span class="type">const</span> VkDescriptorSetLayout*    pSetLayouts;</span><br><span class="line">    <span class="type">uint32_t</span>                        pushConstantRangeCount;</span><br><span class="line">    <span class="type">const</span> VkPushConstantRange*      pPushConstantRanges;</span><br><span class="line">&#125; VkPipelineLayoutCreateInfo;</span><br></pre></td></tr></table></figure></div>
 
 <table>
 <thead>
@@ -1017,7 +1041,7 @@
 </tr>
 </tbody></table>
 <p>在完成管线布局信息的描述之后，需要通过 <code>vkCreatePipelineLayout</code> 函数来完成管线布局的创建，其声明如下：</p>
-<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">VkResult <span class="title">vkCreatePipelineLayout</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">    VkDevice                                    device,</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="type">const</span> VkPipelineLayoutCreateInfo*           pCreateInfo,</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="type">const</span> VkAllocationCallbacks*                pAllocator,</span></span></span><br><span class="line"><span class="params"><span class="function">    VkPipelineLayout*                           pPipelineLayout)</span></span>;</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">VkResult <span class="title">vkCreatePipelineLayout</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">    VkDevice                                    device,</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="type">const</span> VkPipelineLayoutCreateInfo*           pCreateInfo,</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="type">const</span> VkAllocationCallbacks*                pAllocator,</span></span></span><br><span class="line"><span class="params"><span class="function">    VkPipelineLayout*                           pPipelineLayout)</span></span>;</span><br></pre></td></tr></table></figure></div>
 
 <table>
 <thead>
@@ -1060,7 +1084,7 @@
 </tr>
 </tbody></table>
 <p>在管线布局对象使用完毕后，需要通过函数 <code>vkDestroyPipelineLayout</code> 显式地摧毁，其声明如下：</p>
-<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">vkDestroyPipelineLayout</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">    VkDevice                                    device,</span></span></span><br><span class="line"><span class="params"><span class="function">    VkPipelineLayout                            pipelineLayout,</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="type">const</span> VkAllocationCallbacks*                pAllocator)</span></span>;</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">vkDestroyPipelineLayout</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">    VkDevice                                    device,</span></span></span><br><span class="line"><span class="params"><span class="function">    VkPipelineLayout                            pipelineLayout,</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="type">const</span> VkAllocationCallbacks*                pAllocator)</span></span>;</span><br></pre></td></tr></table></figure></div>
 
 <table>
 <thead>
@@ -1091,14 +1115,14 @@
 </tr>
 </tbody></table>
 <p>一个调用示例如下：</p>
-<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">VkPipelineLayoutCreateInfo pipelineLayoutInfo&#123;&#125;;</span><br><span class="line">pipelineLayoutInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;</span><br><span class="line">pipelineLayoutInfo.setLayoutCount = <span class="number">0</span>; <span class="comment">// Optional</span></span><br><span class="line">pipelineLayoutInfo.pSetLayouts = <span class="literal">nullptr</span>; <span class="comment">// Optional</span></span><br><span class="line">pipelineLayoutInfo.pushConstantRangeCount = <span class="number">0</span>; <span class="comment">// Optional</span></span><br><span class="line">pipelineLayoutInfo.pPushConstantRanges = <span class="literal">nullptr</span>; <span class="comment">// Optional</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">vkCreatePipelineLayout</span>(device, &amp;pipelineLayoutInfo, <span class="literal">nullptr</span>, &amp;pipelineLayout) != VK_SUCCESS) </span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">throw</span> std::<span class="built_in">runtime_error</span>(<span class="string">&quot;failed to create pipeline layout!&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="built_in">vkDestroyPipelineLayout</span>(device, pipelineLayout, <span class="literal">nullptr</span>);</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">VkPipelineLayoutCreateInfo pipelineLayoutInfo&#123;&#125;;</span><br><span class="line">pipelineLayoutInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;</span><br><span class="line">pipelineLayoutInfo.setLayoutCount = <span class="number">0</span>; <span class="comment">// Optional</span></span><br><span class="line">pipelineLayoutInfo.pSetLayouts = <span class="literal">nullptr</span>; <span class="comment">// Optional</span></span><br><span class="line">pipelineLayoutInfo.pushConstantRangeCount = <span class="number">0</span>; <span class="comment">// Optional</span></span><br><span class="line">pipelineLayoutInfo.pPushConstantRanges = <span class="literal">nullptr</span>; <span class="comment">// Optional</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">vkCreatePipelineLayout</span>(device, &amp;pipelineLayoutInfo, <span class="literal">nullptr</span>, &amp;pipelineLayout) != VK_SUCCESS) </span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">throw</span> std::<span class="built_in">runtime_error</span>(<span class="string">&quot;failed to create pipeline layout!&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="built_in">vkDestroyPipelineLayout</span>(device, pipelineLayout, <span class="literal">nullptr</span>);</span><br></pre></td></tr></table></figure></div>
 
 
-        </div>
+		</div>
 
-        
-            <div class="post-copyright-info">
-                <div class="article-copyright-info-container">
+		
+		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+			<div class="article-copyright-info-container">
     <ul>
         <li><strong>标题:</strong> 固定功能</li>
         <li><strong>作者:</strong> 王小龙</li>
@@ -1118,95 +1142,84 @@
                 版权声明:
             </strong>
             
-            本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a> 进行许可。
-            
 
+            
+                本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a> 进行许可。
+            
         </li>
     </ul>
 </div>
 
-            </div>
-        
+		</div>
+		
 
-        
-            <ul class="post-tags-box">
-                
-                    <li class="tag-item">
-                        <a href="/tags/Vulkan/">#Vulkan</a>&nbsp;
-                    </li>
-                
-            </ul>
-        
+		
+		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/Vulkan/">#Vulkan</a>&nbsp;
+			</li>
+			
+		</ul>
+		
 
-        
+		
 
-        
-            <div class="article-nav">
-                
-                    <div class="article-prev">
-                        <a class="prev"
-                        rel="prev"
-                        href="/2025/03/20/Vulkan/%E5%A4%9A%E5%B8%A7%E5%B9%B6%E8%A1%8C/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                                <i class="fa-solid fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">多帧并行</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
-                    </div>
-                
-                
-                    <div class="article-next">
-                        <a class="next"
-                        rel="next"
-                        href="/2025/03/20/Vulkan/%E5%8A%A0%E8%BD%BD%E6%A8%A1%E5%9E%8B/"
-                        >
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">模型加载</span>
-                                <span class="post-nav-item">下一篇</span>
-                            </span>
-                            <span class="right arrow-icon flex-center">
-                                <i class="fa-solid fa-chevron-right"></i>
-                            </span>
-                        </a>
-                    </div>
-                
-            </div>
-        
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="prev" rel="prev" href="/2025/03/20/Vulkan/%E5%A4%9A%E5%B8%A7%E5%B9%B6%E8%A1%8C/">
+					<span class="left arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-left"></i>
+					</span>
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item">多帧并行</span>
+						<span class="post-nav-item">上一篇</span>
+					</span>
+				</a>
+			</div>
+			
+			
+			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="next" rel="next" href="/2025/03/20/Vulkan/%E5%8A%A0%E8%BD%BD%E6%A8%A1%E5%9E%8B/">
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item">模型加载</span>
+						<span class="post-nav-item">下一篇</span>
+					</span>
+					<span class="right arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-right"></i>
+					</span>
+				</a>
+			</div>
+			
+		</div>
+		
 
 
-        
-    </div>
+		
+	</div>
 
-    
-        <div class="toc-content-container">
-            <div class="post-toc-wrap">
-    <div class="post-toc">
-        <div class="toc-title">此页目录</div>
-        <div class="page-title">固定功能</div>
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%BA%E5%AE%9A%E5%8A%9F%E8%83%BD"><span class="nav-text">固定功能</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E7%8A%B6%E6%80%81"><span class="nav-text">动态状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B6%E7%82%B9%E8%BE%93%E5%85%A5"><span class="nav-text">顶点输入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%B6%E7%82%B9%E7%BB%91%E5%AE%9A"><span class="nav-text">顶点绑定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%B6%E7%82%B9%E5%B1%9E%E6%80%A7"><span class="nav-text">顶点属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E8%A3%85%E9%85%8D"><span class="nav-text">输入装配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%86%E5%8F%A3%E5%92%8C%E8%A3%81%E5%89%AA%E7%9F%A9%E5%BD%A2"><span class="nav-text">视口和裁剪矩形</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%86%E5%8F%A3"><span class="nav-text">视口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A3%81%E5%89%AA%E7%9F%A9%E5%BD%A2"><span class="nav-text">裁剪矩形</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%86%E5%8F%A3%E5%88%9B%E5%BB%BA"><span class="nav-text">视口创建</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%89%E6%A0%85%E5%8C%96%E5%99%A8"><span class="nav-text">光栅化器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E9%87%8D%E9%87%87%E6%A0%B7"><span class="nav-text">多重采样</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%B1%E5%BA%A6%E5%92%8C%E6%A8%A1%E7%89%88%E6%B5%8B%E8%AF%95"><span class="nav-text">深度和模版测试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E7%89%88%E6%B5%8B%E8%AF%95"><span class="nav-text">模版测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%B1%E5%BA%A6%E6%B5%8B%E8%AF%95"><span class="nav-text">深度测试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%9C%E8%89%B2%E6%B7%B7%E5%90%88"><span class="nav-text">颜色混合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%A1%E7%BA%BF%E5%B8%83%E5%B1%80"><span class="nav-text">管线布局</span></a></li></ol></li></ol>
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">目录</div>
+		<div class="page-title">固定功能</div>
+		<ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%BA%E5%AE%9A%E5%8A%9F%E8%83%BD"><span class="nav-text">固定功能</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E7%8A%B6%E6%80%81"><span class="nav-text">动态状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B6%E7%82%B9%E8%BE%93%E5%85%A5"><span class="nav-text">顶点输入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%B6%E7%82%B9%E7%BB%91%E5%AE%9A"><span class="nav-text">顶点绑定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%B6%E7%82%B9%E5%B1%9E%E6%80%A7"><span class="nav-text">顶点属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E8%A3%85%E9%85%8D"><span class="nav-text">输入装配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%86%E5%8F%A3%E5%92%8C%E8%A3%81%E5%89%AA%E7%9F%A9%E5%BD%A2"><span class="nav-text">视口和裁剪矩形</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%86%E5%8F%A3"><span class="nav-text">视口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A3%81%E5%89%AA%E7%9F%A9%E5%BD%A2"><span class="nav-text">裁剪矩形</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%86%E5%8F%A3%E5%88%9B%E5%BB%BA"><span class="nav-text">视口创建</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%89%E6%A0%85%E5%8C%96%E5%99%A8"><span class="nav-text">光栅化器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E9%87%8D%E9%87%87%E6%A0%B7"><span class="nav-text">多重采样</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%B1%E5%BA%A6%E5%92%8C%E6%A8%A1%E7%89%88%E6%B5%8B%E8%AF%95"><span class="nav-text">深度和模版测试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E7%89%88%E6%B5%8B%E8%AF%95"><span class="nav-text">模版测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%B1%E5%BA%A6%E6%B5%8B%E8%AF%95"><span class="nav-text">深度测试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%9C%E8%89%B2%E6%B7%B7%E5%90%88"><span class="nav-text">颜色混合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%A1%E7%BA%BF%E5%B8%83%E5%B1%80"><span class="nav-text">管线布局</span></a></li></ol></li></ol>
 
-    </div>
+	</div>
 </div>
-        </div>
-    
+	</div>
+	
 </div>
+			</div>
 
+			
+		</div>
 
-
-                
-
-            </div>
-
-            
-
-        </div>
-
-        <div class="main-content-footer">
-            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
     <div class="info-container py-3 text-center">
         
         <div class="text-center">
@@ -1216,6 +1229,19 @@
               -
             
             2025&nbsp;&nbsp;<i class="fa-regular fa-computer-classic"></i>&nbsp;&nbsp;<a href="/">王小龙</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        共撰写了 23 篇文章
+                    </span>
+                    
+                        <span>
+                            共 88.1k 字
+                        </span>
+                    
+                </p>
+            
         </div>
         
             <script data-swup-reload-script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
@@ -1236,7 +1262,7 @@
         
         <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
             <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
-            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.4.1</a></span>
+            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.2</a></span>
         </div>
         
         
@@ -1265,122 +1291,109 @@
         
     </div>  
 </footer>
-        </div>
-    </div>
+		</div>
+	</div>
 
-    
-        <div class="post-tools">
-            <div class="post-tools-container">
-    <ul class="article-tools-list">
-        <!-- TOC aside toggle -->
-        
-            <li class="right-bottom-tools page-aside-toggle">
-                <i class="fa-regular fa-outdent"></i>
-            </li>
-        
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
 
-        <!-- go comment -->
-        
-    </ul>
+		<!-- go comment -->
+		
+	</ul>
+</div>
+	</div>
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container">
+	<img src="">
 </div>
 
-        </div>
-    
-
-    <div class="right-side-tools-container">
-        <div class="side-tools-container">
-    <ul class="hidden-tools-list">
-        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
-            <i class="fa-regular fa-magnifying-glass-plus"></i>
-        </li>
-
-        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
-            <i class="fa-regular fa-magnifying-glass-minus"></i>
-        </li>
-
-        <li class="right-bottom-tools tool-expand-width flex-center">
-            <i class="fa-regular fa-expand"></i>
-        </li>
-
-        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
-            <i class="fa-regular fa-moon"></i>
-        </li>
-
-        <!-- rss -->
-        
-
-        
-
-        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
-            <i class="fa-regular fa-arrow-down"></i>
-        </li>
-    </ul>
-
-    <ul class="visible-tools-list">
-        <li class="right-bottom-tools toggle-tools-list flex-center">
-            <i class="fa-regular fa-cog fa-spin"></i>
-        </li>
-        
-            <li class="right-bottom-tools tool-scroll-to-top flex-center">
-                <i class="arrow-up fas fa-arrow-up"></i>
-                <span class="percent"></span>
-            </li>
-        
-        
-    </ul>
+	
+	<div class="search-pop-overlay">
+	<div class="popup search-popup">
+		<div class="search-header">
+			<span class="search-input-field-pre">
+				<i class="fa-solid fa-keyboard"></i>
+			</span>
+			<div class="search-input-container">
+				<input autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="站内搜索您需要的内容..." spellcheck="false" type="search" class="search-input">
+			</div>
+			<span class="popup-btn-close">
+				<i class="fa-solid fa-times"></i>
+			</span>
+		</div>
+		<div id="search-result">
+			<div id="no-result">
+				<i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+			</div>
+		</div>
+	</div>
 </div>
-
-    </div>
-
-    <div class="image-viewer-container">
-    <img src="">
-</div>
-
-
-    
-        <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
-          <span class="search-input-field-pre">
-            <i class="fa-solid fa-keyboard"></i>
-          </span>
-            <div class="search-input-container">
-                <input autocomplete="off"
-                       autocorrect="off"
-                       autocapitalize="off"
-                       placeholder="搜索..."
-                       spellcheck="false"
-                       type="search"
-                       class="search-input"
-                >
-            </div>
-            <span class="popup-btn-close">
-                <i class="fa-solid fa-times"></i>
-            </span>
-        </div>
-        <div id="search-result">
-            <div id="no-result">
-                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
-            </div>
-        </div>
-    </div>
-</div>
-
-    
+	
 
 </main>
 
 
-    
-<script src="/js/libs/Swup.min.js"></script>
 
-<script src="/js/libs/SwupSlideTheme.min.js"></script>
+<script src="/js/build/libs/Swup.min.js"></script>
 
-<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+<script src="/js/build/libs/SwupSlideTheme.min.js"></script>
 
-<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+<script src="/js/build/libs/SwupScriptsPlugin.min.js"></script>
 
-<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+<script src="/js/build/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupPreloadPlugin.min.js"></script>
 
 <script>
     const swup = new Swup({
@@ -1395,63 +1408,55 @@
             new SwupSlideTheme({
                 mainElement: ".main-content-body",
             }),
+            new SwupPreloadPlugin(),
         ],
         containers: ["#swup"],
     });
-
-    swup.hooks.on("page:view", () => {
-        Global.refresh();
-    });
-
-    // if (document.readyState === "complete") {
-    //
-    // } else {
-    //     document.addEventListener("DOMContentLoaded", () => init());
-    // }
 </script>
 
 
 
 
+	
+<script src="/js/build/tools/imageViewer.js" type="module"></script>
 
+<script src="/js/build/utils.js" type="module"></script>
 
-<script src="/js/utils.js"></script>
+<script src="/js/build/main.js" type="module"></script>
 
-<script src="/js/main.js"></script>
+<script src="/js/build/layouts/navbarShrink.js" type="module"></script>
 
-<script src="/js/layouts/navbarShrink.js"></script>
+<script src="/js/build/tools/scrollTopBottom.js" type="module"></script>
 
-<script src="/js/tools/scrollTopBottom.js"></script>
+<script src="/js/build/tools/lightDarkSwitch.js" type="module"></script>
 
-<script src="/js/tools/lightDarkSwitch.js"></script>
-
-<script src="/js/layouts/categoryList.js"></script>
-
-
-
-    
-<script src="/js/tools/localSearch.js"></script>
-
+<script src="/js/build/layouts/categoryList.js" type="module"></script>
 
 
 
     
-<script src="/js/tools/codeBlock.js"></script>
+<script src="/js/build/tools/localSearch.js" type="module"></script>
 
 
 
 
     
-<script src="/js/layouts/lazyload.js"></script>
+<script src="/js/build/tools/codeBlock.js" type="module"></script>
 
 
 
 
     
-<script src="/js/tools/runtime.js"></script>
+<script src="/js/build/layouts/lazyload.js" type="module"></script>
+
+
+
 
     
-<script src="/js/libs/odometer.min.js"></script>
+<script src="/js/build/tools/runtime.js"></script>
+
+    
+<script src="/js/build/libs/odometer.min.js"></script>
 
     
 <link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
@@ -1460,10 +1465,10 @@
 
 
   
-<script src="/js/libs/Typed.min.js"></script>
+<script src="/js/build/libs/Typed.min.js"></script>
 
   
-<script src="/js/plugins/typed.js"></script>
+<script src="/js/build/plugins/typed.js" type="module"></script>
 
 
 
@@ -1471,20 +1476,34 @@
 
 
 
-<div class="post-scripts" data-swup-reload-script>
-    
-        
-<script src="/js/tools/tocToggle.js"></script>
-
-<script src="/js/layouts/toc.js"></script>
-
-<script src="/js/libs/anime.min.js"></script>
-
-<script src="/js/plugins/tabs.js"></script>
 
     
-</div>
+<script src="/js/build/libs/anime.min.js"></script>
 
 
+
+
+
+    
+<script src="/js/build/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+<script src="/js/build/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/js/build/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+
+	
 </body>
+
 </html>
