@@ -306,27 +306,33 @@
             <li class="home-article-item">
 
                 
+                    <div class="absolute top-[12px] right-[12px] text-[0.7rem] text-third-text-color rounded-medium bg-background-color-transparent-15 py-[2px] px-[10px] border border-border-color z-1 hover:text-first-text-color cursor-default">
+                        <i class="fa-regular fa-thumbtack mr-[3px] text-[0.65rem]"></i>置顶
+                    </div>
+                
 
                 
 
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
-                        <a href="/2025/03/20/Vulkan/%E4%BA%A4%E6%8D%A2%E9%93%BE/">
-                            交换链
+                        <a href="/2025/03/20/Vulkan/%E6%B8%B2%E6%9F%93%E5%92%8C%E5%91%88%E7%8E%B0/">
+                            渲染和呈现
                         </a>
                     </h3>
 
                     <div class="home-article-content markdown-body">
                         
                             
-                            交换链交换链是 Vulkan 中用于管理帧缓冲区的工具，其本质是一个图像队列，这些图像正在等待被绘制到屏幕上。交换链也存在多种属性，基本上，需要检查以下三类属性：
+                            渲染和呈现在 Vulkan 中，渲染一帧图像通常包括以下的步骤：
 
-基本表面能力（交换链中的图像最小&#x2F;最大数量，图像的最小&#x2F;最大宽度和高度）
-表面格式（像素格式、颜色空间）
-可用呈现模式
+等待上一帧完成
+从交换链获取一张图像
+记录一个命令缓冲区，将场景绘制到该图像上
+提交已记录的命令缓冲区
+呈现交换链图像
 
-在使用交换链之前需要启用 VK_KHR_swapchain 扩展，该扩展是设备扩展，需...
+同步Vulkan 的核心设计是显式同步，GPU 上的执行顺序需要由开发者通过各种同步原语（synchronization primitives）来定义，明确指示驱动程序按照我们指定的顺序执行操作。许多的 ...
                         
                     </div>
 
@@ -355,7 +361,7 @@
         
     </div>
 
-    <a href="/2025/03/20/Vulkan/%E4%BA%A4%E6%8D%A2%E9%93%BE/">阅读全文<span class="seo-reader-text">交换链</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/2025/03/20/Vulkan/%E6%B8%B2%E6%9F%93%E5%92%8C%E5%91%88%E7%8E%B0/">阅读全文<span class="seo-reader-text">渲染和呈现</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -364,26 +370,26 @@
             <li class="home-article-item">
 
                 
+                    <div class="absolute top-[12px] right-[12px] text-[0.7rem] text-third-text-color rounded-medium bg-background-color-transparent-15 py-[2px] px-[10px] border border-border-color z-1 hover:text-first-text-color cursor-default">
+                        <i class="fa-regular fa-thumbtack mr-[3px] text-[0.65rem]"></i>置顶
+                    </div>
+                
 
                 
 
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
-                        <a href="/2025/03/20/Vulkan/%E5%9B%BE%E5%83%8F/">
-                            图像
+                        <a href="/2025/03/20/Vulkan/%E9%A1%B6%E7%82%B9%E7%BC%93%E5%86%B2%E5%8C%BA/">
+                            顶点缓冲区
                         </a>
                     </h3>
 
                     <div class="home-article-content markdown-body">
                         
                             
-                            图像在 Vulkan 中，图像（Image） 是一个核心概念，用于表示存储像素数据的资源。图像可以用于多种用途，例如：
-
-纹理（Texture）：用于贴图或采样。
-帧缓冲区附件（Framebuffer Attachment）：作为渲染目标（如颜色附件、深度附件等）。
-存储图像（Storage Image）：在计算着色器中作为可读写的存储资源。
-交换链图像（Swapchain Image）：用...
+                            顶点输入描述顶点着色器在顶点着色器中需要定义顶点属性的输入，通常包括位置和颜色，其中位置属性可以为二维 vec2 、三维 vec3 或者齐次坐标 vec4。同时向片段着色器输出片段颜色，并向内建变量 gl_Position 输出齐次坐标形式的顶点位置，一个简单的示例如下：
+123456789101112#version 450layout(location = 0) in vec2 inPo...
                         
                     </div>
 
@@ -412,7 +418,7 @@
         
     </div>
 
-    <a href="/2025/03/20/Vulkan/%E5%9B%BE%E5%83%8F/">阅读全文<span class="seo-reader-text">图像</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/2025/03/20/Vulkan/%E9%A1%B6%E7%82%B9%E7%BC%93%E5%86%B2%E5%8C%BA/">阅读全文<span class="seo-reader-text">顶点缓冲区</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -420,6 +426,10 @@
         
             <li class="home-article-item">
 
+                
+                    <div class="absolute top-[12px] right-[12px] text-[0.7rem] text-third-text-color rounded-medium bg-background-color-transparent-15 py-[2px] px-[10px] border border-border-color z-1 hover:text-first-text-color cursor-default">
+                        <i class="fa-regular fa-thumbtack mr-[3px] text-[0.65rem]"></i>置顶
+                    </div>
                 
 
                 
@@ -476,22 +486,33 @@
             <li class="home-article-item">
 
                 
+                    <div class="absolute top-[12px] right-[12px] text-[0.7rem] text-third-text-color rounded-medium bg-background-color-transparent-15 py-[2px] px-[10px] border border-border-color z-1 hover:text-first-text-color cursor-default">
+                        <i class="fa-regular fa-thumbtack mr-[3px] text-[0.65rem]"></i>置顶
+                    </div>
+                
 
                 
 
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
-                        <a href="/2025/03/20/Vulkan/%E6%A0%B8%E5%BF%83%E4%B8%8A%E4%B8%8B%E6%96%87/">
-                            核心上下文
+                        <a href="/2025/03/20/Vulkan/%E7%BA%B9%E7%90%86%E6%98%A0%E5%B0%84/">
+                            纹理映射
                         </a>
                     </h3>
 
                     <div class="home-article-content markdown-body">
                         
                             
-                            Vulkan 核心上下文为了模块化设计，使用类 ContentManager 来管理 Vulkan 中的核心上下文，其中 init 函数将执行所有初始化操作，clear 函数将执行所有清理操作：
-12345678910111213// content.h#pragma onceclass ContentManager&#123;public:    ContentManager() = de...
+                            图像在 Vulkan 中，为几何添加纹理将涉及以下步骤：
+
+创建一个由设备内存支持的图像对象。
+使用图像文件中的像素进行填充。
+创建一个图像采样器。
+添加一个组合的图像采样器描述符，以便从纹理中采样颜色。
+
+加载图像使用 stb 库中的 stb_image.h 来完成图像的加载，使用时需要定义宏 STB_IMAGE_IMPLEMENTATION 来包含函数体：
+12#define STB_I...
                         
                     </div>
 
@@ -520,7 +541,7 @@
         
     </div>
 
-    <a href="/2025/03/20/Vulkan/%E6%A0%B8%E5%BF%83%E4%B8%8A%E4%B8%8B%E6%96%87/">阅读全文<span class="seo-reader-text">核心上下文</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/2025/03/20/Vulkan/%E7%BA%B9%E7%90%86%E6%98%A0%E5%B0%84/">阅读全文<span class="seo-reader-text">纹理映射</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -529,23 +550,26 @@
             <li class="home-article-item">
 
                 
+                    <div class="absolute top-[12px] right-[12px] text-[0.7rem] text-third-text-color rounded-medium bg-background-color-transparent-15 py-[2px] px-[10px] border border-border-color z-1 hover:text-first-text-color cursor-default">
+                        <i class="fa-regular fa-thumbtack mr-[3px] text-[0.65rem]"></i>置顶
+                    </div>
+                
 
                 
 
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
-                        <a href="/2025/03/20/Vulkan/%E7%9D%80%E8%89%B2%E5%99%A8%E6%A8%A1%E5%9E%8B/">
-                            着色器模型
+                        <a href="/2025/03/20/Vulkan/%E6%B7%B1%E5%BA%A6%E7%BC%93%E5%86%B2%E5%8C%BA/">
+                            深度缓冲区
                         </a>
                     </h3>
 
                     <div class="home-article-content markdown-body">
                         
                             
-                            着色器模块在 Vulkan 中，着色器代码使用字节码格式表示，可以使用 glslangValidator.exe 或者 glslc.exe 将 GLSL 代码编译成字节码。
-顶点着色器顶点着色器对于输入的每个顶点进行处理，其输入的是每个顶点的属性，包括坐标、颜色、法向量、纹理坐标。顶点着色器对于顶点的属性进行处理，并将处理之后的结果传递给片段着色器进行进一步的处理。
-在顶点着色器中的一个重要...
+                            三维几何要在 Vulkan 中表示三维几何，需要首先修改 Vertex.pos 类型为 glm::vec3 ，并修改对应属性描述符 VkVertexInputAttributeDescription.format 为 VK_FORMAT_R32G32B32_SFLOAT：
+1234567891011121314151617181920struct Vertex &#123;    glm::...
                         
                     </div>
 
@@ -574,7 +598,7 @@
         
     </div>
 
-    <a href="/2025/03/20/Vulkan/%E7%9D%80%E8%89%B2%E5%99%A8%E6%A8%A1%E5%9E%8B/">阅读全文<span class="seo-reader-text">着色器模型</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/2025/03/20/Vulkan/%E6%B7%B1%E5%BA%A6%E7%BC%93%E5%86%B2%E5%8C%BA/">阅读全文<span class="seo-reader-text">深度缓冲区</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -583,165 +607,9 @@
             <li class="home-article-item">
 
                 
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/2025/03/20/Vulkan/%E5%9B%BE%E5%BD%A2%E7%AE%A1%E7%BA%BF/">
-                            图形管线
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            图形管线最后，将所有的管线状态创建信息组合起来就可以完成图形管线（Graphics Pipeline）的创建，通过结构体 VkGraphicsPipelineCreateInfo 来完成图形管线信息的描述，其声明如下：
-123456789101112131415161718192021typedef struct VkGraphicsPipelineCreateInfo &#123;    ...
-                        
+                    <div class="absolute top-[12px] right-[12px] text-[0.7rem] text-third-text-color rounded-medium bg-background-color-transparent-15 py-[2px] px-[10px] border border-border-color z-1 hover:text-first-text-color cursor-default">
+                        <i class="fa-regular fa-thumbtack mr-[3px] text-[0.65rem]"></i>置顶
                     </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Thu Mar 20 2025 14:52:08 GMT+0800">
-                
-                    2025-03-20
-                
-            </span>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/Vulkan/">Vulkan</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2025/03/20/Vulkan/%E5%9B%BE%E5%BD%A2%E7%AE%A1%E7%BA%BF/">阅读全文<span class="seo-reader-text">图形管线</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/2025/03/20/Vulkan/%E5%A4%9A%E5%B8%A7%E5%B9%B6%E8%A1%8C/">
-                            多帧并行
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            多帧并行在一个渲染循环中如果只使用一个命令缓冲区会存在一些问题，在开始渲染下一帧之前，必须等待前一帧完成，这会导致 CPU 在提交一个命令缓冲区之后需要等待 GPU 执行完成以获得下一个可用的命令缓冲区，同时 GPU 执行完成一帧的渲染命令之后，也需要等待 CPU 完成下一帧渲染命令的录制。
-这个问题的解决方案是**允许多帧同时进行 (Frames in Flight)**，也就是说在渲染一...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Thu Mar 20 2025 14:52:08 GMT+0800">
-                
-                    2025-03-20
-                
-            </span>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/Vulkan/">Vulkan</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2025/03/20/Vulkan/%E5%A4%9A%E5%B8%A7%E5%B9%B6%E8%A1%8C/">阅读全文<span class="seo-reader-text">多帧并行</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/2025/03/20/Vulkan/%E5%9B%BA%E5%AE%9A%E5%8A%9F%E8%83%BD/">
-                            固定功能
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            固定功能在 Vulkan 中，需要对于图形管线中的每个部分显示地进行配置。
-动态状态大部分管线状态都需要预设，但部分管线状态可以在绘制时进行改变而无需重新创建管线，例如视口大小。对于需要动态使用的状态，需要使用 VkPipelineDynamicStateCreateInfo 来显示指定，其声明如下：
-1234567typedef struct VkPipelineDynamicStateC...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Thu Mar 20 2025 14:52:08 GMT+0800">
-                
-                    2025-03-20
-                
-            </span>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/Vulkan/">Vulkan</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2025/03/20/Vulkan/%E5%9B%BA%E5%AE%9A%E5%8A%9F%E8%83%BD/">阅读全文<span class="seo-reader-text">固定功能</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
                 
 
                 
@@ -805,23 +673,29 @@
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
-                        <a href="/2025/03/20/Vulkan/%E6%B7%B1%E5%BA%A6%E7%BC%93%E5%86%B2%E5%8C%BA/">
-                            深度缓冲区
+                        <a href="/2025/03/20/Games101/%E7%9D%80%E8%89%B2/">
+                            着色
                         </a>
                     </h3>
 
                     <div class="home-article-content markdown-body">
                         
                             
-                            三维几何要在 Vulkan 中表示三维几何，需要首先修改 Vertex.pos 类型为 glm::vec3 ，并修改对应属性描述符 VkVertexInputAttributeDescription.format 为 VK_FORMAT_R32G32B32_SFLOAT：
-1234567891011121314151617181920struct Vertex &#123;    glm::...
+                            
+
+	
+    
+	
+
+
+
                         
                     </div>
 
                     <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
         <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Thu Mar 20 2025 14:52:08 GMT+0800">
+            <span class="home-article-date" data-date="Thu Mar 20 2025 16:47:07 GMT+0800">
                 
                     2025-03-20
                 
@@ -835,7 +709,7 @@
                     
                         <li>
                             
-                            <a href="/tags/Vulkan/">Vulkan</a>&nbsp;
+                            <a href="/tags/Games101/">Games101</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -843,7 +717,184 @@
         
     </div>
 
-    <a href="/2025/03/20/Vulkan/%E6%B7%B1%E5%BA%A6%E7%BC%93%E5%86%B2%E5%8C%BA/">阅读全文<span class="seo-reader-text">深度缓冲区</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/2025/03/20/Games101/%E7%9D%80%E8%89%B2/">阅读全文<span class="seo-reader-text">着色</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2025/03/20/Games101/%E6%9D%90%E8%B4%A8/">
+                            材质
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            
+
+	
+    
+	
+
+
+
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Thu Mar 20 2025 16:46:50 GMT+0800">
+                
+                    2025-03-20
+                
+            </span>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/Games101/">Games101</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2025/03/20/Games101/%E6%9D%90%E8%B4%A8/">阅读全文<span class="seo-reader-text">材质</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2025/03/20/Games101/%E5%87%A0%E4%BD%95/">
+                            几何
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            
+
+	
+    
+	
+
+
+
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Thu Mar 20 2025 16:45:45 GMT+0800">
+                
+                    2025-03-20
+                
+            </span>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/Games101/">Games101</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2025/03/20/Games101/%E5%87%A0%E4%BD%95/">阅读全文<span class="seo-reader-text">几何</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2025/03/20/Games101/%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA/">
+                            光线追踪
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            
+
+	
+    
+	
+
+
+
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Thu Mar 20 2025 16:45:21 GMT+0800">
+                
+                    2025-03-20
+                
+            </span>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/Games101/">Games101</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2025/03/20/Games101/%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA/">阅读全文<span class="seo-reader-text">光线追踪</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>

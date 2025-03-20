@@ -29,7 +29,7 @@
 <meta property="og:description" content="多帧并行在一个渲染循环中如果只使用一个命令缓冲区会存在一些问题，在开始渲染下一帧之前，必须等待前一帧完成，这会导致 CPU 在提交一个命令缓冲区之后需要等待 GPU 执行完成以获得下一个可用的命令缓冲区，同时 GPU 执行完成一帧的渲染命令之后，也需要等待 CPU 完成下一帧渲染命令的录制。 这个问题的解决方案是**允许多帧同时进行 (Frames in Flight)**，也就是说在渲染一帧的同">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-03-20T06:52:08.868Z">
-<meta property="article:modified_time" content="2025-03-20T07:37:50.196Z">
+<meta property="article:modified_time" content="2025-03-20T15:45:29.821Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Vulkan">
 <meta name="twitter:card" content="summary">
@@ -268,8 +268,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-03-20 15:37:50</span>
-            <span class="mobile">2025-03-20 15:37:50</span>
+            <span class="desktop">2025-03-20 23:45:29</span>
+            <span class="mobile">2025-03-20 23:45:29</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -344,7 +344,7 @@
         
             <li>
                 <strong>更新于
-                    :</strong> 2025-03-20 15:37:50
+                    :</strong> 2025-03-20 23:45:29
             </li>
         
         <li>
