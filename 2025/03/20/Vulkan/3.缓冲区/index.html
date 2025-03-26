@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="王小龙">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2025/03/20/vulkan/3.缓冲区/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+    
+    
+        
+        <meta name="description" content="在 Vulkan 中，缓冲区是用于管理和存储显卡可读取的任意数据的内存区域，其可以用来存储各种类型的数据，例如顶点数据、索引数据、 Uniform 数据、纹理数据等。缓冲区本身并不包含数据的格式信息，它只是一个原始的内存块，数据的解释方式由使用缓冲区的 Vulkan 管线阶段，如顶点着色器、片段着色器等决定。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="缓冲区">
+<meta property="og:url" content="http://example.com/2025/03/20/Vulkan/3.%E7%BC%93%E5%86%B2%E5%8C%BA/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="在 Vulkan 中，缓冲区是用于管理和存储显卡可读取的任意数据的内存区域，其可以用来存储各种类型的数据，例如顶点数据、索引数据、 Uniform 数据、纹理数据等。缓冲区本身并不包含数据的格式信息，它只是一个原始的内存块，数据的解释方式由使用缓冲区的 Vulkan 管线阶段，如顶点着色器、片段着色器等决定。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-03-20T06:52:08.904Z">
+<meta property="article:modified_time" content="2025-03-26T07:23:52.900Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Vulkan">
+<meta name="twitter:card" content="summary">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            缓冲区 | 小龙的笔记本
+        
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/css/build/tailwind.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.xml"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":true,"lazyload":true,"pangu_js":false,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"小龙的笔记本","subtitle":{"text":[],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.8.2","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
+    window.lang_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+
+<body>
+	<div class="progress-bar-container">
+	
+
+	
+	<span class="pjax-progress-bar"></span>
+	<!--        <span class="swup-progress-icon">-->
+	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+	<!--        </span>-->
+	
+</div>
+
+<main class="page-container" id="swup">
+
+	
+
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                小龙的笔记本
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    首页
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                首页
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">2</div>
+        <div class="label text-third-text-color text-sm">标签</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">分类</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">22</div>
+        <div class="label text-third-text-color text-sm">文章</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+		</div>
+
+		<div class="main-content-body transition-fade-up">
+			
+
+			<div class="main-content">
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
+
+		<div class="article-title relative w-full">
+			
+			<div class="w-full flex items-center pt-6 justify-start">
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">缓冲区</h1>
+			</div>
+			
+		</div>
+
+		
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+				<img src="/image/avatar.jpg">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">王小龙</span>
+					
+					<span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv3</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2025-03-20 14:52:08</span>
+        <span class="mobile">2025-03-20 14:52:08</span>
+        <span class="hover-info">创建</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-03-26 15:23:52</span>
+            <span class="mobile">2025-03-26 15:23:52</span>
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Vulkan/">Vulkan</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>6.3k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>24 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+				</div>
+			</div>
+		</div>
+		
+
+		
+
+
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<h1 id="基础框架"><a href="#基础框架" class="headerlink" title="基础框架"></a>基础框架</h1><p>通过类 <code>BufferManager</code> 来实现缓冲区管理，添加 <code>ContentManagerSPtr</code> 成员对象来获取核心上下文，添加 <code>CommandManagerSPtr</code> 成员对象来进行一些缓冲区操作 。此处的 <code>init</code> 和 <code>clear</code> 是纯虚函数，以便在强制在子类中实现初始化和清理方法：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// buffer_manager.h</span></span><br><span class="line"><span class="meta">#<span class="keyword">pragma</span> once</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">BufferManager</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">BufferManager</span>() = <span class="keyword">default</span>;</span><br><span class="line">    <span class="built_in">BufferManager</span>(<span class="type">const</span> ContentManagerSPtr&amp; pContentManager, <span class="type">const</span> CommandManagerSPtr&amp; pCommandManager);</span><br><span class="line">	</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">init</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">clear</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    ContentManagerSPtr pContentManager;</span><br><span class="line">    CommandManagerSPtr pCommandManager;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> std::shared_ptr&lt;BufferManager&gt; BufferManagerSPtr;</span><br></pre></td></tr></table></figure></div>
+
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// buffer_manager.cpp</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;buffer_manager.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">BufferManager::<span class="built_in">BufferManager</span>(<span class="type">const</span> ContentManagerSPtr&amp; pContentManager, </span><br><span class="line">                             <span class="type">const</span> CommandManagerSPtr&amp; pCommandManager)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">this</span>-&gt;pContentManager = pContentManager;</span><br><span class="line">    <span class="keyword">this</span>-&gt;pCommandManager = pCommandManager;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h1 id="创建缓冲区"><a href="#创建缓冲区" class="headerlink" title="创建缓冲区"></a>创建缓冲区</h1><p>此处实现一个缓冲区创建辅助函数，其接收 <strong>缓冲区大小</strong>、<strong>缓冲区用途</strong>、<strong>绑定的内存属性</strong> 作为参数，创建对应的 <strong>缓冲区</strong> 和 <strong>缓冲区内存</strong>：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// buffer_manager.h</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">BufferManager</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">createBuffer</span><span class="params">(<span class="type">const</span> VkDeviceSize size,</span></span></span><br><span class="line"><span class="params"><span class="function">                  <span class="type">const</span> VkBufferUsageFlags usage,</span></span></span><br><span class="line"><span class="params"><span class="function">                  <span class="type">const</span> VkMemoryPropertyFlags properties,</span></span></span><br><span class="line"><span class="params"><span class="function">                  VkBuffer&amp; buffer,</span></span></span><br><span class="line"><span class="params"><span class="function">                  VkDeviceMemory&amp; bufferMemory)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    VkBuffer buffer;</span><br><span class="line">	VkDeviceMemory bufferMemory;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="配置缓冲区"><a href="#配置缓冲区" class="headerlink" title="配置缓冲区"></a>配置缓冲区</h2><p>在 Vulkan 中，缓冲区的创建需要首先填充结构体 <code>VkBufferCreateInfo</code>，其声明如下：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">VkBufferCreateInfo</span> &#123;</span><br><span class="line">    VkStructureType        sType;</span><br><span class="line">    <span class="type">const</span> <span class="type">void</span>*            pNext;</span><br><span class="line">    VkBufferCreateFlags    flags;</span><br><span class="line">    VkDeviceSize           size;</span><br><span class="line">    VkBufferUsageFlags     usage;</span><br><span class="line">    VkSharingMode          sharingMode;</span><br><span class="line">    <span class="type">uint32_t</span>               queueFamilyIndexCount;</span><br><span class="line">    <span class="type">const</span> <span class="type">uint32_t</span>*        pQueueFamilyIndices;</span><br><span class="line">&#125; VkBufferCreateInfo;</span><br></pre></td></tr></table></figure></div>
+
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>sType</td>
+<td>结构体类型</td>
+<td>必须设置为 <code>VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO</code>，以表明这是一个 <strong>缓冲区创建信息</strong> 结构。</td>
+</tr>
+<tr>
+<td>pNext</td>
+<td>扩展信息</td>
+<td>指向扩展信息的指针，如果没有需要使用的扩展，设置为 <code>nullptr</code>。</td>
+</tr>
+<tr>
+<td>flags</td>
+<td></td>
+<td>缓冲区的创建标志，默认值为 <code>0</code>，可以是 <code>VkBufferCreateFlagBits</code> 枚举类型的组合，可选值包括：<br /><code>VK_BUFFER_CREATE_SPARSE_BINDING_BIT</code>：稀疏绑定的缓冲区，物理内存可以不连续。<br /><code>VK_BUFFER_CREATE_SPARSE_RESIDENCY_BIT</code>：稀疏驻留的缓冲区，部分缓冲区可以没有物理内存绑定。<br /><code>VK_BUFFER_CREATE_SPARSE_ALIASED_BIT</code>：允许多个稀疏缓冲区共享相同的物理内存。<br /><code>VK_BUFFER_CREATE_PROTECTED_BIT</code>：允许缓冲区使用受保护内存，确保 GPU 端的数据安全，不可被非受保护的操作访问。<br /><code>VK_BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT</code>：允许缓冲区支持设备地址的捕获和回放，在不同的 Vulkan 运行实例之间保持一致，用于调试和重现。<br /><code>VK_BUFFER_CREATE_DESCRIPTOR_BUFFER_CAPTURE_REPLAY_BIT_EXT</code>：<code>EXT</code> 扩展，允许缓冲区支持描述符缓冲区的捕获和回放，用于调试和重现。<br /><code>VK_BUFFER_CREATE_VIDEO_PROFILE_INDEPENDENT_BIT_KHR</code>：<code>KHR</code> 扩展，允许缓冲区在 多个视频解码配置之间通用使用<br /><code>VK_BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_EXT</code>：<code>EXT</code> 扩展别名，与 <code>VK_BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT</code> 一致。<br /><code>VK_BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_KHR</code>：<code>KHR</code> 扩展别名，与 <code>VK_BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT</code> 一致。</td>
+</tr>
+<tr>
+<td>size</td>
+<td>缓冲区的大小</td>
+<td>缓冲区的大小（以字节为单位）。定义了缓冲区所需的内存大小。</td>
+</tr>
+<tr>
+<td>usage</td>
+<td>缓冲区的用途标志</td>
+<td>缓冲区的用途标志，默认值为 <code>0</code>，可以是 <code>VkBufferUsageFlagBits</code> 枚举类型的组合，可选值包括：<br /><code>VK_BUFFER_USAGE_TRANSFER_SRC_BIT</code>：该缓冲区可用作数据传输的源（拷贝到另一个缓冲区或图像）。<br/><code>VK_BUFFER_USAGE_TRANSFER_DST_BIT</code>：该缓冲区可用作数据传输的目标（从另一个缓冲区或图像拷贝数据到该缓冲区）。<br/><code>VK_BUFFER_USAGE_UNIFORM_TEXEL_BUFFER_BIT</code>：该缓冲区可以作为纹理缓冲区。<br/><code>VK_BUFFER_USAGE_STORAGE_TEXEL_BUFFER_BIT</code>：该缓冲区可以作为存储纹理缓冲区，支持在着色器中进行读取和写入。<br/><code>VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT</code>：该缓冲区可以作为统一缓冲区。<br/><code>VK_BUFFER_USAGE_STORAGE_BUFFER_BIT</code>：该缓冲区可以作为 存储缓冲区用于 GPU 计算或图形渲染时读写大块数据。<br/><code>VK_BUFFER_USAGE_INDEX_BUFFER_BIT</code>：该缓冲区可作为索引缓冲区。<br/><code>VK_BUFFER_USAGE_VERTEX_BUFFER_BIT</code>：该缓冲区可作为顶点缓冲区。<br/><code>VK_BUFFER_USAGE_INDIRECT_BUFFER_BIT</code>：该缓冲区可作为间接绘制缓冲区。<br/><code>VK_BUFFER_USAGE_SHADER_DEVICE_ADDRESS_BIT</code>：允许该缓冲区支持 着色器设备地址，用于 GPU 指针操作，如加速结构访问。<br/><code>VK_BUFFER_USAGE_VIDEO_DECODE_SRC_BIT_KHR</code>：该缓冲区可用于视频解码的输入源。<br/><code>VK_BUFFER_USAGE_VIDEO_DECODE_DST_BIT_KHR</code>：该缓冲区可用于视频解码的输出目标。<br/><code>VK_BUFFER_USAGE_TRANSFORM_FEEDBACK_BUFFER_BIT_EXT</code>：该缓冲区可用于变换反馈，用于存储经过顶点着色器处理后的顶点数据。<br/><code>VK_BUFFER_USAGE_TRANSFORM_FEEDBACK_COUNTER_BUFFER_BIT_EXT</code>：该缓冲区用于存储变换反馈的计数器。<br/><code>VK_BUFFER_USAGE_CONDITIONAL_RENDERING_BIT_EXT</code>：该缓冲区可用于 条件渲染，用于基于 GPU 计算的结果决定是否执行渲染操作。<br/><code>VK_BUFFER_USAGE_EXECUTION_GRAPH_SCRATCH_BIT_AMDX</code>：该缓冲区用于 AMDX 执行图的 Scratch 数据存储。<br/><code>VK_BUFFER_USAGE_ACCELERATION_STRUCTURE_BUILD_INPUT_READ_ONLY_BIT_KHR</code>：该缓冲区用于光线追踪加速结构的构建输入。<br/><code>VK_BUFFER_USAGE_ACCELERATION_STRUCTURE_STORAGE_BIT_KHR</code>：该缓冲区可用于存储光线追踪加速结构。<br/><code>VK_BUFFER_USAGE_SHADER_BINDING_TABLE_BIT_KHR</code>：该缓冲区用于光线追踪着色器绑定表。<br/><code>VK_BUFFER_USAGE_VIDEO_ENCODE_DST_BIT_KHR</code>：该缓冲区可作为视频编码的目标。<br/><code>VK_BUFFER_USAGE_VIDEO_ENCODE_SRC_BIT_KHR</code>：该缓冲区可作为视频编码的输入源。<br/><code>VK_BUFFER_USAGE_SAMPLER_DESCRIPTOR_BUFFER_BIT_EXT</code>：允许该缓冲区作为采样器描述符缓冲区。<br/><code>VK_BUFFER_USAGE_RESOURCE_DESCRIPTOR_BUFFER_BIT_EXT</code>：允许该缓冲区作为资源描述符缓冲区。<br/><code>VK_BUFFER_USAGE_PUSH_DESCRIPTORS_DESCRIPTOR_BUFFER_BIT_EXT</code>：允许该缓冲区用于 Push Descriptors。<br/><code>VK_BUFFER_USAGE_MICROMAP_BUILD_INPUT_READ_ONLY_BIT_EXT</code>：允许该缓冲区作为 Micromap 构建输入。<br/><code>VK_BUFFER_USAGE_MICROMAP_STORAGE_BIT_EXT</code>：允许该缓冲区用于 存储 Micromap。<br/><code>VK_BUFFER_USAGE_RAY_TRACING_BIT_NV</code>：<code>VK_NV_ray_tracing</code> 扩展别名，与 <code>VK_BUFFER_USAGE_SHADER_BINDING_TABLE_BIT_KHR</code> 相同。<br/><code>VK_BUFFER_USAGE_SHADER_DEVICE_ADDRESS_BIT_EXT</code>：<code>EXT</code> 扩展别名，与 <code>VK_BUFFER_USAGE_SHADER_DEVICE_ADDRESS_BIT</code> 相同。<br/><code>VK_BUFFER_USAGE_SHADER_DEVICE_ADDRESS_BIT_KHR</code>：<code>KHR</code> 扩展别名，与 <code>VK_BUFFER_USAGE_SHADER_DEVICE_ADDRESS_BIT</code> 相同。</td>
+</tr>
+<tr>
+<td>sharingMode</td>
+<td>缓冲区的共享模式</td>
+<td>缓冲区的共享模式，默认值为 <code>0</code>，指定该缓冲区将如何被多个队列族使用，可选值包括：<br /><code>VK_SHARING_MODE_EXCLUSIVE</code>：缓冲区只由一个队列族访问，默认值。<br /><code>VK_SHARING_MODE_CONCURRENT</code>：缓冲区可以由多个队列族同时访问。</td>
+</tr>
+<tr>
+<td>queueFamilyIndexCount</td>
+<td>队列族索引数组大小</td>
+<td>队列族索引的数量，仅在 <code>sharingMode</code> 为 <code>VK_SHARING_MODE_CONCURRENT</code> 时使用。<br />在其他模式下应设置为 <code>0</code>。</td>
+</tr>
+<tr>
+<td>pQueueFamilyIndices</td>
+<td>队列族索引数组指针</td>
+<td>队列族索引的数组，仅在 <code>sharingMode</code> 为 <code>VK_SHARING_MODE_CONCURRENT</code> 时使用。<br />在其他模式下应设置为 <code>nullptr</code>。</td>
+</tr>
+</tbody></table>
+<p>示例如下：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// buffer_manager.cpp</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">createBuffer</span><span class="params">(<span class="type">const</span> VkDeviceSize size,</span></span></span><br><span class="line"><span class="params"><span class="function">                  <span class="type">const</span> VkBufferUsageFlags usage,</span></span></span><br><span class="line"><span class="params"><span class="function">                  <span class="type">const</span> VkMemoryPropertyFlags properties,</span></span></span><br><span class="line"><span class="params"><span class="function">                  VkBuffer&amp; buffer,</span></span></span><br><span class="line"><span class="params"><span class="function">                  VkDeviceMemory&amp; bufferMemory)</span></span>;</span><br><span class="line">&#123;</span><br><span class="line">    VkBufferCreateInfo bufferInfo&#123;&#125;;</span><br><span class="line">	bufferInfo.sType = VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO;</span><br><span class="line">	bufferInfo.pNext = <span class="literal">nullptr</span>;</span><br><span class="line">	bufferInfo.flags = <span class="number">0</span>;</span><br><span class="line">	bufferInfo.size = size;</span><br><span class="line">	bufferInfo.usage = usage;</span><br><span class="line">	bufferInfo.sharingMode = VK_SHARING_MODE_EXCLUSIVE;</span><br><span class="line">	bufferInfo.queueFamilyIndexCount = <span class="number">0</span>;</span><br><span class="line">	bufferInfo.pQueueFamilyIndices = <span class="literal">nullptr</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="创建缓冲区-1"><a href="#创建缓冲区-1" class="headerlink" title="创建缓冲区"></a>创建缓冲区</h2><p>调用函数 <code>vkCreateBuffer</code> 来完成缓冲区的建立，其声明如下：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">VkResult <span class="title">vkCreateBuffer</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">    VkDevice                                    device,</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="type">const</span> VkBufferCreateInfo*                   pCreateInfo,</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="type">const</span> VkAllocationCallbacks*                pAllocator,</span></span></span><br><span class="line"><span class="params"><span class="function">    VkBuffer*                                   pBuffer)</span></span>;</span><br></pre></td></tr></table></figure></div>
+
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>参数</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>输入参数</td>
+<td>device</td>
+<td>逻辑设备句柄</td>
+<td>指定在哪个 Vulkan 设备上创建缓冲区。</td>
+</tr>
+<tr>
+<td>输入参数</td>
+<td>pCreateInfo</td>
+<td>缓冲区创建信息指针</td>
+<td>指向 <code>VkBufferCreateInfo</code> 结构体的指针，该结构体定义了缓冲区的创建参数。</td>
+</tr>
+<tr>
+<td>输入参数</td>
+<td>pAllocator</td>
+<td>一个可选的自定义内存分配器回调结构指针</td>
+<td>如果传入 <code>nullptr</code>，则使用默认的内存分配机制。如果应用程序需要对内存分配和释放进行控制，可实现自定义分配器并通过此参数传递。</td>
+</tr>
+<tr>
+<td>输出参数</td>
+<td>pBuffer</td>
+<td>缓冲区指针</td>
+<td>指向 <code>VkBuffer</code> 变量的指针，用于接收创建的缓冲区句柄，存储 Vulkan 创建的缓冲区对象。</td>
+</tr>
+<tr>
+<td>返回值</td>
+<td></td>
+<td>表示缓冲区创建是否成功</td>
+<td><code>VK_SUCCESS</code>：表示缓冲区创建成功。  其他错误代码：表示创建失败，具体原因可能包括内存不足或者地址无效。</td>
+</tr>
+</tbody></table>
+<p>示例如下：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// buffer_manager.cpp</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">BufferManager::createBuffer</span><span class="params">(<span class="type">const</span> VkDeviceSize size,</span></span></span><br><span class="line"><span class="params"><span class="function">                                 <span class="type">const</span> VkBufferUsageFlags usage,</span></span></span><br><span class="line"><span class="params"><span class="function">                                 <span class="type">const</span> VkMemoryPropertyFlags properties)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    VkBufferCreateInfo bufferInfo&#123;&#125;;</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">vkCreateBuffer</span>(pContentManager-&gt;device, &amp;bufferInfo, <span class="literal">nullptr</span>, &amp;buffer) != VK_SUCCESS)</span><br><span class="line">	&#123;</span><br><span class="line">    	<span class="keyword">throw</span> std::<span class="built_in">runtime_error</span>(<span class="string">&quot;Failed to create buffer!&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>注意：缓冲区创建之后不会自动分配内存。<code>VkBuffer</code> 是一个逻辑对象，定义了缓冲区的属性和用途（如大小、用途标志等）。<code>VkDeviceMemory</code> 是实际的物理内存，用于存储缓冲区的数据。为了使用缓冲区，必须将 <code>VkBuffer</code> 绑定到 <code>VkDeviceMemory</code> 上。这种设计使得 Vulkan 能够灵活地管理内存，并支持多种内存分配策略。</p>
+<h2 id="内存需求"><a href="#内存需求" class="headerlink" title="内存需求"></a>内存需求</h2><p>缓冲区创建之后，需要为其进行内存分配，在这之前需要先查询内存需求，通过调用函数 <code>vkGetBufferMemoryRequirements</code>来进行查询，其声明如下：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">vkGetBufferMemoryRequirements</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">    VkDevice                                    device,</span></span></span><br><span class="line"><span class="params"><span class="function">    VkBuffer                                    buffer,</span></span></span><br><span class="line"><span class="params"><span class="function">    VkMemoryRequirements*                       pMemoryRequirements)</span></span>;</span><br></pre></td></tr></table></figure></div>
+
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>参数</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>输入参数</td>
+<td>device</td>
+<td>逻辑设备句柄</td>
+<td>指定要查询缓冲区的内存需求的 Vulkan 设备。</td>
+</tr>
+<tr>
+<td>输入参数</td>
+<td>buffer</td>
+<td>缓冲区句柄</td>
+<td>需要查询内存需求的缓冲区对象</td>
+</tr>
+<tr>
+<td>输出参数</td>
+<td>pMemoryRequirements</td>
+<td>内存需求指针</td>
+<td>指向 <code>VkMemoryRequirements</code> 结构体的指针，函数调用后，该结构体会被填充相关的内存需求信息，包括：<br /><code>size</code>：所需内存大小（以字节为单位），可能与 <code>bufferInfo.size</code> 不同<br /><code>alignment</code>：缓冲区在分配的内存区域中的起始偏移量（以字节为单位），取决于 <code>bufferInfo.usage</code> 和 <code>bufferInfo.flags</code>。<br /><code>memoryTypeBits</code>：适用于该缓冲区的内存类型位掩码。</td>
+</tr>
+</tbody></table>
+<p>示例如下：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// buffer_manager.cpp</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">BufferManager::createBuffer</span><span class="params">(<span class="type">const</span> VkDeviceSize size,</span></span></span><br><span class="line"><span class="params"><span class="function">                                 <span class="type">const</span> VkBufferUsageFlags usage,</span></span></span><br><span class="line"><span class="params"><span class="function">                                 <span class="type">const</span> VkMemoryPropertyFlags properties)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    VkMemoryRequirements memRequirements;</span><br><span class="line">	<span class="built_in">vkGetBufferMemoryRequirements</span>(pContentManager-&gt;device, buffer, &amp;memRequirements);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="选择内存类型"><a href="#选择内存类型" class="headerlink" title="选择内存类型"></a>选择内存类型</h2><p>显卡通常提供不同类型的显存，每种显存在允许的操作和性能特性方面可能有所不同。我们需要结合缓冲区的要求和应用程序的需求来选择合适的显存类型，需要通过函数 <code>vkGetPhysicalDeviceMemoryProperties</code> 来查询显卡提供的可用显存类型信息，其声明如下：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">vkGetPhysicalDeviceMemoryProperties</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">    VkPhysicalDevice                            physicalDevice,</span></span></span><br><span class="line"><span class="params"><span class="function">    VkPhysicalDeviceMemoryProperties*           pMemoryProperties)</span></span>;</span><br></pre></td></tr></table></figure></div>
+
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>参数</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>输入参数</td>
+<td>device</td>
+<td>逻辑设备句柄</td>
+<td>指定要查询缓冲区的内存需求的 Vulkan 设备。</td>
+</tr>
+<tr>
+<td>输出参数</td>
+<td>pMemoryProperties</td>
+<td>物理设备的内存属性信息指针</td>
+<td>指向 <code>VkPhysicalDeviceMemoryProperties</code> 结构体的指针，调用后，该结构体会被填充物理设备的内存属性信息，包括：<br /><code>memoryTypeCount</code>：可用的内存类型数量。<br /><code>memoryTypes</code>：一个 <code>VkMemoryType</code> 数组，描述不同的内存类型。<br /><code>memoryHeapCount</code>：可用的内存堆数量。<br /><code>memoryHeaps</code>：一个 <code>VkMemoryHeap</code> 数组，描述不同的内存堆。</td>
+</tr>
+</tbody></table>
+<p><code>VkMemoryHeap</code> 结构体描述了 Vulkan 物理设备（GPU）提供的内存堆的相关信息。其声明如下：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">VkMemoryHeap</span> &#123;</span><br><span class="line">    VkDeviceSize         size;</span><br><span class="line">    VkMemoryHeapFlags    flags;</span><br><span class="line">&#125; VkMemoryHeap;</span><br></pre></td></tr></table></figure></div>
+
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>size</td>
+<td>内存堆的大小</td>
+<td>这个值表示该内存堆可以提供的最大内存量。例如，一个 8GB 的 VRAM 可能对应 <code>size = 8 * 1024 * 1024 * 1024</code>。但并不意味着所有这部分内存都可以分配给 Vulkan 使用，部分可能被操作系统或驱动程序占用。</td>
+</tr>
+<tr>
+<td>flags</td>
+<td>内存堆的标志位</td>
+<td>指示了内存堆的特性，可能的值包括：<br /><code>VK_MEMORY_HEAP_DEVICE_LOCAL_BIT</code>：该内存堆位于设备本地（通常指 GPU 专用的 VRAM）。如果没有设置该标志，则表示该内存堆可能是共享的（例如，集成显卡使用的系统 RAM）<br /><code>VK_MEMORY_HEAP_MULTI_INSTANCE_BIT</code>：多 GPU 配置中的多实例内存。<br /><code>VK_MEMORY_HEAP_MULTI_INSTANCE_BIT_KHR</code>：<code>KHR</code> 扩展别名，与 <code>VK_MEMORY_HEAP_MULTI_INSTANCE_BIT</code> 相同。</td>
+</tr>
+</tbody></table>
+<p><code>VkMemoryType</code> 结构体描述了 Vulkan 物理设备（GPU）提供的内存类型特性，它决定了如何访问特定的内存堆，声明如下：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">VkMemoryType</span> &#123;</span><br><span class="line">    VkMemoryPropertyFlags    propertyFlags;</span><br><span class="line">    <span class="type">uint32_t</span>                 heapIndex;</span><br><span class="line">&#125; VkMemoryType;</span><br></pre></td></tr></table></figure></div>
+
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>propertyFlags</td>
+<td>内存属性的标志位</td>
+<td>指示了该内存的访问模式和特性，可以组合多个标志，可能的值包括：<br /><code>VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT</code>：该内存是设备本地的，通常指 GPU VRAM（显存）。访问速度快，适合存放经常使用的图形数据（如顶点缓冲、纹理等）。<br/><code>VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT</code>：该内存对主机（CPU）可见，可以通过 <code>vkMapMemory</code> 访问。适合存放 CPU 需要修改的数据，如动态更新的顶点缓冲区。<br/><code>VK_MEMORY_PROPERTY_HOST_COHERENT_BIT</code>：主机一致性（Coherent），即 CPU 写入数据后，GPU 可以直接读取，无需手动 <code>vkFlushMappedMemoryRanges</code>。适合小型数据传输，但写入性能可能较低。<br/><code>VK_MEMORY_PROPERTY_HOST_CACHED_BIT</code>：该内存支持 CPU 缓存，适用于频繁读取的数据，如只读缓冲（Read-Only Buffers）。但可能需要 <code>vkInvalidateMappedMemoryRanges</code> 以保证 CPU 读取最新的 GPU 数据。<br/><code>VK_MEMORY_PROPERTY_LAZILY_ALLOCATED_BIT</code>：该内存懒分配，通常用于纹理或帧缓冲（Framebuffer）。只在真正需要时才分配实际物理内存，适合离屏渲染（Offscreen Rendering）。<br/><code>VK_MEMORY_PROPERTY_PROTECTED_BIT</code>：该内存受保护（Protected），不能被 CPU 直接访问，仅适用于保护内容的场景（如 DRM）。（Vulkan 1.1+）<br/><code>VK_MEMORY_PROPERTY_DEVICE_COHERENT_BIT_AMD</code> &#x2F; <code>VK_MEMORY_PROPERTY_DEVICE_UNCACHED_BIT_AMD</code>：AMD GPU 的特殊内存属性，控制 GPU 访问一致性。（AMD 专有）<br /><code>VK_MEMORY_PROPERTY_RDMA_CAPABLE_BIT_NV</code>：允许远程设备（如其他 GPU 或网络设备） 直接访问该内存，而无需经过 CPU 处理，从而减少延迟、提升数据传输效率，比如 GPU 直连存储。NVIDIA 在 Vulkan 1.3.236 版本中引入的扩展内存属性。</td>
+</tr>
+<tr>
+<td>heapIndex</td>
+<td>内存堆索引</td>
+<td>指定该内存类型所属的内存堆索引。<br />物理设备的 <code>VkPhysicalDeviceMemoryProperties</code> 结构体中有 <code>memoryHeaps</code> 数组，每个 <code>VkMemoryType</code> 都映射到其中的一个 <code>heapIndex</code>。</td>
+</tr>
+</tbody></table>
+<p><code>VkMemoryRequirements.memoryTypeBits</code> 是一个 位掩码（bitmask），用于指示该缓冲区（<code>VkBuffer</code>）或图像（<code>VkImage</code>）可以使用哪些内存类型。</p>
+<ul>
+<li>它的每一位对应 <code>VkPhysicalDeviceMemoryProperties.memoryTypes</code> 数组中的一个内存类型索引。</li>
+<li>如果 <code>memoryTypeBits</code> 的 第 <code>i</code> 位 为 <code>1</code>，表示 该资源（Buffer &#x2F; Image）可以使用 <code>memoryTypes[i]</code>。</li>
+<li>需要通过 <code>memoryTypeBits</code> 结合应用需求，在 <code>VkPhysicalDeviceMemoryProperties::memoryTypes</code> 中选择合适的内存类型。</li>
+</ul>
+<p>一个辅助函数的实现示例如下：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// buffer_manager.h</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">BufferManager</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    <span class="function"><span class="type">uint32_t</span> <span class="title">findMemoryType</span><span class="params">(<span class="type">uint32_t</span> typeFilter, VkMemoryPropertyFlags properties)</span></span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div>
+
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// buffer_manager.cpp</span></span><br><span class="line"><span class="function"><span class="type">uint32_t</span> <span class="title">BufferManager::findMemoryType</span><span class="params">(<span class="type">uint32_t</span> typeFilter, VkMemoryPropertyFlags properties)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    VkPhysicalDeviceMemoryProperties memoryProperties;</span><br><span class="line">    <span class="built_in">vkGetPhysicalDeviceMemoryProperties</span>(pContentManager-&gt;physicalDevice, &amp;memoryProperties);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">uint32_t</span> i = <span class="number">0</span>; i &lt; memoryProperties.memoryTypeCount; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> ((typeFilter &amp; (<span class="number">1</span> &lt;&lt; i)) &amp;&amp; (memoryProperties.memoryTypes[i].propertyFlags &amp; properties) == properties)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">throw</span> std::<span class="built_in">runtime_error</span>(<span class="string">&quot;Failed to find suitable memory type!&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="配置内存"><a href="#配置内存" class="headerlink" title="配置内存"></a>配置内存</h2><p>在完成了合适的内存类型的确定之后，就可以进行内存的申请。首先，需要填充结构体 <code>VkMemoryAllocateInfo</code>，其声明如下：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">VkMemoryAllocateInfo</span> &#123;</span><br><span class="line">    VkStructureType    sType;</span><br><span class="line">    <span class="type">const</span> <span class="type">void</span>*        pNext;</span><br><span class="line">    VkDeviceSize       allocationSize;</span><br><span class="line">    <span class="type">uint32_t</span>           memoryTypeIndex;</span><br><span class="line">&#125; VkMemoryAllocateInfo;</span><br></pre></td></tr></table></figure></div>
+
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>sType</td>
+<td>指定结构体的类型</td>
+<td>必须设置为 <code>VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO</code>，以表明这是一个内存申请信息结构。</td>
+</tr>
+<tr>
+<td>pNext</td>
+<td>指向扩展信息的指针</td>
+<td>如果没有需要使用的扩展，设置为 <code>nullptr</code>。</td>
+</tr>
+<tr>
+<td>allocationSize</td>
+<td>申请的内存大小</td>
+<td>需要分配的内存的大小（以字节为单位）。此大小应大于或等于所有分配的资源大小的总和。</td>
+</tr>
+<tr>
+<td>memoryTypeIndex</td>
+<td>内存类型的索引</td>
+<td>这个索引来自于 <code>VkPhysicalDeviceMemoryProperties</code> 结构中的 <code>memoryTypes</code> 数组，它告诉 Vulkan 使用哪种类型的物理设备内存。通常通过查询设备的内存类型来获取这个索引。</td>
+</tr>
+</tbody></table>
+<p>示例如下：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// buffer_manager.cpp</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">BufferManager::createBuffer</span><span class="params">(<span class="type">const</span> VkDeviceSize size,</span></span></span><br><span class="line"><span class="params"><span class="function">                                 <span class="type">const</span> VkBufferUsageFlags usage,</span></span></span><br><span class="line"><span class="params"><span class="function">                                 <span class="type">const</span> VkMemoryPropertyFlags properties)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    VkMemoryAllocateInfo allocInfo&#123;&#125;;</span><br><span class="line">	allocInfo.sType = VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO;</span><br><span class="line">	allocInfo.pNext = <span class="literal">nullptr</span>;</span><br><span class="line">	allocInfo.allocationSize = memRequirements.size;</span><br><span class="line">	allocInfo.memoryTypeIndex = <span class="built_in">findMemoryType</span>(memRequirements.memoryTypeBits, properties);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="分配内存"><a href="#分配内存" class="headerlink" title="分配内存"></a>分配内存</h2><p>然后，通过调用函数 <code>vkAllocateMemory</code> 来完成内存的分配，其声明如下：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">VkResult VKAPI_CALL <span class="title">vkAllocateMemory</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">    VkDevice                                    device,</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="type">const</span> VkMemoryAllocateInfo*                 pAllocateInfo,</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="type">const</span> VkAllocationCallbacks*                pAllocator,</span></span></span><br><span class="line"><span class="params"><span class="function">    VkDeviceMemory*                             pMemory)</span></span>;</span><br></pre></td></tr></table></figure></div>
+
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>参数</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>输入参数</td>
+<td>device</td>
+<td>逻辑设备句柄</td>
+<td>指定在哪个 Vulkan 设备上进行内存分配。</td>
+</tr>
+<tr>
+<td>输入参数</td>
+<td>pAllocateInfo</td>
+<td>内存分配信息指针</td>
+<td>指向 <code>VkMemoryAllocateInfo</code> 结构的指针，该结构包含了分配内存所需要的所有信息。</td>
+</tr>
+<tr>
+<td>输入参数</td>
+<td>pAllocator</td>
+<td>一个可选的自定义内存分配器回调结构指针</td>
+<td>如果传入 <code>nullptr</code>，则使用默认的内存分配机制。如果应用程序需要对内存分配和释放进行控制，可实现自定义分配器并通过此参数传递。</td>
+</tr>
+<tr>
+<td>输出参数</td>
+<td>pMemory</td>
+<td>设备内存对象指针</td>
+<td>指向 <code>VkDeviceMemory</code> 的指针。函数执行成功后，这个指针将会指向分配的设备内存对象。你可以使用这个内存对象与缓冲区、图像等资源绑定。</td>
+</tr>
+<tr>
+<td>返回值</td>
+<td></td>
+<td>表示内存分配是否成功</td>
+<td><code>VK_SUCCESS</code>：表示内存分配成功。  其他错误代码：表示分配失败，具体原因可能包括内存不足。</td>
+</tr>
+</tbody></table>
+<p>示例如下：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//buffer_manager.cpp</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">BufferManager::createBuffer</span><span class="params">(<span class="type">const</span> VkDeviceSize size,</span></span></span><br><span class="line"><span class="params"><span class="function">                                 <span class="type">const</span> VkBufferUsageFlags usage,</span></span></span><br><span class="line"><span class="params"><span class="function">                                 <span class="type">const</span> VkMemoryPropertyFlags properties)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">vkAllocateMemory</span>(pContentManager-&gt;device, &amp;allocInfo, <span class="literal">nullptr</span>, &amp;bufferMemory) != VK_SUCCESS)</span><br><span class="line">	&#123;</span><br><span class="line">    	<span class="keyword">throw</span> std::<span class="built_in">runtime_error</span>(<span class="string">&quot;Failed to allocate buffer memory!&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>需要注意，在实际应用程序中，不应为每个单独的缓冲区调用 <code>vkAllocateMemory</code>。物理设备对<strong>最大同时分配的内存块数</strong>有限制，由 <code>maxMemoryAllocationCount</code> 限定。正确的做法是创建自定义内存分配器，通过偏移量（offset）在单个分配的内存块中拆分多个对象，而不是为每个对象单独分配内存。</p>
+<h2 id="绑定缓冲区内存"><a href="#绑定缓冲区内存" class="headerlink" title="绑定缓冲区内存"></a>绑定缓冲区内存</h2><p>最后，通过调用函数  <code>vkBindBufferMemory</code> 来完成缓冲区和缓冲区内存的绑定，其声明如下：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">VkResult VKAPI_CALL <span class="title">vkBindBufferMemory</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">    VkDevice                                    device,</span></span></span><br><span class="line"><span class="params"><span class="function">    VkBuffer                                    buffer,</span></span></span><br><span class="line"><span class="params"><span class="function">    VkDeviceMemory                              memory,</span></span></span><br><span class="line"><span class="params"><span class="function">    VkDeviceSize                                memoryOffset)</span></span>;</span><br></pre></td></tr></table></figure></div>
+
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>参数</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>输入参数</td>
+<td>device</td>
+<td>逻辑设备句柄</td>
+<td>指定在哪个 Vulkan 设备上进行内存绑定。</td>
+</tr>
+<tr>
+<td>输入参数</td>
+<td>buffer</td>
+<td>缓冲区句柄</td>
+<td>需要绑定内存的缓冲区对象的句柄。</td>
+</tr>
+<tr>
+<td>输入参数</td>
+<td>memory</td>
+<td>设备内存句柄</td>
+<td>需要绑定的设备内存对象的句柄，表示要绑定到缓冲区的内存。</td>
+</tr>
+<tr>
+<td>输入参数</td>
+<td>memoryOffset</td>
+<td>指定绑定内存时的偏移量</td>
+<td>通常，对于一个单独的缓冲区，偏移量是 <code>0</code>，表示内存从缓冲区对象的开始位置绑定。如果使用内存的某个子部分时，可以设置为适当的偏移量。此偏移量必须是绑定内存的对齐要求 <code>memRequirements.alignment</code> 的整数倍。</td>
+</tr>
+</tbody></table>
+<p>示例如下：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//buffer_manager.cpp</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">BufferManager::createBuffer</span><span class="params">(<span class="type">const</span> VkDeviceSize size,</span></span></span><br><span class="line"><span class="params"><span class="function">                                 <span class="type">const</span> VkBufferUsageFlags usage,</span></span></span><br><span class="line"><span class="params"><span class="function">                                 <span class="type">const</span> VkMemoryPropertyFlags properties)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    <span class="built_in">vkBindBufferMemory</span>(pContentManager-&gt;device, buffer, bufferMemory, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="清理缓冲区"><a href="#清理缓冲区" class="headerlink" title="清理缓冲区"></a>清理缓冲区</h2><p>在缓冲区使用完毕之后，需要调用函数 <code>vkDestroyBuffer</code> 来销毁缓冲区以释放资源，其声明如下：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">vkDestroyBuffer</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">    VkDevice                                    device,</span></span></span><br><span class="line"><span class="params"><span class="function">    VkBuffer                                    buffer,</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="type">const</span> VkAllocationCallbacks*                pAllocator)</span></span>;</span><br></pre></td></tr></table></figure></div>
+
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>参数</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>输入参数</td>
+<td>device</td>
+<td>逻辑设备句柄</td>
+<td>指定要销毁缓冲区的 Vulkan 设备。</td>
+</tr>
+<tr>
+<td>输入参数</td>
+<td>buffer</td>
+<td>缓冲区句柄</td>
+<td>指定需要销毁的缓冲区对象。</td>
+</tr>
+<tr>
+<td>输入参数</td>
+<td>pAllocator</td>
+<td>一个可选的自定义内存分配器回调结构指针</td>
+<td>如果为 <code>nullptr</code>，则使用默认的内存分配器。如果在创建窗口表面时使用了自定义的分配器，则在销毁时需要提供相同的分配器。</td>
+</tr>
+</tbody></table>
+<h2 id="清理内存"><a href="#清理内存" class="headerlink" title="清理内存"></a>清理内存</h2><p>在完成缓冲区内存的使用时候，需要调用函数 <code>vkFreeMemory</code> 来完成内存的释放，其声明如下：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">vkFreeMemory</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">    VkDevice                                    device,</span></span></span><br><span class="line"><span class="params"><span class="function">    VkDeviceMemory                              memory,</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="type">const</span> VkAllocationCallbacks*                pAllocator)</span></span>;</span><br></pre></td></tr></table></figure></div>
+
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>参数</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>输入参数</td>
+<td>device</td>
+<td>逻辑设备句柄</td>
+<td>指定在哪个 Vulkan 设备上进行内存释放。</td>
+</tr>
+<tr>
+<td>输入参数</td>
+<td>memory</td>
+<td>设备内存句柄</td>
+<td>指定要释放的设备内存对象。</td>
+</tr>
+<tr>
+<td>输入参数</td>
+<td>pAllocator</td>
+<td>一个可选的自定义内存分配器回调结构指针</td>
+<td>如果为 <code>nullptr</code>，则使用默认的内存分配器。如果在创建窗口表面时使用了自定义的分配器，则在销毁时需要提供相同的分配器。</td>
+</tr>
+</tbody></table>
+<h1 id="复制缓冲区"><a href="#复制缓冲区" class="headerlink" title="复制缓冲区"></a>复制缓冲区</h1><p>执行缓冲区复制命令需要一个支持传输操作（transfer operations）的队列族。队列族的能力由 <code>queueFlags</code> 指定，其中 <code>VK_QUEUE_TRANSFER_BIT</code> 表示该队列族支持传输操作。通常支持 <code>VK_QUEUE_GRAPHICS_BIT</code> 或 <code>VK_QUEUE_COMPUTE_BIT</code> 的队列族也隐式支持 <code>VK_QUEUE_TRANSFER_BIT</code>，所以执行传输操作可以复用图形队列。此处为了最佳性能，已经事先准备了传输队列。</p>
+<p>在 Vulkan 中，内存传输操作需要使用命令来执行。此处实现一个辅助函数来实现缓冲区的拷贝：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// buffer_manager.h</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">BufferManager</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">copyBuffer</span><span class="params">(<span class="type">const</span> VkBuffer&amp; srcBuffer, VkBuffer&amp; dstBuffer, <span class="type">const</span> VkDeviceSize size)</span></span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div>
+
+<p>首先，使用命令管理器中的开始传输命令记录函数 <code>beginTransferCommands</code> 来获取一个临时的命令缓冲区。</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// buffer_manager.cpp</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">BufferManager::copyBuffer</span><span class="params">(<span class="type">const</span> VkBuffer&amp; srcBuffer, VkBuffer&amp; dstBuffer, <span class="type">const</span> VkDeviceSize size)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    VkCommandBuffer commandBuffer = pCommandManager-&gt;<span class="built_in">beginTransferCommands</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>然后调用函数 <code>vkCmdCopyBuffer</code> 来记录一个缓冲区拷贝命令，其声明如下：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> VKAPI_CALL <span class="title">vkCmdCopyBuffer</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">    VkCommandBuffer                             commandBuffer,</span></span></span><br><span class="line"><span class="params"><span class="function">    VkBuffer                                    srcBuffer,</span></span></span><br><span class="line"><span class="params"><span class="function">    VkBuffer                                    dstBuffer,</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="type">uint32_t</span>                                    regionCount,</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="type">const</span> VkBufferCopy*                         pRegions)</span></span>;</span><br></pre></td></tr></table></figure></div>
+
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>参数</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>输入参数</td>
+<td>commandBuffer</td>
+<td>命令缓冲区句柄</td>
+<td>指定要记录此命令的命令缓冲区。</td>
+</tr>
+<tr>
+<td>输入参数</td>
+<td>srcBuffer</td>
+<td>源缓冲区句柄</td>
+<td>数据拷贝的来源。</td>
+</tr>
+<tr>
+<td>输入参数</td>
+<td>dstBuffer</td>
+<td>目标缓冲区句柄</td>
+<td>数据拷贝的目的地。</td>
+</tr>
+<tr>
+<td>输入参数</td>
+<td>regionCount</td>
+<td>区域数量</td>
+<td>需要拷贝的区域数，即 <code>pRegions</code> 数组的大小。</td>
+</tr>
+<tr>
+<td>输入参数</td>
+<td>pRegions</td>
+<td>拷贝区域数组</td>
+<td>指向一个或多个 <code>VkBufferCopy</code> 结构体的数组，每个结构体定义了一个拷贝区域：<br /><code>srcOffset</code>：源缓冲区的偏移量（以字节为单位）<br /><code>dstOffset</code>：目标缓冲区的偏移量（以字节为单位）。<br /><code>size</code>：要拷贝的数据大小，注意不能使用 <code>VK_WHOLE_SIZE</code>。</td>
+</tr>
+</tbody></table>
+<p>示例如下：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// buffer_manager.cpp</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">BufferManager::copyBuffer</span><span class="params">(<span class="type">const</span> VkBuffer&amp; srcBuffer, VkBuffer&amp; dstBuffer, <span class="type">const</span> VkDeviceSize size)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    VkCommandBuffer commandBuffer = pCommandManager-&gt;<span class="built_in">beginTransferCommands</span>();</span><br><span class="line">    </span><br><span class="line">    VkBufferCopy copyRegion&#123;&#125;;</span><br><span class="line">	copyRegion.srcOffset = <span class="number">0</span>;</span><br><span class="line">	copyRegion.dstOffset = <span class="number">0</span>;</span><br><span class="line">	copyRegion.size = size;</span><br><span class="line">	<span class="built_in">vkCmdCopyBuffer</span>(commandBuffer, srcBuffer, dstBuffer, <span class="number">1</span>, &amp;copyRegion);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>注意：<code>srcBuffer</code> 必须 包含 <code>VK_BUFFER_USAGE_TRANSFER_SRC_BIT</code>，<code>dstBuffer</code> 必须包含 <code>VK_BUFFER_USAGE_TRANSFER_DST_BIT</code></p>
+<p>最后，调用命令管理器中的终止命令记录函数来结束命令录制并提交执行：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// buffer_manager.cpp</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">BufferManager::copyBuffer</span><span class="params">(<span class="type">const</span> VkBuffer&amp; srcBuffer, VkBuffer&amp; dstBuffer, <span class="type">const</span> VkDeviceSize size)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    VkCommandBuffer commandBuffer = pCommandManager-&gt;<span class="built_in">beginTransferCommands</span>();</span><br><span class="line">    </span><br><span class="line">    VkBufferCopy copyRegion&#123;&#125;;</span><br><span class="line">	copyRegion.srcOffset = <span class="number">0</span>;</span><br><span class="line">	copyRegion.dstOffset = <span class="number">0</span>;</span><br><span class="line">	copyRegion.size = size;</span><br><span class="line">	<span class="built_in">vkCmdCopyBuffer</span>(commandBuffer, srcBuffer, dstBuffer, <span class="number">1</span>, &amp;copyRegion);</span><br><span class="line">    </span><br><span class="line">    pCommandManager-&gt;<span class="built_in">endTransferCommands</span>(commandBuffer);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h1 id="设备本地缓冲区"><a href="#设备本地缓冲区" class="headerlink" title="设备本地缓冲区"></a>设备本地缓冲区</h1><p>对于 GPU 来说，最优的内存类型通常具有 <code>VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT</code> 标志，这种内存通常无法被 CPU 直接访问（尤其是在独立显卡上）。为了实现最佳性能，同时上传数据，需要创建两个缓冲区：</p>
+<ol>
+<li>暂存缓冲区：位于 CPU 可访问的内存中，用于上传数据。</li>
+<li>最终的缓冲区：位于设备本地（device local）的内存中，以提高 GPU 访问速度。</li>
+</ol>
+<p>此处实现一个辅助函数 <code>createDeviceLocalBuffer</code>，来实现为指定数据创建设备本地缓冲区：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// buffer_manager.h</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">BufferManager</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">createDeviceLocalBuffer</span><span class="params">(<span class="type">const</span> VkDeviceSize size,</span></span></span><br><span class="line"><span class="params"><span class="function">								 <span class="type">const</span> <span class="type">void</span>* data,</span></span></span><br><span class="line"><span class="params"><span class="function">								 <span class="type">const</span> VkBufferUsageFlags usage,</span></span></span><br><span class="line"><span class="params"><span class="function">								 VkBuffer&amp; buffer,</span></span></span><br><span class="line"><span class="params"><span class="function">								 VkDeviceMemory&amp; bufferMemory)</span></span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="创建暂存缓冲区"><a href="#创建暂存缓冲区" class="headerlink" title="创建暂存缓冲区"></a>创建暂存缓冲区</h2><p>首先，像创建普通的缓冲区一样，创建一个临时的暂存缓冲区，由于将会执行从暂存缓冲区到目的缓冲区的拷贝，应该设置其标志为 <code>VK_BUFFER_USAGE_TRANSFER_SRC_BIT</code>。同时设置内存类型为主机一致性 <code>VK_MEMORY_PROPERTY_HOST_COHERENT_BIT</code> 和主机可见性 <code>VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT</code> 使得可以将数据从主机内存拷贝到缓冲区中：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// buffer_manager.cpp</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">BufferManager::createDeviceLocalBuffer</span><span class="params">(<span class="type">const</span> VkDeviceSize size,</span></span></span><br><span class="line"><span class="params"><span class="function">											<span class="type">const</span> <span class="type">void</span>* data,</span></span></span><br><span class="line"><span class="params"><span class="function">											<span class="type">const</span> VkBufferUsageFlags usage,</span></span></span><br><span class="line"><span class="params"><span class="function">											VkBuffer&amp; buffer,</span></span></span><br><span class="line"><span class="params"><span class="function">											VkDeviceMemory&amp; bufferMemory)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	VkBuffer stagingBuffer;</span><br><span class="line">	VkDeviceMemory stagingBufferMemory;</span><br><span class="line">	<span class="built_in">createBuffer</span>(size,</span><br><span class="line">				 VK_BUFFER_USAGE_TRANSFER_SRC_BIT,</span><br><span class="line">				 VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT,</span><br><span class="line">				 stagingBuffer,</span><br><span class="line">				 stagingBufferMemory);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="复制数据到暂存缓冲区"><a href="#复制数据到暂存缓冲区" class="headerlink" title="复制数据到暂存缓冲区"></a>复制数据到暂存缓冲区</h2><p>在这之后，将数据拷贝到暂存缓冲区中。首先，通过函数 <a target="_blank" rel="noopener" href="https://www.khronos.org/registry/vulkan/specs/1.0/man/html/vkMapMemory.html"><code>vkMapMemory</code></a> 将缓冲区内存映射到 CPU 可访问的内存空间，其声明如下：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">VkResult <span class="title">vkMapMemory</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">    VkDevice                                    device,</span></span></span><br><span class="line"><span class="params"><span class="function">    VkDeviceMemory                              memory,</span></span></span><br><span class="line"><span class="params"><span class="function">    VkDeviceSize                                offset,</span></span></span><br><span class="line"><span class="params"><span class="function">    VkDeviceSize                                size,</span></span></span><br><span class="line"><span class="params"><span class="function">    VkMemoryMapFlags                            flags,</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="type">void</span>**                                      ppData)</span></span>;</span><br></pre></td></tr></table></figure></div>
+
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>参数</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>输入参数</td>
+<td>device</td>
+<td>逻辑设备句柄</td>
+<td>指定在哪个 Vulkan 设备上进行内存映射。</td>
+</tr>
+<tr>
+<td>输入参数</td>
+<td>memory</td>
+<td>设备内存句柄</td>
+<td>指定要映射的设备内存对象。</td>
+</tr>
+<tr>
+<td>输入参数</td>
+<td>offset</td>
+<td>偏移量</td>
+<td>以字节为单位的偏移量，指定从 <code>memory</code> 的哪个位置开始映射。<br />必须是 <code>VkPhysicalDeviceLimits::nonCoherentAtomSize</code> 的整数倍（对于 <code>non-coherent</code> 内存）。</td>
+</tr>
+<tr>
+<td>输入参数</td>
+<td>size</td>
+<td>映射大小</td>
+<td>以字节为单位的映射大小，如果设置为 <code>VK_WHOLE_SIZE</code>，表示映射 <code>offset</code> 之后的整个可用内存。</td>
+</tr>
+<tr>
+<td>输入参数</td>
+<td>flags</td>
+<td></td>
+<td>对于该函数目前应设置为 <code>0</code>，其他的值包括：<br /><code>VK_MEMORY_MAP_PLACED_BIT_EXT</code>：该标志位用于 <code>vkMapMemory2EXT</code>，允许应用程序在映射内存时提供特定的 GPU 地址（<code>VkMemoryMapInfoEXT::offset</code>），而不是由 Vulkan 驱动自动决定映射的地址。<br /><code>VK_MEMORY_MAP_FLAG_BITS_MAX_ENUM</code>：保留值。</td>
+</tr>
+<tr>
+<td>输出参数</td>
+<td>ppData</td>
+<td></td>
+<td>返回指向映射内存的指针，可以使用 <code>memcpy</code> 直接读写该指针指向的内存区域，该指针仅在 <code>vkUnmapMemory</code> 之前有效，之后访问它会导致未定义行为。</td>
+</tr>
+<tr>
+<td>返回值</td>
+<td></td>
+<td>映射操作是否执行成功</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>然后，通过调用函数 <code>memcpy</code> 进行内存拷贝，并通过调用函数 <a target="_blank" rel="noopener" href="https://www.khronos.org/registry/vulkan/specs/1.0/man/html/vkUnmapMemory.html"><code>vkUnmapMemory</code></a> 来解除映射，其声明如下：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">vkUnmapMemory</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">    VkDevice                                    device,</span></span></span><br><span class="line"><span class="params"><span class="function">    VkDeviceMemory                              memory)</span></span>;</span><br></pre></td></tr></table></figure></div>
+
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>参数</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>输入参数</td>
+<td>device</td>
+<td>逻辑设备句柄</td>
+<td>指定在哪个 Vulkan 设备上解除内存映射。</td>
+</tr>
+<tr>
+<td>输入参数</td>
+<td>memory</td>
+<td>设备内存句柄</td>
+<td>指定要解除映射的设备内存对象。</td>
+</tr>
+</tbody></table>
+<p>示例如下：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// buffer_manager.cpp</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">BufferManager::createDeviceLocalBuffer</span><span class="params">(<span class="type">const</span> VkDeviceSize size,</span></span></span><br><span class="line"><span class="params"><span class="function">											<span class="type">const</span> <span class="type">void</span>* data,</span></span></span><br><span class="line"><span class="params"><span class="function">											<span class="type">const</span> VkBufferUsageFlags usage,</span></span></span><br><span class="line"><span class="params"><span class="function">											VkBuffer&amp; buffer,</span></span></span><br><span class="line"><span class="params"><span class="function">											VkDeviceMemory&amp; bufferMemory)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ...</span><br><span class="line">        </span><br><span class="line">	<span class="type">void</span>* tempData;</span><br><span class="line">	<span class="built_in">vkMapMemory</span>(pContentManager-&gt;device, stagingBufferMemory, <span class="number">0</span>, size, <span class="number">0</span>, &amp;tempData);</span><br><span class="line">	<span class="built_in">memcpy</span>(tempData, data, (<span class="type">size_t</span>)size);</span><br><span class="line">	<span class="built_in">vkUnmapMemory</span>(pContentManager-&gt;device, stagingBufferMemory);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>需要注意的是，驱动程序可能不会立即将数据复制到 GPU 的缓冲区内存。例如，可能由于缓存机制的影响，写入的内容不会立刻反映在 GPU 可见的内存中。有两种方式可以解决这个问题：</p>
+<ol>
+<li>使用主机一致（host-coherent）的内存堆<ul>
+<li>这由 <code>VK_MEMORY_PROPERTY_HOST_COHERENT_BIT</code> 标志指示，它确保映射的内存始终与分配的 GPU 内存内容保持一致。</li>
+</ul>
+</li>
+<li>显式刷新内存范围<ul>
+<li>在写入映射内存后，调用 <code>vkFlushMappedMemoryRanges</code> 刷新内存范围，以确保数据被提交到 GPU。</li>
+<li>在从映射内存读取数据前，调用 <code>vkInvalidateMappedMemoryRanges</code> 使缓存失效，以获取最新的 GPU 数据。</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>即使使用了一致性内存堆或刷新了内存范围，也不能保证数据立即对 GPU 可见。数据传输到 GPU 是一个后台操作，而 Vulkan 规范只是保证在下次调用 <code>vkQueueSubmit</code> 之前，数据传输完成。</p>
+</blockquote>
+<h2 id="创建设备本地缓冲区"><a href="#创建设备本地缓冲区" class="headerlink" title="创建设备本地缓冲区"></a>创建设备本地缓冲区</h2><p>然后，创建目的缓冲区，由于将会执行从暂存缓冲区到目的缓冲区的拷贝，应该设置其标志为 <code>VK_BUFFER_USAGE_TRANSFER_DST_BIT</code>，设置内存类型为设备本地 <code>VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT</code> 以获得最佳性能，并执行从暂存缓冲区到顶点缓冲区的拷贝：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// buffer_manager.cpp</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">BufferManager::createDeviceLocalBuffer</span><span class="params">(<span class="type">const</span> VkDeviceSize size,</span></span></span><br><span class="line"><span class="params"><span class="function">											<span class="type">const</span> <span class="type">void</span>* data,</span></span></span><br><span class="line"><span class="params"><span class="function">											<span class="type">const</span> VkBufferUsageFlags usage,</span></span></span><br><span class="line"><span class="params"><span class="function">											VkBuffer&amp; buffer,</span></span></span><br><span class="line"><span class="params"><span class="function">											VkDeviceMemory&amp; bufferMemory)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	...</span><br><span class="line"></span><br><span class="line">	<span class="built_in">createBuffer</span>(size, </span><br><span class="line">                 VK_BUFFER_USAGE_TRANSFER_DST_BIT | usage, </span><br><span class="line">                 VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT, </span><br><span class="line">                 buffer, </span><br><span class="line">                 bufferMemory);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">copyBuffer</span>(stagingBuffer, buffer, size);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>最后，释放暂存缓冲区：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// buffer_manager.cpp</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">BufferManager::createDeviceLocalBuffer</span><span class="params">(<span class="type">const</span> VkDeviceSize size,</span></span></span><br><span class="line"><span class="params"><span class="function">											<span class="type">const</span> <span class="type">void</span>* data,</span></span></span><br><span class="line"><span class="params"><span class="function">											<span class="type">const</span> VkBufferUsageFlags usage,</span></span></span><br><span class="line"><span class="params"><span class="function">											VkBuffer&amp; buffer,</span></span></span><br><span class="line"><span class="params"><span class="function">											VkDeviceMemory&amp; bufferMemory)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	...</span><br><span class="line"></span><br><span class="line">	<span class="built_in">vkDestroyBuffer</span>(pContentManager-&gt;device, stagingBuffer, <span class="literal">nullptr</span>);</span><br><span class="line">	<span class="built_in">vkFreeMemory</span>(pContentManager-&gt;device, stagingBufferMemory, <span class="literal">nullptr</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+		</div>
+
+		
+		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+			<div class="article-copyright-info-container">
+    <ul>
+        <li><strong>标题:</strong> 缓冲区</li>
+        <li><strong>作者:</strong> 王小龙</li>
+        <li><strong>创建于
+                :</strong> 2025-03-20 14:52:08</li>
+        
+            <li>
+                <strong>更新于
+                    :</strong> 2025-03-26 15:23:52
+            </li>
+        
+        <li>
+            <strong>链接:</strong> https://xiaolong-work.github.io/2025/03/20/Vulkan/3.缓冲区/
+        </li>
+        <li>
+            <strong>
+                版权声明:
+            </strong>
+            
+
+            
+                本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a> 进行许可。
+            
+        </li>
+    </ul>
+</div>
+
+		</div>
+		
+
+		
+		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/Vulkan/">#Vulkan</a>&nbsp;
+			</li>
+			
+		</ul>
+		
+
+		
+
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="prev" rel="prev" href="/2025/03/20/Vulkan/11.%E9%A1%B6%E7%82%B9%E7%BC%93%E5%86%B2%E5%8C%BA/">
+					<span class="left arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-left"></i>
+					</span>
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item">顶点缓冲区</span>
+						<span class="post-nav-item">上一篇</span>
+					</span>
+				</a>
+			</div>
+			
+			
+			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="next" rel="next" href="/2025/03/20/Vulkan/5.%E4%BA%A4%E6%8D%A2%E9%93%BE/">
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item">交换链</span>
+						<span class="post-nav-item">下一篇</span>
+					</span>
+					<span class="right arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-right"></i>
+					</span>
+				</a>
+			</div>
+			
+		</div>
+		
+
+
+		
+	</div>
+
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">目录</div>
+		<div class="page-title">缓冲区</div>
+		<ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E6%A1%86%E6%9E%B6"><span class="nav-text">基础框架</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E7%BC%93%E5%86%B2%E5%8C%BA"><span class="nav-text">创建缓冲区</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E7%BC%93%E5%86%B2%E5%8C%BA"><span class="nav-text">配置缓冲区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E7%BC%93%E5%86%B2%E5%8C%BA-1"><span class="nav-text">创建缓冲区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E5%AD%98%E9%9C%80%E6%B1%82"><span class="nav-text">内存需求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E5%86%85%E5%AD%98%E7%B1%BB%E5%9E%8B"><span class="nav-text">选择内存类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E5%86%85%E5%AD%98"><span class="nav-text">配置内存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E9%85%8D%E5%86%85%E5%AD%98"><span class="nav-text">分配内存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%91%E5%AE%9A%E7%BC%93%E5%86%B2%E5%8C%BA%E5%86%85%E5%AD%98"><span class="nav-text">绑定缓冲区内存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%85%E7%90%86%E7%BC%93%E5%86%B2%E5%8C%BA"><span class="nav-text">清理缓冲区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%85%E7%90%86%E5%86%85%E5%AD%98"><span class="nav-text">清理内存</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%8D%E5%88%B6%E7%BC%93%E5%86%B2%E5%8C%BA"><span class="nav-text">复制缓冲区</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BE%E5%A4%87%E6%9C%AC%E5%9C%B0%E7%BC%93%E5%86%B2%E5%8C%BA"><span class="nav-text">设备本地缓冲区</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E6%9A%82%E5%AD%98%E7%BC%93%E5%86%B2%E5%8C%BA"><span class="nav-text">创建暂存缓冲区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%8D%E5%88%B6%E6%95%B0%E6%8D%AE%E5%88%B0%E6%9A%82%E5%AD%98%E7%BC%93%E5%86%B2%E5%8C%BA"><span class="nav-text">复制数据到暂存缓冲区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E8%AE%BE%E5%A4%87%E6%9C%AC%E5%9C%B0%E7%BC%93%E5%86%B2%E5%8C%BA"><span class="nav-text">创建设备本地缓冲区</span></a></li></ol></li></ol>
+
+	</div>
+</div>
+	</div>
+	
+</div>
+			</div>
+
+			
+		</div>
+
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2025&nbsp;&nbsp;<i class="fa-regular fa-computer-classic"></i>&nbsp;&nbsp;<a href="/">王小龙</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        共撰写了 22 篇文章
+                    </span>
+                    
+                        <span>
+                            共 85.6k 字
+                        </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">访问人数</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">总访问量</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
+            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.2</a></span>
+        </div>
+        
+        
+            <div>
+                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+		</div>
+	</div>
+
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
+
+		<!-- go comment -->
+		
+	</ul>
+</div>
+	</div>
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container">
+	<img src="">
+</div>
+
+	
+	<div class="search-pop-overlay">
+	<div class="popup search-popup">
+		<div class="search-header">
+			<span class="search-input-field-pre">
+				<i class="fa-solid fa-keyboard"></i>
+			</span>
+			<div class="search-input-container">
+				<input autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="站内搜索您需要的内容..." spellcheck="false" type="search" class="search-input">
+			</div>
+			<span class="popup-btn-close">
+				<i class="fa-solid fa-times"></i>
+			</span>
+		</div>
+		<div id="search-result">
+			<div id="no-result">
+				<i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+			</div>
+		</div>
+	</div>
+</div>
+	
+
+</main>
+
+
+
+<script src="/js/build/libs/Swup.min.js"></script>
+
+<script src="/js/build/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/build/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+	
+<script src="/js/build/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/build/utils.js" type="module"></script>
+
+<script src="/js/build/main.js" type="module"></script>
+
+<script src="/js/build/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/build/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/build/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/build/layouts/categoryList.js" type="module"></script>
+
+
+
+    
+<script src="/js/build/tools/localSearch.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/tools/runtime.js"></script>
+
+    
+<script src="/js/build/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/build/libs/Typed.min.js"></script>
+
+  
+<script src="/js/build/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+    
+<script src="/js/build/libs/anime.min.js"></script>
+
+
+
+
+
+    
+<script src="/js/build/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+<script src="/js/build/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/js/build/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+
+	
+</body>
+
+</html>

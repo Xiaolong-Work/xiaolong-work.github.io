@@ -247,7 +247,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">23</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">22</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -287,7 +287,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">23</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">22</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -316,7 +316,121 @@
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
-                        <a href="/2025/03/20/Vulkan/%E6%B8%B2%E6%9F%93%E5%92%8C%E5%91%88%E7%8E%B0/">
+                        <a href="/2025/03/20/Vulkan/11.%E9%A1%B6%E7%82%B9%E7%BC%93%E5%86%B2%E5%8C%BA/">
+                            顶点缓冲区
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            <p>顶点缓冲区（Vertex Buffer）是 Vulkan&#x2F;D3D&#x2F;OpenGL 等图形 API 中用于存储顶点数据（如位置、颜色、纹理坐标、法线等）的 GPU 内存区域。它的核心作用是将模型的几何数据高效传递给渲染管线。</p>
+
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Thu Mar 20 2025 14:52:08 GMT+0800">
+                
+                    2025-03-20
+                
+            </span>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/Vulkan/">Vulkan</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2025/03/20/Vulkan/11.%E9%A1%B6%E7%82%B9%E7%BC%93%E5%86%B2%E5%8C%BA/">阅读全文<span class="seo-reader-text">顶点缓冲区</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+                    <div class="absolute top-[12px] right-[12px] text-[0.7rem] text-third-text-color rounded-medium bg-background-color-transparent-15 py-[2px] px-[10px] border border-border-color z-1 hover:text-first-text-color cursor-default">
+                        <i class="fa-regular fa-thumbtack mr-[3px] text-[0.65rem]"></i>置顶
+                    </div>
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2025/03/20/Vulkan/12.%E5%9B%BE%E5%BD%A2%E7%AE%A1%E7%BA%BF/">
+                            图形管线
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            固定功能在 Vulkan 中，需要对于图形管线中的每个部分显示地进行配置。
+动态状态大部分管线状态都需要预设，但部分管线状态可以在绘制时进行改变而无需重新创建管线，例如视口大小。对于需要动态使用的状态，需要使用 VkPipelineDynamicStateCreateInfo 来显示指定，其声明如下：
+1234567typedef struct VkPipelineDynamicStateC...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Thu Mar 20 2025 14:52:08 GMT+0800">
+                
+                    2025-03-20
+                
+            </span>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/Vulkan/">Vulkan</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2025/03/20/Vulkan/12.%E5%9B%BE%E5%BD%A2%E7%AE%A1%E7%BA%BF/">阅读全文<span class="seo-reader-text">图形管线</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+                    <div class="absolute top-[12px] right-[12px] text-[0.7rem] text-third-text-color rounded-medium bg-background-color-transparent-15 py-[2px] px-[10px] border border-border-color z-1 hover:text-first-text-color cursor-default">
+                        <i class="fa-regular fa-thumbtack mr-[3px] text-[0.65rem]"></i>置顶
+                    </div>
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2025/03/20/Vulkan/13.%E6%B8%B2%E6%9F%93%E5%92%8C%E5%91%88%E7%8E%B0/">
                             渲染和呈现
                         </a>
                     </h3>
@@ -324,15 +438,8 @@
                     <div class="home-article-content markdown-body">
                         
                             
-                            渲染和呈现在 Vulkan 中，渲染一帧图像通常包括以下的步骤：
-
-等待上一帧完成
-从交换链获取一张图像
-记录一个命令缓冲区，将场景绘制到该图像上
-提交已记录的命令缓冲区
-呈现交换链图像
-
-同步Vulkan 的核心设计是显式同步，GPU 上的执行顺序需要由开发者通过各种同步原语（synchronization primitives）来定义，明确指示驱动程序按照我们指定的顺序执行操作。许多的 ...
+                            同步Vulkan 的核心设计是显式同步，GPU 上的执行顺序需要由开发者通过各种同步原语（synchronization primitives）来定义，明确指示驱动程序按照我们指定的顺序执行操作。许多的 Vulkan API 调用时异步返回，而不会阻塞直到执行完成。
+这意味着如果需要执行的操作有严格的先后顺序，即后一个操作需要等待前一个操作完成时，需要利用 Vulkan 提供的同步机制来确保...
                         
                     </div>
 
@@ -361,7 +468,7 @@
         
     </div>
 
-    <a href="/2025/03/20/Vulkan/%E6%B8%B2%E6%9F%93%E5%92%8C%E5%91%88%E7%8E%B0/">阅读全文<span class="seo-reader-text">渲染和呈现</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/2025/03/20/Vulkan/13.%E6%B8%B2%E6%9F%93%E5%92%8C%E5%91%88%E7%8E%B0/">阅读全文<span class="seo-reader-text">渲染和呈现</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -370,35 +477,30 @@
             <li class="home-article-item">
 
                 
-                    <div class="absolute top-[12px] right-[12px] text-[0.7rem] text-third-text-color rounded-medium bg-background-color-transparent-15 py-[2px] px-[10px] border border-border-color z-1 hover:text-first-text-color cursor-default">
-                        <i class="fa-regular fa-thumbtack mr-[3px] text-[0.65rem]"></i>置顶
-                    </div>
-                
 
                 
 
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
-                        <a href="/2025/03/20/Vulkan/%E9%A1%B6%E7%82%B9%E7%BC%93%E5%86%B2%E5%8C%BA/">
-                            顶点缓冲区
+                        <a href="/2025/03/26/Vulkan/%E5%85%89%E6%A0%85%E5%8C%96%E6%B8%B2%E6%9F%93/">
+                            Vulkan 与 光栅化
                         </a>
                     </h3>
 
                     <div class="home-article-content markdown-body">
                         
-                            
-                            顶点输入描述顶点着色器在顶点着色器中需要定义顶点属性的输入，通常包括位置和颜色，其中位置属性可以为二维 vec2 、三维 vec3 或者齐次坐标 vec4。同时向片段着色器输出片段颜色，并向内建变量 gl_Position 输出齐次坐标形式的顶点位置，一个简单的示例如下：
-123456789101112#version 450layout(location = 0) in vec2 inPo...
+                            <p>在 Vulkan 中使用传统光栅化管线进行渲染。</p>
+
                         
                     </div>
 
                     <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
         <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Thu Mar 20 2025 14:52:08 GMT+0800">
+            <span class="home-article-date" data-date="Wed Mar 26 2025 17:35:55 GMT+0800">
                 
-                    2025-03-20
+                    2025-03-26
                 
             </span>
         </span>
@@ -418,7 +520,7 @@
         
     </div>
 
-    <a href="/2025/03/20/Vulkan/%E9%A1%B6%E7%82%B9%E7%BC%93%E5%86%B2%E5%8C%BA/">阅读全文<span class="seo-reader-text">顶点缓冲区</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/2025/03/26/Vulkan/%E5%85%89%E6%A0%85%E5%8C%96%E6%B8%B2%E6%9F%93/">阅读全文<span class="seo-reader-text">Vulkan 与 光栅化</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -427,37 +529,30 @@
             <li class="home-article-item">
 
                 
-                    <div class="absolute top-[12px] right-[12px] text-[0.7rem] text-third-text-color rounded-medium bg-background-color-transparent-15 py-[2px] px-[10px] border border-border-color z-1 hover:text-first-text-color cursor-default">
-                        <i class="fa-regular fa-thumbtack mr-[3px] text-[0.65rem]"></i>置顶
-                    </div>
-                
 
                 
 
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
-                        <a href="/2025/03/20/Vulkan/%E7%BB%9F%E4%B8%80%E7%BC%93%E5%86%B2%E5%8C%BA/">
-                            统一缓冲区
+                        <a href="/2025/03/25/Vulkan/%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA%E6%B8%B2%E6%9F%93/">
+                            Vulkan 与 RT Core
                         </a>
                     </h3>
 
                     <div class="home-article-content markdown-body">
                         
-                            
-                            描述符布局和缓冲区在 3D 渲染中，最重要的三个变换矩阵：模型、视图、投影将通过 描述符 从主程序传递到顶点着色器中。
-在 Vulkan 中，描述符（Descriptor） 允许着色器自由访问资源（如缓冲区和图像）。将创建一个缓冲区存储变换矩阵，并通过描述符让顶点着色器访问这些数据。使用描述符涉及三个步骤：
+                            <p>在 Vulkan 中使用 RT Core (光线追踪核心) 进行光线追踪渲染。</p>
 
-在管线创建时指定 描述符布局（Descriptor Layout）：作用类似于渲染...
                         
                     </div>
 
                     <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
         <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Thu Mar 20 2025 14:52:08 GMT+0800">
+            <span class="home-article-date" data-date="Tue Mar 25 2025 18:56:47 GMT+0800">
                 
-                    2025-03-20
+                    2025-03-25
                 
             </span>
         </span>
@@ -477,188 +572,7 @@
         
     </div>
 
-    <a href="/2025/03/20/Vulkan/%E7%BB%9F%E4%B8%80%E7%BC%93%E5%86%B2%E5%8C%BA/">阅读全文<span class="seo-reader-text">统一缓冲区</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-                    <div class="absolute top-[12px] right-[12px] text-[0.7rem] text-third-text-color rounded-medium bg-background-color-transparent-15 py-[2px] px-[10px] border border-border-color z-1 hover:text-first-text-color cursor-default">
-                        <i class="fa-regular fa-thumbtack mr-[3px] text-[0.65rem]"></i>置顶
-                    </div>
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/2025/03/20/Vulkan/%E7%BA%B9%E7%90%86%E6%98%A0%E5%B0%84/">
-                            纹理映射
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            图像在 Vulkan 中，为几何添加纹理将涉及以下步骤：
-
-创建一个由设备内存支持的图像对象。
-使用图像文件中的像素进行填充。
-创建一个图像采样器。
-添加一个组合的图像采样器描述符，以便从纹理中采样颜色。
-
-加载图像使用 stb 库中的 stb_image.h 来完成图像的加载，使用时需要定义宏 STB_IMAGE_IMPLEMENTATION 来包含函数体：
-12#define STB_I...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Thu Mar 20 2025 14:52:08 GMT+0800">
-                
-                    2025-03-20
-                
-            </span>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/Vulkan/">Vulkan</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2025/03/20/Vulkan/%E7%BA%B9%E7%90%86%E6%98%A0%E5%B0%84/">阅读全文<span class="seo-reader-text">纹理映射</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-                    <div class="absolute top-[12px] right-[12px] text-[0.7rem] text-third-text-color rounded-medium bg-background-color-transparent-15 py-[2px] px-[10px] border border-border-color z-1 hover:text-first-text-color cursor-default">
-                        <i class="fa-regular fa-thumbtack mr-[3px] text-[0.65rem]"></i>置顶
-                    </div>
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/2025/03/20/Vulkan/%E6%B7%B1%E5%BA%A6%E7%BC%93%E5%86%B2%E5%8C%BA/">
-                            深度缓冲区
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            三维几何要在 Vulkan 中表示三维几何，需要首先修改 Vertex.pos 类型为 glm::vec3 ，并修改对应属性描述符 VkVertexInputAttributeDescription.format 为 VK_FORMAT_R32G32B32_SFLOAT：
-1234567891011121314151617181920struct Vertex &#123;    glm::...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Thu Mar 20 2025 14:52:08 GMT+0800">
-                
-                    2025-03-20
-                
-            </span>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/Vulkan/">Vulkan</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2025/03/20/Vulkan/%E6%B7%B1%E5%BA%A6%E7%BC%93%E5%86%B2%E5%8C%BA/">阅读全文<span class="seo-reader-text">深度缓冲区</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-                    <div class="absolute top-[12px] right-[12px] text-[0.7rem] text-third-text-color rounded-medium bg-background-color-transparent-15 py-[2px] px-[10px] border border-border-color z-1 hover:text-first-text-color cursor-default">
-                        <i class="fa-regular fa-thumbtack mr-[3px] text-[0.65rem]"></i>置顶
-                    </div>
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/2025/03/20/Vulkan/%E5%8A%A0%E8%BD%BD%E6%A8%A1%E5%9E%8B/">
-                            模型加载
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            模型加载使用 tinyobjloader 作为 obj 加载器，并定义宏 TINYOBJLOADER_IMPLEMENTATION 以包括函数体：
-12#define TINYOBJLOADER_IMPLEMENTATION#include &lt;tiny_obj_loader.h&gt;
-
-通过函数 tinyobj::LoadObj 来加载 obj 模型，其声明如下：
-123456789...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Thu Mar 20 2025 14:52:08 GMT+0800">
-                
-                    2025-03-20
-                
-            </span>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/Vulkan/">Vulkan</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2025/03/20/Vulkan/%E5%8A%A0%E8%BD%BD%E6%A8%A1%E5%9E%8B/">阅读全文<span class="seo-reader-text">模型加载</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/2025/03/25/Vulkan/%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA%E6%B8%B2%E6%9F%93/">阅读全文<span class="seo-reader-text">Vulkan 与 RT Core</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -900,6 +814,65 @@
                 </div>
             </li>
         
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2025/03/20/Games101/%E5%85%89%E6%A0%85%E5%8C%96/">
+                            光栅化
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            
+
+	
+    
+	
+
+
+
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Thu Mar 20 2025 16:44:48 GMT+0800">
+                
+                    2025-03-20
+                
+            </span>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/Games101/">Games101</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2025/03/20/Games101/%E5%85%89%E6%A0%85%E5%8C%96/">阅读全文<span class="seo-reader-text">光栅化</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
     </ul>
 
     <div class="home-paginator px-7 py-5">
@@ -930,11 +903,11 @@
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        共撰写了 23 篇文章
+                        共撰写了 22 篇文章
                     </span>
                     
                         <span>
-                            共 88.1k 字
+                            共 85.6k 字
                         </span>
                     
                 </p>

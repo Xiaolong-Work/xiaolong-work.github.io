@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="王小龙">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2025/03/20/vulkan/2.命令/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+    
+    
+        
+        <meta name="description" content="在 Vulkan 中，所有操作，例如图像绘制或者内存传输，需要通过将需要执行的操作命令记录到命令缓冲区，并提交到队列执行。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="命令">
+<meta property="og:url" content="http://example.com/2025/03/20/Vulkan/2.%E5%91%BD%E4%BB%A4/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="在 Vulkan 中，所有操作，例如图像绘制或者内存传输，需要通过将需要执行的操作命令记录到命令缓冲区，并提交到队列执行。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-03-20T06:52:08.914Z">
+<meta property="article:modified_time" content="2025-03-26T07:24:07.214Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Vulkan">
+<meta name="twitter:card" content="summary">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            命令 | 小龙的笔记本
+        
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/css/build/tailwind.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.xml"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":true,"lazyload":true,"pangu_js":false,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"小龙的笔记本","subtitle":{"text":[],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.8.2","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
+    window.lang_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+
+<body>
+	<div class="progress-bar-container">
+	
+
+	
+	<span class="pjax-progress-bar"></span>
+	<!--        <span class="swup-progress-icon">-->
+	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+	<!--        </span>-->
+	
+</div>
+
+<main class="page-container" id="swup">
+
+	
+
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                小龙的笔记本
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    首页
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                首页
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">2</div>
+        <div class="label text-third-text-color text-sm">标签</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">分类</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">22</div>
+        <div class="label text-third-text-color text-sm">文章</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+		</div>
+
+		<div class="main-content-body transition-fade-up">
+			
+
+			<div class="main-content">
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
+
+		<div class="article-title relative w-full">
+			
+			<div class="w-full flex items-center pt-6 justify-start">
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">命令</h1>
+			</div>
+			
+		</div>
+
+		
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+				<img src="/image/avatar.jpg">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">王小龙</span>
+					
+					<span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv3</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2025-03-20 14:52:08</span>
+        <span class="mobile">2025-03-20 14:52:08</span>
+        <span class="hover-info">创建</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-03-26 15:24:07</span>
+            <span class="mobile">2025-03-26 15:24:07</span>
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Vulkan/">Vulkan</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>3.8k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>15 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+				</div>
+			</div>
+		</div>
+		
+
+		
+
+
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<h1 id="基础框架"><a href="#基础框架" class="headerlink" title="基础框架"></a>基础框架</h1><p>通过类 <code>CommandManager</code> 来管理命令的执行与命令缓冲区：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// command_manager.h</span></span><br><span class="line"><span class="meta">#<span class="keyword">pragma</span> once</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CommandManager</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">CommandManager</span>() = <span class="keyword">default</span>;</span><br><span class="line">    <span class="built_in">CommandManager</span>(<span class="type">const</span> ContentManagerSPtr&amp; pContentManager);</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">clear</span><span class="params">()</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    ContentManagerSPtr pContentManager;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> std::shared_ptr&lt;CommandManager&gt; CommandManagerSPtr;</span><br></pre></td></tr></table></figure></div>
+
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// command_manager.cpp</span></span><br><span class="line">CommandManager::<span class="built_in">CommandManager</span>(<span class="type">const</span> ContentManagerSPtr&amp; pContentManager) </span><br><span class="line">&#123; </span><br><span class="line">	<span class="keyword">this</span>-&gt;pContentManager = pContentManager; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h1 id="命令池"><a href="#命令池" class="headerlink" title="命令池"></a>命令池</h1><p>在 Vulkan 中，想要使用命令缓冲区需要首先创建<strong>命令池</strong>（Command pools）。添加两个 <code>VkCommandPool</code> 成员变量，其中 <code>graphicsCommandPool</code> 用于分配记录绘制命令的命令缓冲区，<code>transferCommandPool</code> 用于分配记录转换命令的命令缓冲区，并添加函数 <code>createCommandPool</code> 来创建命令池：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// command_manager.h</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CommandManager</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">createCommandPool</span><span class="params">()</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    VkCommandPool graphicsCommandPool = VK_NULL_HANDLE;</span><br><span class="line">    VkCommandPool transferCommandPool = VK_NULL_HANDLE;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="配置命令池"><a href="#配置命令池" class="headerlink" title="配置命令池"></a>配置命令池</h2><p>通过函数 <code>VkCommandPoolCreateInfo</code> 来描述一个命令池的创建信息，其声明如下：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">VkCommandPoolCreateInfo</span> &#123;</span><br><span class="line">    VkStructureType             sType;</span><br><span class="line">    <span class="type">const</span> <span class="type">void</span>*                 pNext;</span><br><span class="line">    VkCommandPoolCreateFlags    flags;</span><br><span class="line">    <span class="type">uint32_t</span>                    queueFamilyIndex;</span><br><span class="line">&#125; VkCommandPoolCreateInfo;</span><br></pre></td></tr></table></figure></div>
+
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>sType</td>
+<td>指定结构体的类型</td>
+<td>必须设置为 <code>VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO</code>，以表明这是一个命令池创建信息结构</td>
+</tr>
+<tr>
+<td>pNext</td>
+<td>指向扩展信息的指针</td>
+<td>如果没有需要使用的扩展，设置为 <code>nullptr</code></td>
+</tr>
+<tr>
+<td>flags</td>
+<td>用于指定命令池创建时的附加标志。</td>
+<td>指定命令池的行为，可取以下值（可组合）：<br/><code>VK_COMMAND_POOL_CREATE_TRANSIENT_BIT</code>：提示 Vulkan 该命令池分配的命令缓冲区会被频繁重置或重新记录，可能影响内存分配策略。<br /><code>VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT</code>：允许单独重置命令缓冲区（如果不设置此标志，所有命令缓冲区必须一起重置）。<br /><code>VK_COMMAND_POOL_CREATE_PROTECTED_BIT</code>：说明：用于受保护的命令缓冲区，与受保护资源交互（如 DRM 保护的图像）。</td>
+</tr>
+<tr>
+<td>queueFamilyIndex</td>
+<td>队列族索引</td>
+<td>指定命令池分配的命令缓冲区所属的队列族索引，命令池只能分配适用于该队列族的命令缓冲区。</td>
+</tr>
+</tbody></table>
+<p>一个示例如下，由于转换命令通常只需要一次执行，设置转换命令池为 <code>VK_COMMAND_POOL_CREATE_TRANSIENT_BIT</code>：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// command_manager.cpp</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">CommandManager::createCommandPool</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    VkCommandPoolCreateInfo graphicsPoolInfo&#123;&#125;;</span><br><span class="line">	graphicsPoolInfo.sType = VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO;</span><br><span class="line">	graphicsPoolInfo.pNext = <span class="literal">nullptr</span>;</span><br><span class="line">	graphicsPoolInfo.flags = VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT;</span><br><span class="line">	graphicsPoolInfo.queueFamilyIndex = pContentManager-&gt;graphicsFamily;</span><br><span class="line">	</span><br><span class="line">	VkCommandPoolCreateInfo transferPoolInfo&#123;&#125;;</span><br><span class="line">	transferPoolInfo.sType = VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO;</span><br><span class="line">	transferPoolInfo.pNext = <span class="literal">nullptr</span>;</span><br><span class="line">	transferPoolInfo.flags = VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT | </span><br><span class="line">        					 VK_COMMAND_POOL_CREATE_TRANSIENT_BIT;</span><br><span class="line">	transferPoolInfo.queueFamilyIndex = pContentManager-&gt;transferFamily;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="创建命令池"><a href="#创建命令池" class="headerlink" title="创建命令池"></a>创建命令池</h2><p>然后，通过函数 <code>vkCreateCommandPool</code> 来创建命令池，其声明如下：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">VkResult <span class="title">vkCreateCommandPool</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">    VkDevice                                    device,</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="type">const</span> VkCommandPoolCreateInfo*              pCreateInfo,</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="type">const</span> VkAllocationCallbacks*                pAllocator,</span></span></span><br><span class="line"><span class="params"><span class="function">    VkCommandPool*                              pCommandPool)</span></span>;</span><br></pre></td></tr></table></figure></div>
+
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>参数</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>输入参数</td>
+<td>device</td>
+<td>逻辑设备句柄</td>
+<td>指定创建命令池的逻辑设备，命令池与该设备绑定，并只能在该设备的队列上使用。</td>
+</tr>
+<tr>
+<td>输入参数</td>
+<td>pCreateInfo</td>
+<td>命令池创建信息指针</td>
+<td><code>VkCommandPoolCreateInfo</code> 结构体的指针，包含命令池的创建信息。定义命令池的行为，如是否允许单独重置命令缓冲区，以及所属的队列族索引。</td>
+</tr>
+<tr>
+<td>输入参数</td>
+<td>pAllocator</td>
+<td>自定义内存分配器</td>
+<td>如果为 <code>nullptr</code>，则使用默认的分配器。如果需要自定义 Vulkan 的内存分配行为，可以传递指向 <code>VkAllocationCallbacks</code> 的指针。</td>
+</tr>
+<tr>
+<td>输出参数</td>
+<td>pCommandPool</td>
+<td>命令池指针</td>
+<td>指向 <code>VkCommandPool</code> 变量的指针，存储创建的命令池句柄。函数执行成功后，该变量将持有新创建的命令池对象。</td>
+</tr>
+<tr>
+<td>返回值</td>
+<td></td>
+<td>表示命令池是否创建成功</td>
+<td><code>VK_SUCCESS</code>：表示命令池创建成功。其他错误码表示创建失败</td>
+</tr>
+</tbody></table>
+<p>一个示例如下：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// command_manager.cpp</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">CommandManager::createCommandPool</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">vkCreateCommandPool</span>(pContentManager-&gt;device, &amp;graphicsPoolInfo, <span class="literal">nullptr</span>, &amp;<span class="keyword">this</span>-&gt;graphicsCommandPool) </span><br><span class="line">    != VK_SUCCESS)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">throw</span> std::<span class="built_in">runtime_error</span>(<span class="string">&quot;Failed to create graphics command pool!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (<span class="built_in">vkCreateCommandPool</span>(pContentManager-&gt;device, &amp;transferPoolInfo, <span class="literal">nullptr</span>, &amp;<span class="keyword">this</span>-&gt;transferCommandPool) </span><br><span class="line">	!= VK_SUCCESS)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">throw</span> std::<span class="built_in">runtime_error</span>(<span class="string">&quot;Failed to create transfer command pool!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>最后，在 <code>init</code> 函数中调用 <code>createCommandPool</code> 来创建命令池：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// command_manager.cpp</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">CommandManager::init</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">createCommandPool</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="清理命令池"><a href="#清理命令池" class="headerlink" title="清理命令池"></a>清理命令池</h2><p>在命令池使用完毕之后，需要调用 <code>vkDestroyCommandPool</code> 来销毁命令池，其声明如下：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">vkDestroyCommandPool</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">    VkDevice                                    device,</span></span></span><br><span class="line"><span class="params"><span class="function">    VkCommandPool                               commandPool,</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="type">const</span> VkAllocationCallbacks*                pAllocator)</span></span>;</span><br></pre></td></tr></table></figure></div>
+
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>参数</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>输入参数</td>
+<td>device</td>
+<td>逻辑设备句柄</td>
+<td>指定要销毁命令池的逻辑设备。</td>
+</tr>
+<tr>
+<td>输入参数</td>
+<td>commandPool</td>
+<td>命令池句柄</td>
+<td>指定要销毁命令池的句柄。</td>
+</tr>
+<tr>
+<td>输入参数</td>
+<td>pAllocator</td>
+<td>自定义内存分配器</td>
+<td>如果为 <code>nullptr</code>，则使用默认的内存分配器。如果在创建命令池时使用了自定义的分配器，则在销毁时需要提供相同的分配器。</td>
+</tr>
+</tbody></table>
+<p>一个调用示例如下：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// command_manager.cpp</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">CommandManager::clear</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">vkDestroyCommandPool</span>(pContentManager-&gt;device, <span class="keyword">this</span>-&gt;graphicsCommandPool, <span class="literal">nullptr</span>);</span><br><span class="line">    <span class="built_in">vkDestroyCommandPool</span>(pContentManager-&gt;device, <span class="keyword">this</span>-&gt;transferCommandPool, <span class="literal">nullptr</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h1 id="命令缓冲区"><a href="#命令缓冲区" class="headerlink" title="命令缓冲区"></a>命令缓冲区</h1><p>在 Vulkan 中<strong>命令缓冲区</strong>（Command Buffer）的类型为 <code>VkCommandBuffer</code>，添加 <code>VkCommandBuffer</code> 数组变量来存储分配的绘制命令缓冲区，并通过函数 <code>createCommandBuffers</code> 进行创建：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// command_manager.h</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CommandManager</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    std::vector&lt;VkCommandBuffer&gt; graphicsCommandBuffers;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">createCommandBuffers</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="配置命令缓冲区"><a href="#配置命令缓冲区" class="headerlink" title="配置命令缓冲区"></a>配置命令缓冲区</h2><p>通过结构体 <code>VkCommandBufferAllocateInfo</code> 来描述一个命令缓冲区的分配信息，其声明如下：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">VkCommandBufferAllocateInfo</span> &#123;</span><br><span class="line">    VkStructureType         sType;</span><br><span class="line">    <span class="type">const</span> <span class="type">void</span>*             pNext;</span><br><span class="line">    VkCommandPool           commandPool;</span><br><span class="line">    VkCommandBufferLevel    level;</span><br><span class="line">    <span class="type">uint32_t</span>                commandBufferCount;</span><br><span class="line">&#125; VkCommandBufferAllocateInfo;</span><br></pre></td></tr></table></figure></div>
+
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>sType</td>
+<td>指定结构体的类型</td>
+<td>必须设置为 <code>VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO</code>，以表明这是一个命令缓冲区分配信息结构</td>
+</tr>
+<tr>
+<td>pNext</td>
+<td>指向扩展信息的指针</td>
+<td>如果没有需要使用的扩展，设置为 <code>nullptr</code></td>
+</tr>
+<tr>
+<td>commandPool</td>
+<td>命令池句柄</td>
+<td>命令缓冲区的分配必须基于某个命令池 (<code>VkCommandPool</code>)，命令缓冲区将在该池管理的内存区域中分配。需要确保命令池是适用于相应的队列族（如图形队列或计算队列）。</td>
+</tr>
+<tr>
+<td>level</td>
+<td>命令缓冲区级别</td>
+<td>指定命令缓冲区的级别，可能的值包括：<br /><code>VK_COMMAND_BUFFER_LEVEL_PRIMARY</code>：主命令缓冲区，可直接提交到队列执行，但不能被其他命令缓冲区调用。<br/><code>VK_COMMAND_BUFFER_LEVEL_SECONDARY</code>：次级命令缓冲区，不能直接提交到队列，但可以被主命令缓冲区调用，适用于重复的渲染指令。<br/></td>
+</tr>
+<tr>
+<td>commandBufferCount</td>
+<td>命令缓冲区数量</td>
+<td>指定要分配的命令缓冲区数量。例如，如果需要多个命令缓冲区用于不同的帧，可以分配多个。</td>
+</tr>
+</tbody></table>
+<p>示例如下：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// command_manager.cpp</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">CommandManager::createCommandBuffers</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    graphicsCommandBuffers.<span class="built_in">resize</span>(MAX_FRAMES_IN_FLIGHT);</span><br><span class="line"></span><br><span class="line">    VkCommandBufferAllocateInfo allocInfo&#123;&#125;;</span><br><span class="line">    allocInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;</span><br><span class="line">    allocInfo.pNext = <span class="literal">nullptr</span>;</span><br><span class="line">    allocInfo.commandPool = graphicsCommandPool;</span><br><span class="line">    allocInfo.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;</span><br><span class="line">    allocInfo.commandBufferCount = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<blockquote>
+<p><code>MAX_FRAMES_IN_FLIGHT</code> 将在多帧并行中使用。</p>
+</blockquote>
+<h2 id="分配命令缓冲区"><a href="#分配命令缓冲区" class="headerlink" title="分配命令缓冲区"></a>分配命令缓冲区</h2><p>然后，通过函数 <code>vkAllocateCommandBuffers</code> 来完成命令缓冲区的分配，其声明如下：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">VkResult <span class="title">vkAllocateCommandBuffers</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">    VkDevice                                    device,</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="type">const</span> VkCommandBufferAllocateInfo*          pAllocateInfo,</span></span></span><br><span class="line"><span class="params"><span class="function">    VkCommandBuffer*                            pCommandBuffers)</span></span>;</span><br></pre></td></tr></table></figure></div>
+
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>参数</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>输入参数</td>
+<td>device</td>
+<td>逻辑设备句柄</td>
+<td>指定进行命令缓冲区分配的逻辑设备。</td>
+</tr>
+<tr>
+<td>输入参数</td>
+<td>pAllocateInfo</td>
+<td>命令缓冲区分配信息指针</td>
+<td>该参数是一个指向 <code>VkCommandBufferAllocateInfo</code> 结构体的指针，该结构体说明了命令缓冲区分配的相关信息。</td>
+</tr>
+<tr>
+<td>输出参数</td>
+<td>pCommandBuffers</td>
+<td>命令缓冲区指针</td>
+<td>该参数是一个指向 <code>VkCommandBuffer</code> 数组的指针，存储分配的命令缓冲区。</td>
+</tr>
+<tr>
+<td>返回值</td>
+<td></td>
+<td>表示命令缓冲区是否创建成功</td>
+<td><code>VK_SUCCESS</code>：表示命令池创建成功。其他错误码表示创建失败</td>
+</tr>
+</tbody></table>
+<p>一个调用示例如下：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// command_manager.cpp</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">CommandManager::createCommandBuffers</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">vkAllocateCommandBuffers</span>(pContentManager-&gt;device, &amp;allocInfo, &amp;graphicsCommandBuffers) </span><br><span class="line">        != VK_SUCCESS)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">throw</span> std::<span class="built_in">runtime_error</span>(<span class="string">&quot;Failed to allocate command buffers!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="清理命令缓冲区"><a href="#清理命令缓冲区" class="headerlink" title="清理命令缓冲区"></a>清理命令缓冲区</h2><p>通过函数 <code>vkFreeCommandBuffers</code> 来清理命令缓冲区，其声明如下：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">vkFreeCommandBuffers</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">    VkDevice                                    device,</span></span></span><br><span class="line"><span class="params"><span class="function">    VkCommandPool                               commandPool,</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="type">uint32_t</span>                                    commandBufferCount,</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="type">const</span> VkCommandBuffer*                      pCommandBuffers)</span></span>;</span><br></pre></td></tr></table></figure></div>
+
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>参数</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>输入参数</td>
+<td>device</td>
+<td>逻辑设备句柄</td>
+<td>指定要释放命令缓冲区的逻辑设备。</td>
+</tr>
+<tr>
+<td>输入参数</td>
+<td>commandPool</td>
+<td>命令池句柄</td>
+<td>指定要释放命令缓冲区的命令池句柄。</td>
+</tr>
+<tr>
+<td>输入参数</td>
+<td>commandBufferCount</td>
+<td>命令缓冲区句柄数组大小</td>
+<td>指定要释放的指令缓冲区数量。</td>
+</tr>
+<tr>
+<td>输入参数</td>
+<td>pCommandBuffers</td>
+<td>命令缓冲区句柄数组指针</td>
+<td>指向要释放的指令缓冲区句柄数组的指针。</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>注意：命令缓冲区在其所属的命令池销毁时会自动释放，因此不需要显式地清理。清理通常发生在只执行一次的命令缓冲区上。</p>
+</blockquote>
+<h1 id="记录命令缓冲区"><a href="#记录命令缓冲区" class="headerlink" title="记录命令缓冲区"></a>记录命令缓冲区</h1><p>记录命令缓冲区通常涉及三个部分，开始命令缓冲区录制，录制命令，结束命令缓冲区录制。</p>
+<p>这里以两个辅助函数为例，完成转化命令的开始录制 <code>beginTransferCommands</code>，转化命令的结束录制和提交执行 <code>endTransferCommands</code> ：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// command_manager.h</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CommandManager</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">VkCommandBuffer <span class="title">beginTransferCommands</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">endTransferCommands</span><span class="params">(VkCommandBuffer commandBuffer)</span></span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="开始记录"><a href="#开始记录" class="headerlink" title="开始记录"></a>开始记录</h2><p>在 Vulkan 中，通过函数 <code>vkBeginCommandBuffer</code> 来开始记录命令缓冲区，其通过结构体  <code>VkCommandBufferBeginInfo</code>来进行描述，其声明如下：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">VkCommandBufferBeginInfo</span> &#123;</span><br><span class="line">    VkStructureType                          sType;</span><br><span class="line">    <span class="type">const</span> <span class="type">void</span>*                              pNext;</span><br><span class="line">    VkCommandBufferUsageFlags                flags;</span><br><span class="line">    <span class="type">const</span> VkCommandBufferInheritanceInfo*    pInheritanceInfo;</span><br><span class="line">&#125; VkCommandBufferBeginInfo;</span><br></pre></td></tr></table></figure></div>
+
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>sType</td>
+<td>指定结构体的类型</td>
+<td>必须设置为 <code>VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO</code>，以表明这是一个命令缓冲区开始记录信息结构</td>
+</tr>
+<tr>
+<td>pNext</td>
+<td>指向扩展信息的指针</td>
+<td>如果没有需要使用的扩展，设置为 <code>nullptr</code></td>
+</tr>
+<tr>
+<td>flags</td>
+<td>命令缓冲区记录标志</td>
+<td>指定命令缓冲区记录的标志，可能的值包括：<br /><code>VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT</code>：该命令缓冲区只会被提交一次，之后会被重录。<br/><code>VK_COMMAND_BUFFER_USAGE_RENDER_PASS_CONTINUE_BIT</code>：缓冲区是二级命令缓冲区，将会被完全包含在一个渲染通道内。<br/><code>VK_COMMAND_BUFFER_USAGE_SIMULTANEOUS_USE_BIT</code>：该缓冲区可以在执行时同时重新提交。<br/><code>VK_COMMAND_BUFFER_USAGE_FLAG_BITS_MAX_ENUM</code>：保留值。</td>
+</tr>
+<tr>
+<td>pInheritanceInfo</td>
+<td>继承信息指针</td>
+<td>指向 <code>VkCommandBufferInheritanceInfo</code> 的指针。此成员仅对二级命令缓冲区有效。它包含了需要从主命令缓冲区继承的状态信息（例如，是否继续渲染通道、是否继承某些资源绑定等）。对于主命令缓冲区，此成员应为 <code>nullptr</code>。</td>
+</tr>
+</tbody></table>
+<p>附加信息：<code>VkCommandBufferInheritanceInfo</code> 的声明如下：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">VkCommandBufferInheritanceInfo</span> &#123;</span><br><span class="line">    VkStructureType                  sType;</span><br><span class="line">    <span class="type">const</span> <span class="type">void</span>*                      pNext;</span><br><span class="line">    VkRenderPass                     renderPass;</span><br><span class="line">    <span class="type">uint32_t</span>                         subpass;</span><br><span class="line">    VkFramebuffer                    framebuffer;</span><br><span class="line">    VkBool32                         occlusionQueryEnable;</span><br><span class="line">    VkQueryControlFlags              queryFlags;</span><br><span class="line">    VkQueryPipelineStatisticFlags    pipelineStatistics;</span><br><span class="line">&#125; VkCommandBufferInheritanceInfo;</span><br></pre></td></tr></table></figure></div>
+
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>sType</td>
+<td>指定结构体的类型</td>
+<td>必须设置为 <code>VK_STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_INFO</code>，以表明这是一个命令缓冲区继承信息结构</td>
+</tr>
+<tr>
+<td>pNext</td>
+<td>指向扩展信息的指针</td>
+<td>如果没有需要使用的扩展，设置为 <code>nullptr</code></td>
+</tr>
+<tr>
+<td>renderPass</td>
+<td>渲染通道句柄</td>
+<td>主命令缓冲区中正在使用的渲染通道对象。二级命令缓冲区将继承这个渲染通道的状态信息（如输入附件、输出附件等）。</td>
+</tr>
+<tr>
+<td>subpass</td>
+<td>子通道索引</td>
+<td>主命令缓冲区正在使用的渲染通道中的子通道（subpass）的索引。二级命令缓冲区将在这个子通道内执行。</td>
+</tr>
+<tr>
+<td>framebuffer</td>
+<td>帧缓冲区句柄</td>
+<td>主命令缓冲区正在使用的帧缓冲区对象。二级命令缓冲区将继承与此帧缓冲区相关的状态。</td>
+</tr>
+<tr>
+<td>occlusionQueryEnable</td>
+<td>是否启用遮挡查询</td>
+<td>如果为 <code>VK_TRUE</code>，则启用遮挡查询（occlusion query）。遮挡查询用于检查某些对象是否可见。如果为 <code>VK_FALSE</code>，则禁用遮挡查询。</td>
+</tr>
+<tr>
+<td>queryFlags</td>
+<td>查询标志</td>
+<td>用于设置查询的行为。例如，控制查询是否需要精确结果或是否是离线查询等。</td>
+</tr>
+<tr>
+<td>pipelineStatistics</td>
+<td>管道统计标志</td>
+<td>用于指定需要收集的管道统计信息。例如，是否收集各个渲染阶段的计数器数据。</td>
+</tr>
+</tbody></table>
+<p>实现 <code>beginTransferCommands</code> 函数，首先需要分配一个临时的命令缓冲区。</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// command_manager.cpp</span></span><br><span class="line"><span class="function">VkCommandBuffer <span class="title">CommandManager::beginTransferCommands</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">/* Creating a temporary command buffer */</span></span><br><span class="line">    VkCommandBufferAllocateInfo allocInfo&#123;&#125;;</span><br><span class="line">    allocInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;</span><br><span class="line">    allocInfo.pNext = <span class="literal">nullptr</span>;</span><br><span class="line">    allocInfo.commandPool = <span class="keyword">this</span>-&gt;transferCommandPool;</span><br><span class="line">    allocInfo.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;</span><br><span class="line">    allocInfo.commandBufferCount = <span class="number">1</span>;</span><br><span class="line">    VkCommandBuffer commandBuffer;</span><br><span class="line">    <span class="built_in">vkAllocateCommandBuffers</span>(pContentManager-&gt;device, &amp;allocInfo, &amp;commandBuffer);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>由于通常传输命令只会执行一次，为了让 Vulkan 优化 这个命令，指定了 <code>VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT</code> 标志：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// command_manager.cpp</span></span><br><span class="line"><span class="function">VkCommandBuffer <span class="title">CommandManager::beginTransferCommands</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    VkCommandBufferBeginInfo beginInfo&#123;&#125;;</span><br><span class="line">    beginInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;</span><br><span class="line">    beginInfo.pNext = <span class="literal">nullptr</span>;</span><br><span class="line">    beginInfo.flags = VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT;</span><br><span class="line">    beginInfo.pInheritanceInfo = <span class="literal">nullptr</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>然后通过调用函数 <code>vkBeginCommandBuffer</code> 来开始命令缓冲区的记录，其声明如下：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">VkResult <span class="title">vkBeginCommandBuffer</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">    VkCommandBuffer                             commandBuffer,</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="type">const</span> VkCommandBufferBeginInfo*             pBeginInfo)</span></span>;</span><br></pre></td></tr></table></figure></div>
+
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>参数</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>输入参数</td>
+<td>commandBuffer</td>
+<td>命令缓冲区句柄</td>
+<td>指定开始进行命令记录的命令缓冲区。</td>
+</tr>
+<tr>
+<td>输入参数</td>
+<td>pBeginInfo</td>
+<td>命令缓冲区开始记录信息指针</td>
+<td>指向 <code>VkCommandBufferBeginInfo</code> 结构体的指针，该结构体包含有关如何开始记录命令的信息。</td>
+</tr>
+</tbody></table>
+<p>注意：如果命令缓冲区已经被记录过一次，那么再次调用 <code>vkBeginCommandBuffer</code> 会自动重置它，调用示例如下：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// command_manager.cpp</span></span><br><span class="line"><span class="function">VkCommandBuffer <span class="title">CommandManager::beginTransferCommands</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    <span class="built_in">vkBeginCommandBuffer</span>(commandBuffer, &amp;beginInfo);</span><br><span class="line">    <span class="keyword">return</span> commandBuffer;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="结束录制"><a href="#结束录制" class="headerlink" title="结束录制"></a>结束录制</h2><p>在完成命令记录之后，通过调用函数 <code>vkEndCommandBuffer</code> 来结束命令记录，其声明如下：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">VkResult VKAPI_CALL <span class="title">vkEndCommandBuffer</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">    VkCommandBuffer                             commandBuffer)</span></span>;</span><br></pre></td></tr></table></figure></div>
+
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>参数</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>输入参数</td>
+<td>commandBuffer</td>
+<td>命令缓冲区句柄</td>
+<td>指定结束命令记录的命令缓冲区。</td>
+</tr>
+<tr>
+<td>返回值</td>
+<td></td>
+<td>命令记录结束是否成功</td>
+<td><code>VK_SUCCESS</code>：成功结束命令缓冲区的记录。其他错误码表示结束失败</td>
+</tr>
+</tbody></table>
+<p>一个调用示例如下：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// command_manager.cpp</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">CommandManager::endTransferCommands</span><span class="params">(VkCommandBuffer commandBuffer)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">vkEndCommandBuffer</span>(commandBuffer);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h1 id="提交命令缓冲区"><a href="#提交命令缓冲区" class="headerlink" title="提交命令缓冲区"></a>提交命令缓冲区</h1><h2 id="配置提交信息"><a href="#配置提交信息" class="headerlink" title="配置提交信息"></a>配置提交信息</h2><p>通过结构体 <code>VkSubmitInfo</code> 来完成队列提交和同步的配置，其声明如下：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">VkSubmitInfo</span> &#123;</span><br><span class="line">    VkStructureType                sType;</span><br><span class="line">    <span class="type">const</span> <span class="type">void</span>*                    pNext;</span><br><span class="line">    <span class="type">uint32_t</span>                       waitSemaphoreCount;</span><br><span class="line">    <span class="type">const</span> VkSemaphore*             pWaitSemaphores;</span><br><span class="line">    <span class="type">const</span> VkPipelineStageFlags*    pWaitDstStageMask;</span><br><span class="line">    <span class="type">uint32_t</span>                       commandBufferCount;</span><br><span class="line">    <span class="type">const</span> VkCommandBuffer*         pCommandBuffers;</span><br><span class="line">    <span class="type">uint32_t</span>                       signalSemaphoreCount;</span><br><span class="line">    <span class="type">const</span> VkSemaphore*             pSignalSemaphores;</span><br><span class="line">&#125; VkSubmitInfo;</span><br></pre></td></tr></table></figure></div>
+
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>sType</td>
+<td>指定结构体的类型</td>
+<td>必须设置为 <code>VK_STRUCTURE_TYPE_SUBMIT_INFO</code>，以表明这是一个提交信息结构</td>
+</tr>
+<tr>
+<td>pNext</td>
+<td>指向扩展信息的指针</td>
+<td>如果没有需要使用的扩展，设置为 <code>nullptr</code></td>
+</tr>
+<tr>
+<td>waitSemaphoreCount</td>
+<td>等待的信号量数量</td>
+<td>用于指定在执行命令缓冲区之前，需要等待的 <code>VkSemaphore</code> 数量。</td>
+</tr>
+<tr>
+<td>pWaitSemaphores</td>
+<td>等待的信号量数组</td>
+<td>指定在提交的命令缓冲区执行之前需要等待的信号量。</td>
+</tr>
+<tr>
+<td>pWaitDstStageMask</td>
+<td>等待的管线阶段</td>
+<td>与 <code>pWaitSemaphores</code> 对应，指定在管线的哪个阶段等待信号量。</td>
+</tr>
+<tr>
+<td>commandBufferCount</td>
+<td>提交的命令缓冲区数量</td>
+<td><code>pCommandBuffers</code> 数组中的元素数量。</td>
+</tr>
+<tr>
+<td>pCommandBuffers</td>
+<td>待执行的命令缓冲区数组</td>
+<td>包含需要提交执行的 <code>VkCommandBuffer</code> 指针数组。</td>
+</tr>
+<tr>
+<td>signalSemaphoreCount</td>
+<td>提交完成后要发出的信号量数量</td>
+<td><code>pSignalSemaphores</code> 数组的中的元素数量。</td>
+</tr>
+<tr>
+<td>pSignalSemaphores</td>
+<td>提交完成后要发出的信号量数组</td>
+<td>用于通知 GPU 某些操作已经完成，例如渲染完成可以进行显示。</td>
+</tr>
+</tbody></table>
+<p>一个示例如下：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// command_manager.cpp</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">CommandManager::endTransferCommands</span><span class="params">(VkCommandBuffer commandBuffer)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ...</span><br><span class="line">        </span><br><span class="line">    VkSubmitInfo submitInfo&#123;&#125;;</span><br><span class="line">	submitInfo.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;</span><br><span class="line">	submitInfo.pNext = <span class="literal">nullptr</span>;</span><br><span class="line">	submitInfo.waitSemaphoreCount = <span class="number">0</span>;</span><br><span class="line">	submitInfo.pWaitSemaphores = <span class="literal">nullptr</span>;</span><br><span class="line">	submitInfo.pWaitDstStageMask = <span class="literal">nullptr</span>;</span><br><span class="line">	submitInfo.commandBufferCount = <span class="number">1</span>;</span><br><span class="line">	submitInfo.pCommandBuffers = &amp;commandBuffer;</span><br><span class="line">	submitInfo.signalSemaphoreCount = <span class="number">0</span>;</span><br><span class="line">	submitInfo.pSignalSemaphores = <span class="literal">nullptr</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="执行命令提交"><a href="#执行命令提交" class="headerlink" title="执行命令提交"></a>执行命令提交</h2><p>然后通过函数 <code>vkQueueSubmit</code> 来将命令缓冲区提交到传输队列中，其声明如下：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">VkResult <span class="title">vkQueueSubmit</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">    VkQueue                                     queue,</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="type">uint32_t</span>                                    submitCount,</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="type">const</span> VkSubmitInfo*                         pSubmits,</span></span></span><br><span class="line"><span class="params"><span class="function">    VkFence                                     fence)</span></span>;</span><br></pre></td></tr></table></figure></div>
+
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>参数</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>输入参数</td>
+<td>queue</td>
+<td>队列句柄</td>
+<td>目标 Vulkan 队列（如图形队列、计算队列），命令缓冲区将在此队列上执行。</td>
+</tr>
+<tr>
+<td>输入参数</td>
+<td>submitCount</td>
+<td>提交的信息数组大小</td>
+<td>提交的 <code>VkSubmitInfo</code> 结构体数量，即 <code>pSubmits</code> 数组的大小。</td>
+</tr>
+<tr>
+<td>输入参数</td>
+<td>pSubmits</td>
+<td>提交的信息数组指针</td>
+<td>提交的信息数组，包含 <code>submitCount</code> 个 <code>VkSubmitInfo</code> 结构体，描述命令缓冲区及同步信息。</td>
+</tr>
+<tr>
+<td>输出参数</td>
+<td>fence</td>
+<td>栅栏句柄</td>
+<td>可选的同步对象，用于在命令执行完成后通知 CPU，通常用于确保 CPU 不会过早修改资源（可传 <code>VK_NULL_HANDLE</code>）。在命令缓冲区执行完毕之后会触发该栅栏。</td>
+</tr>
+<tr>
+<td>返回值</td>
+<td></td>
+<td>提交是否成功</td>
+<td>可能的值包括：<br /><code>VK_SUCCESS</code>：成功提交。<br /><code>VK_ERROR_OUT_OF_HOST_MEMORY</code>：主机内存不足，无法完成操作。<br /><code>VK_ERROR_OUT_OF_DEVICE_MEMORY</code>：设备内存不足，无法完成操作。</td>
+</tr>
+</tbody></table>
+<p>一个示例如下，由于此处没有使用信号量和栅栏，通过函数 <code>vkQueueWaitIdle</code> 来等待传输命令执行结束并释放命令缓冲区：：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// command_manager.cpp</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">CommandManager::endTransferCommands</span><span class="params">(VkCommandBuffer commandBuffer)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ...</span><br><span class="line">        </span><br><span class="line">    <span class="built_in">vkQueueSubmit</span>(pContentManager-&gt;transferQueue, <span class="number">1</span>, &amp;submitInfo, VK_NULL_HANDLE);</span><br><span class="line">	<span class="built_in">vkQueueWaitIdle</span>(pContentManager-&gt;transferQueue);</span><br><span class="line">	<span class="built_in">vkFreeCommandBuffers</span>(pContentManager-&gt;device, transferCommandPool, <span class="number">1</span>, &amp;commandBuffer);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+		</div>
+
+		
+		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+			<div class="article-copyright-info-container">
+    <ul>
+        <li><strong>标题:</strong> 命令</li>
+        <li><strong>作者:</strong> 王小龙</li>
+        <li><strong>创建于
+                :</strong> 2025-03-20 14:52:08</li>
+        
+            <li>
+                <strong>更新于
+                    :</strong> 2025-03-26 15:24:07
+            </li>
+        
+        <li>
+            <strong>链接:</strong> https://xiaolong-work.github.io/2025/03/20/Vulkan/2.命令/
+        </li>
+        <li>
+            <strong>
+                版权声明:
+            </strong>
+            
+
+            
+                本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a> 进行许可。
+            
+        </li>
+    </ul>
+</div>
+
+		</div>
+		
+
+		
+		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/Vulkan/">#Vulkan</a>&nbsp;
+			</li>
+			
+		</ul>
+		
+
+		
+
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="prev" rel="prev" href="/2025/03/20/Vulkan/10.%E7%BA%B9%E7%90%86/">
+					<span class="left arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-left"></i>
+					</span>
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item">纹理</span>
+						<span class="post-nav-item">上一篇</span>
+					</span>
+				</a>
+			</div>
+			
+			
+			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="next" rel="next" href="/2025/03/20/Vulkan/11.%E9%A1%B6%E7%82%B9%E7%BC%93%E5%86%B2%E5%8C%BA/">
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item">顶点缓冲区</span>
+						<span class="post-nav-item">下一篇</span>
+					</span>
+					<span class="right arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-right"></i>
+					</span>
+				</a>
+			</div>
+			
+		</div>
+		
+
+
+		
+	</div>
+
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">目录</div>
+		<div class="page-title">命令</div>
+		<ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E6%A1%86%E6%9E%B6"><span class="nav-text">基础框架</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E6%B1%A0"><span class="nav-text">命令池</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E5%91%BD%E4%BB%A4%E6%B1%A0"><span class="nav-text">配置命令池</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E5%91%BD%E4%BB%A4%E6%B1%A0"><span class="nav-text">创建命令池</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%85%E7%90%86%E5%91%BD%E4%BB%A4%E6%B1%A0"><span class="nav-text">清理命令池</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E7%BC%93%E5%86%B2%E5%8C%BA"><span class="nav-text">命令缓冲区</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E5%91%BD%E4%BB%A4%E7%BC%93%E5%86%B2%E5%8C%BA"><span class="nav-text">配置命令缓冲区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E9%85%8D%E5%91%BD%E4%BB%A4%E7%BC%93%E5%86%B2%E5%8C%BA"><span class="nav-text">分配命令缓冲区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%85%E7%90%86%E5%91%BD%E4%BB%A4%E7%BC%93%E5%86%B2%E5%8C%BA"><span class="nav-text">清理命令缓冲区</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%B0%E5%BD%95%E5%91%BD%E4%BB%A4%E7%BC%93%E5%86%B2%E5%8C%BA"><span class="nav-text">记录命令缓冲区</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%A7%8B%E8%AE%B0%E5%BD%95"><span class="nav-text">开始记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E6%9D%9F%E5%BD%95%E5%88%B6"><span class="nav-text">结束录制</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8F%90%E4%BA%A4%E5%91%BD%E4%BB%A4%E7%BC%93%E5%86%B2%E5%8C%BA"><span class="nav-text">提交命令缓冲区</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%8F%90%E4%BA%A4%E4%BF%A1%E6%81%AF"><span class="nav-text">配置提交信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E6%8F%90%E4%BA%A4"><span class="nav-text">执行命令提交</span></a></li></ol></li></ol>
+
+	</div>
+</div>
+	</div>
+	
+</div>
+			</div>
+
+			
+		</div>
+
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2025&nbsp;&nbsp;<i class="fa-regular fa-computer-classic"></i>&nbsp;&nbsp;<a href="/">王小龙</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        共撰写了 22 篇文章
+                    </span>
+                    
+                        <span>
+                            共 85.6k 字
+                        </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">访问人数</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">总访问量</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
+            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.2</a></span>
+        </div>
+        
+        
+            <div>
+                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+		</div>
+	</div>
+
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
+
+		<!-- go comment -->
+		
+	</ul>
+</div>
+	</div>
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container">
+	<img src="">
+</div>
+
+	
+	<div class="search-pop-overlay">
+	<div class="popup search-popup">
+		<div class="search-header">
+			<span class="search-input-field-pre">
+				<i class="fa-solid fa-keyboard"></i>
+			</span>
+			<div class="search-input-container">
+				<input autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="站内搜索您需要的内容..." spellcheck="false" type="search" class="search-input">
+			</div>
+			<span class="popup-btn-close">
+				<i class="fa-solid fa-times"></i>
+			</span>
+		</div>
+		<div id="search-result">
+			<div id="no-result">
+				<i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+			</div>
+		</div>
+	</div>
+</div>
+	
+
+</main>
+
+
+
+<script src="/js/build/libs/Swup.min.js"></script>
+
+<script src="/js/build/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/build/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+	
+<script src="/js/build/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/build/utils.js" type="module"></script>
+
+<script src="/js/build/main.js" type="module"></script>
+
+<script src="/js/build/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/build/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/build/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/build/layouts/categoryList.js" type="module"></script>
+
+
+
+    
+<script src="/js/build/tools/localSearch.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/tools/runtime.js"></script>
+
+    
+<script src="/js/build/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/build/libs/Typed.min.js"></script>
+
+  
+<script src="/js/build/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+    
+<script src="/js/build/libs/anime.min.js"></script>
+
+
+
+
+
+    
+<script src="/js/build/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+<script src="/js/build/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/js/build/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+
+	
+</body>
+
+</html>

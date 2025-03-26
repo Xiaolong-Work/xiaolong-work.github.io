@@ -269,7 +269,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">23</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">22</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -309,7 +309,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">23</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">22</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -338,16 +338,15 @@
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
-                        <a href="/2025/03/20/Vulkan/%E6%A0%B8%E5%BF%83%E4%B8%8A%E4%B8%8B%E6%96%87/">
+                        <a href="/2025/03/20/Vulkan/1.%E6%A0%B8%E5%BF%83%E4%B8%8A%E4%B8%8B%E6%96%87/">
                             核心上下文
                         </a>
                     </h3>
 
                     <div class="home-article-content markdown-body">
                         
-                            
-                            Vulkan 核心上下文为了模块化设计，使用类 ContentManager 来管理 Vulkan 中的核心上下文，其中 init 函数将执行所有初始化操作，clear 函数将执行所有清理操作：
-12345678910111213// content.h#pragma onceclass ContentManager&#123;public:    ContentManager() = de...
+                            <p>在 Vulkan 中，核心上下文包括 Vulkan 实例、物理设备、逻辑设备、队列和队列族、窗口和窗口表面，是 Vulkan 应用程序执行操作必不可少的部分。</p>
+
                         
                     </div>
 
@@ -376,7 +375,7 @@
         
     </div>
 
-    <a href="/2025/03/20/Vulkan/%E6%A0%B8%E5%BF%83%E4%B8%8A%E4%B8%8B%E6%96%87/">阅读全文<span class="seo-reader-text">核心上下文</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/2025/03/20/Vulkan/1.%E6%A0%B8%E5%BF%83%E4%B8%8A%E4%B8%8B%E6%96%87/">阅读全文<span class="seo-reader-text">核心上下文</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -395,16 +394,15 @@
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
-                        <a href="/2025/03/20/Vulkan/%E5%91%BD%E4%BB%A4/">
-                            命令和命令缓冲区
+                        <a href="/2025/03/20/Vulkan/2.%E5%91%BD%E4%BB%A4/">
+                            命令
                         </a>
                     </h3>
 
                     <div class="home-article-content markdown-body">
                         
-                            
-                            命令在 Vulkan 中，操作命令例如图像绘制或者内存传输不是通过函数调用来执行，而是通过将需要执行的操作记录到命令缓冲区中。这样做的好处是，当准备好告诉 Vulkan 要做什么时，所有的命令会一起提交，这使得 Vulkan 可以更高效地处理这些命令。通过类 CommandManager 来管理命令的执行与命令缓冲区：
-12345678910111213141516//command.h#p...
+                            <p>在 Vulkan 中，所有操作，例如图像绘制或者内存传输，需要通过将需要执行的操作命令记录到命令缓冲区，并提交到队列执行。</p>
+
                         
                     </div>
 
@@ -433,7 +431,7 @@
         
     </div>
 
-    <a href="/2025/03/20/Vulkan/%E5%91%BD%E4%BB%A4/">阅读全文<span class="seo-reader-text">命令和命令缓冲区</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/2025/03/20/Vulkan/2.%E5%91%BD%E4%BB%A4/">阅读全文<span class="seo-reader-text">命令</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -452,15 +450,15 @@
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
-                        <a href="/2025/03/20/Vulkan/%E7%BC%93%E5%86%B2%E5%8C%BA/">
+                        <a href="/2025/03/20/Vulkan/3.%E7%BC%93%E5%86%B2%E5%8C%BA/">
                             缓冲区
                         </a>
                     </h3>
 
                     <div class="home-article-content markdown-body">
                         
-                            
-                            缓冲区在 Vulkan 中，缓冲区（Buffer） 是一种用于存储数据的线性内存区域。它可以用来存储各种类型的数据，例如顶点数据、索引数据、 uniform 数据、纹理数据等。缓冲区本身并不包含数据的格式信息，它只是一个原始的内存块，数据的解释方式由使用缓冲区的 Vulkan 管线阶段（如顶点着色器、片段着色器等）决定。在 Vulkan 中，缓冲区是用于管理和存储显卡可读取的任意数据的内存区...
+                            <p>在 Vulkan 中，缓冲区是用于管理和存储显卡可读取的任意数据的内存区域，其可以用来存储各种类型的数据，例如顶点数据、索引数据、 Uniform 数据、纹理数据等。缓冲区本身并不包含数据的格式信息，它只是一个原始的内存块，数据的解释方式由使用缓冲区的 Vulkan 管线阶段，如顶点着色器、片段着色器等决定。</p>
+
                         
                     </div>
 
@@ -489,7 +487,7 @@
         
     </div>
 
-    <a href="/2025/03/20/Vulkan/%E7%BC%93%E5%86%B2%E5%8C%BA/">阅读全文<span class="seo-reader-text">缓冲区</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/2025/03/20/Vulkan/3.%E7%BC%93%E5%86%B2%E5%8C%BA/">阅读全文<span class="seo-reader-text">缓冲区</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -508,20 +506,15 @@
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
-                        <a href="/2025/03/20/Vulkan/%E5%9B%BE%E5%83%8F/">
+                        <a href="/2025/03/20/Vulkan/4.%E5%9B%BE%E5%83%8F/">
                             图像
                         </a>
                     </h3>
 
                     <div class="home-article-content markdown-body">
                         
-                            
-                            图像在 Vulkan 中，图像（Image） 是一个核心概念，用于表示存储像素数据的资源。图像可以用于多种用途，例如：
+                            <p>在 Vulkan 中，图像是一个核心概念，用于表示存储像素数据的资源。图像可以用于多种用途，例如：纹理（用于贴图或采样）、帧缓冲区附件（作为渲染目标，如颜色附件、深度附件等）、存储图像（计算着色器中作为可读写的存储资源）、交换链图像（用于呈现到屏幕的后备缓冲区）。</p>
 
-纹理（Texture）：用于贴图或采样。
-帧缓冲区附件（Framebuffer Attachment）：作为渲染目标（如颜色附件、深度附件等）。
-存储图像（Storage Image）：在计算着色器中作为可读写的存储资源。
-交换链图像（Swapchain Image）：用...
                         
                     </div>
 
@@ -550,7 +543,7 @@
         
     </div>
 
-    <a href="/2025/03/20/Vulkan/%E5%9B%BE%E5%83%8F/">阅读全文<span class="seo-reader-text">图像</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/2025/03/20/Vulkan/4.%E5%9B%BE%E5%83%8F/">阅读全文<span class="seo-reader-text">图像</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -569,21 +562,15 @@
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
-                        <a href="/2025/03/20/Vulkan/%E4%BA%A4%E6%8D%A2%E9%93%BE/">
+                        <a href="/2025/03/20/Vulkan/5.%E4%BA%A4%E6%8D%A2%E9%93%BE/">
                             交换链
                         </a>
                     </h3>
 
                     <div class="home-article-content markdown-body">
                         
-                            
-                            交换链交换链是 Vulkan 中用于管理帧缓冲区的工具，其本质是一个图像队列，这些图像正在等待被绘制到屏幕上。交换链也存在多种属性，基本上，需要检查以下三类属性：
+                            <p>交换链是 Vulkan 中用于管理帧缓冲区的工具，其本质是一个图像队列，这些图像正在等待被绘制到屏幕上。</p>
 
-基本表面能力（交换链中的图像最小&#x2F;最大数量，图像的最小&#x2F;最大宽度和高度）
-表面格式（像素格式、颜色空间）
-可用呈现模式
-
-在使用交换链之前需要启用 VK_KHR_swapchain 扩展，该扩展是设备扩展，需...
                         
                     </div>
 
@@ -612,7 +599,7 @@
         
     </div>
 
-    <a href="/2025/03/20/Vulkan/%E4%BA%A4%E6%8D%A2%E9%93%BE/">阅读全文<span class="seo-reader-text">交换链</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/2025/03/20/Vulkan/5.%E4%BA%A4%E6%8D%A2%E9%93%BE/">阅读全文<span class="seo-reader-text">交换链</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -631,17 +618,15 @@
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
-                        <a href="/2025/03/20/Vulkan/%E7%9D%80%E8%89%B2%E5%99%A8%E6%A8%A1%E5%9E%8B/">
-                            着色器模型
+                        <a href="/2025/03/20/Vulkan/6.%E6%B7%B1%E5%BA%A6%E7%BC%93%E5%86%B2%E5%8C%BA/">
+                            深度缓冲区
                         </a>
                     </h3>
 
                     <div class="home-article-content markdown-body">
                         
-                            
-                            着色器模块在 Vulkan 中，着色器代码使用字节码格式表示，可以使用 glslangValidator.exe 或者 glslc.exe 将 GLSL 代码编译成字节码。
-顶点着色器顶点着色器对于输入的每个顶点进行处理，其输入的是每个顶点的属性，包括坐标、颜色、法向量、纹理坐标。顶点着色器对于顶点的属性进行处理，并将处理之后的结果传递给片段着色器进行进一步的处理。
-在顶点着色器中的一个重要...
+                            <p>在多个三维物体绘制的过程中，如果更远的物体拥有更靠后的索引，那么其将会被错误地绘制在更近物体的”前面“。为了解决这个问题，需要引入深度缓冲区。在 Vulkan 中，深度缓冲区是一个额外的附件，它存储每个位置的深度。每当光栅化器生成一个片段时，深度测试将检查新片段是否比之前的片段更近。如果不是，则新片段被丢弃。通过深度测试的片段会将其深度写入深度图像。</p>
+
                         
                     </div>
 
@@ -670,7 +655,7 @@
         
     </div>
 
-    <a href="/2025/03/20/Vulkan/%E7%9D%80%E8%89%B2%E5%99%A8%E6%A8%A1%E5%9E%8B/">阅读全文<span class="seo-reader-text">着色器模型</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/2025/03/20/Vulkan/6.%E6%B7%B1%E5%BA%A6%E7%BC%93%E5%86%B2%E5%8C%BA/">阅读全文<span class="seo-reader-text">深度缓冲区</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -689,75 +674,15 @@
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
-                        <a href="/2025/03/20/Vulkan/%E5%9B%BA%E5%AE%9A%E5%8A%9F%E8%83%BD/">
-                            固定功能
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            固定功能在 Vulkan 中，需要对于图形管线中的每个部分显示地进行配置。
-动态状态大部分管线状态都需要预设，但部分管线状态可以在绘制时进行改变而无需重新创建管线，例如视口大小。对于需要动态使用的状态，需要使用 VkPipelineDynamicStateCreateInfo 来显示指定，其声明如下：
-1234567typedef struct VkPipelineDynamicStateC...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Thu Mar 20 2025 14:52:08 GMT+0800">
-                
-                    2025-03-20
-                
-            </span>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/Vulkan/">Vulkan</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2025/03/20/Vulkan/%E5%9B%BA%E5%AE%9A%E5%8A%9F%E8%83%BD/">阅读全文<span class="seo-reader-text">固定功能</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-                    <div class="absolute top-[12px] right-[12px] text-[0.7rem] text-third-text-color rounded-medium bg-background-color-transparent-15 py-[2px] px-[10px] border border-border-color z-1 hover:text-first-text-color cursor-default">
-                        <i class="fa-regular fa-thumbtack mr-[3px] text-[0.65rem]"></i>置顶
-                    </div>
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/2025/03/20/Vulkan/%E6%B8%B2%E6%9F%93%E9%80%9A%E9%81%93/">
+                        <a href="/2025/03/20/Vulkan/7.%E6%B8%B2%E6%9F%93%E9%80%9A%E9%81%93/">
                             渲染通道
                         </a>
                     </h3>
 
                     <div class="home-article-content markdown-body">
                         
-                            
-                            渲染通道在 Vulkan 中，渲染通道（Render Pass）描述了渲染过程中多个帧缓冲附件（如颜色缓冲区、深度缓冲区等）的使用方式。渲染通道不仅帮助 Vulkan 管理渲染过程中的各种资源，还可以优化图形管线的性能。
-附件描述通过结构体 VkAttachmentDescription  来描述一个附件，其声明如下：
-1234567891011typedef struct VkAttach...
+                            <p>在 Vulkan 中，渲染通道（Render Pass） 是用于定义渲染操作期间图像（如颜色附件、深度&#x2F;模板附件）如何被使用的框架。它描述了渲染过程中涉及的附件（Attachments）、子通道（Subpasses）以及它们之间的依赖关系，是 Vulkan 高效渲染的核心机制之一。</p>
+
                         
                     </div>
 
@@ -786,7 +711,7 @@
         
     </div>
 
-    <a href="/2025/03/20/Vulkan/%E6%B8%B2%E6%9F%93%E9%80%9A%E9%81%93/">阅读全文<span class="seo-reader-text">渲染通道</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/2025/03/20/Vulkan/7.%E6%B8%B2%E6%9F%93%E9%80%9A%E9%81%93/">阅读全文<span class="seo-reader-text">渲染通道</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -805,16 +730,15 @@
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
-                        <a href="/2025/03/20/Vulkan/%E5%9B%BE%E5%BD%A2%E7%AE%A1%E7%BA%BF/">
-                            图形管线
+                        <a href="/2025/03/20/Vulkan/8.%E7%9D%80%E8%89%B2%E5%99%A8%E6%A8%A1%E5%9E%8B/">
+                            着色器模型
                         </a>
                     </h3>
 
                     <div class="home-article-content markdown-body">
                         
-                            
-                            图形管线最后，将所有的管线状态创建信息组合起来就可以完成图形管线（Graphics Pipeline）的创建，通过结构体 VkGraphicsPipelineCreateInfo 来完成图形管线信息的描述，其声明如下：
-123456789101112131415161718192021typedef struct VkGraphicsPipelineCreateInfo &#123;    ...
+                            <p>在 Vulkan 中，着色器代码使用字节码格式表示，可以使用 glslangValidator.exe 或者 glslc.exe 将 GLSL 代码编译成字节码。</p>
+
                         
                     </div>
 
@@ -843,7 +767,7 @@
         
     </div>
 
-    <a href="/2025/03/20/Vulkan/%E5%9B%BE%E5%BD%A2%E7%AE%A1%E7%BA%BF/">阅读全文<span class="seo-reader-text">图形管线</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/2025/03/20/Vulkan/8.%E7%9D%80%E8%89%B2%E5%99%A8%E6%A8%A1%E5%9E%8B/">阅读全文<span class="seo-reader-text">着色器模型</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -862,16 +786,15 @@
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
-                        <a href="/2025/03/20/Vulkan/%E5%A4%9A%E5%B8%A7%E5%B9%B6%E8%A1%8C/">
-                            多帧并行
+                        <a href="/2025/03/20/Vulkan/9.%E7%BB%9F%E4%B8%80%E7%BC%93%E5%86%B2%E5%8C%BA%E5%92%8C%E6%8F%8F%E8%BF%B0%E7%AC%A6/">
+                            统一缓冲区和描述符
                         </a>
                     </h3>
 
                     <div class="home-article-content markdown-body">
                         
-                            
-                            多帧并行在一个渲染循环中如果只使用一个命令缓冲区会存在一些问题，在开始渲染下一帧之前，必须等待前一帧完成，这会导致 CPU 在提交一个命令缓冲区之后需要等待 GPU 执行完成以获得下一个可用的命令缓冲区，同时 GPU 执行完成一帧的渲染命令之后，也需要等待 CPU 完成下一帧渲染命令的录制。
-这个问题的解决方案是**允许多帧同时进行 (Frames in Flight)**，也就是说在渲染一...
+                            <p>在 Vulkan 中，描述符（Descriptor）允许着色器自由访问资源（如缓冲区和图像）。</p>
+
                         
                     </div>
 
@@ -900,7 +823,63 @@
         
     </div>
 
-    <a href="/2025/03/20/Vulkan/%E5%A4%9A%E5%B8%A7%E5%B9%B6%E8%A1%8C/">阅读全文<span class="seo-reader-text">多帧并行</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/2025/03/20/Vulkan/9.%E7%BB%9F%E4%B8%80%E7%BC%93%E5%86%B2%E5%8C%BA%E5%92%8C%E6%8F%8F%E8%BF%B0%E7%AC%A6/">阅读全文<span class="seo-reader-text">统一缓冲区和描述符</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+                    <div class="absolute top-[12px] right-[12px] text-[0.7rem] text-third-text-color rounded-medium bg-background-color-transparent-15 py-[2px] px-[10px] border border-border-color z-1 hover:text-first-text-color cursor-default">
+                        <i class="fa-regular fa-thumbtack mr-[3px] text-[0.65rem]"></i>置顶
+                    </div>
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2025/03/20/Vulkan/10.%E7%BA%B9%E7%90%86/">
+                            纹理
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            <p>纹理是计算机图形学中用于增强物体表面细节的二维（或三维）图像数据，本质上是存储在内存中的像素矩阵。它的核心作用是模拟真实世界的材质外观。</p>
+
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Thu Mar 20 2025 14:52:08 GMT+0800">
+                
+                    2025-03-20
+                
+            </span>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/Vulkan/">Vulkan</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2025/03/20/Vulkan/10.%E7%BA%B9%E7%90%86/">阅读全文<span class="seo-reader-text">纹理</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -936,11 +915,11 @@
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        共撰写了 23 篇文章
+                        共撰写了 22 篇文章
                     </span>
                     
                         <span>
-                            共 88.1k 字
+                            共 85.6k 字
                         </span>
                     
                 </p>

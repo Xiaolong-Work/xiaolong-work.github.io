@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="王小龙">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2025/03/20/vulkan/5.交换链/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+    
+    
+        
+        <meta name="description" content="交换链是 Vulkan 中用于管理帧缓冲区的工具，其本质是一个图像队列，这些图像正在等待被绘制到屏幕上。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="交换链">
+<meta property="og:url" content="http://example.com/2025/03/20/Vulkan/5.%E4%BA%A4%E6%8D%A2%E9%93%BE/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="交换链是 Vulkan 中用于管理帧缓冲区的工具，其本质是一个图像队列，这些图像正在等待被绘制到屏幕上。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-03-20T06:52:08.899Z">
+<meta property="article:modified_time" content="2025-03-26T09:45:50.488Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Vulkan">
+<meta name="twitter:card" content="summary">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            交换链 | 小龙的笔记本
+        
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/css/build/tailwind.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.xml"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":true,"lazyload":true,"pangu_js":false,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"小龙的笔记本","subtitle":{"text":[],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.8.2","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
+    window.lang_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+
+<body>
+	<div class="progress-bar-container">
+	
+
+	
+	<span class="pjax-progress-bar"></span>
+	<!--        <span class="swup-progress-icon">-->
+	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+	<!--        </span>-->
+	
+</div>
+
+<main class="page-container" id="swup">
+
+	
+
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                小龙的笔记本
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    首页
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                首页
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">2</div>
+        <div class="label text-third-text-color text-sm">标签</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">分类</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">22</div>
+        <div class="label text-third-text-color text-sm">文章</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+		</div>
+
+		<div class="main-content-body transition-fade-up">
+			
+
+			<div class="main-content">
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
+
+		<div class="article-title relative w-full">
+			
+			<div class="w-full flex items-center pt-6 justify-start">
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">交换链</h1>
+			</div>
+			
+		</div>
+
+		
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+				<img src="/image/avatar.jpg">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">王小龙</span>
+					
+					<span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv3</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2025-03-20 14:52:08</span>
+        <span class="mobile">2025-03-20 14:52:08</span>
+        <span class="hover-info">创建</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-03-26 17:45:50</span>
+            <span class="mobile">2025-03-26 17:45:50</span>
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Vulkan/">Vulkan</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>4.7k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>19 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+				</div>
+			</div>
+		</div>
+		
+
+		
+
+
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<h1 id="基础框架"><a href="#基础框架" class="headerlink" title="基础框架"></a>基础框架</h1><p>在使用交换链之前需要启用 <code>VK_KHR_swapchain</code> 扩展，该扩展是设备扩展，需要在逻辑设备创建时开启，这里扩展函数 <code>ContentManager::getRequiredDeviceExtensions</code>，使其包含 <code>VK_KHR_swapchain</code> 扩展，这里使用宏 <code>VK_KHR_SWAPCHAIN_EXTENSION_NAME</code> 以避免拼写出错 ：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// content_manager.cpp</span></span><br><span class="line"><span class="function">std::vector&lt;<span class="type">const</span> <span class="type">char</span>*&gt; <span class="title">ContentManager::getRequiredDeviceExtensions</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    std::vector&lt;<span class="type">const</span> <span class="type">char</span>*&gt; deviceExtensions&#123;&#125;;</span><br><span class="line">    deviceExtensions.<span class="built_in">push_back</span>(VK_KHR_SWAPCHAIN_EXTENSION_NAME);</span><br><span class="line">    <span class="keyword">return</span> deviceExtensions;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>为了模块化设计，使用类 <code>SwapChainManager</code> 来管理交换链，其中 <code>init</code> 函数将执行所有初始化操作，<code>clear</code> 函数将执行所有清理操作：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// swap_chain_manager.h</span></span><br><span class="line"><span class="meta">#<span class="keyword">pragma</span> once</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SwapChainManager</span> : <span class="keyword">public</span> ImageManager</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">SwapChainManager</span>() = <span class="keyword">default</span>;</span><br><span class="line">    <span class="built_in">SwapChainManager</span>(<span class="type">const</span> ContentManagerSPtr&amp; pContentManager, <span class="type">const</span> CommandManagerSPtr&amp; commandManager);</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">clear</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> std::shared_ptr&lt;SwapChainManager&gt; SwapChainManagerSPtr;</span><br></pre></td></tr></table></figure></div>
+
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// swap_chain_manager.cpp</span></span><br><span class="line">SwapChainManager::<span class="built_in">SwapChainManager</span>(<span class="type">const</span> ContentManagerSPtr&amp; pContentManager, <span class="type">const</span> CommandManagerSPtr&amp; commandManager)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">this</span>-&gt;pContentManager = pContentManager;</span><br><span class="line">    <span class="keyword">this</span>-&gt;pCommandManager = commandManager;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>交换链存在多种属性，基本上，需要检查以下三类属性：</p>
+<ol>
+<li><strong>基本表面能力</strong>（交换链中的图像最小&#x2F;最大数量，图像的最小&#x2F;最大宽度和高度）</li>
+<li><strong>表面格式</strong>（像素格式、颜色空间）</li>
+<li><strong>可用呈现模式</strong></li>
+</ol>
+<h1 id="基本表面能力"><a href="#基本表面能力" class="headerlink" title="基本表面能力"></a>基本表面能力</h1><p>在类中添加 <code>VkSurfaceCapabilitiesKHR</code> 类型的成员变量用于存储查询得到的基本表面能力，并添加 <code>getExtend</code> 成员函数来查询并选择正确的交换范围：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// swap_chain_manager.h</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SwapChainManager</span> : <span class="keyword">public</span> ImageManager</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    <span class="function">VkExtent2D <span class="title">getExtent</span><span class="params">()</span></span>;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	VkSurfaceCapabilitiesKHR capabilities;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="查询基本表面能力"><a href="#查询基本表面能力" class="headerlink" title="查询基本表面能力"></a>查询基本表面能力</h2><p>通过函数 <code>vkGetPhysicalDeviceSurfaceCapabilitiesKHR</code> 可以查询指定物理设备与特定表面（surface）相关的<strong>基本表面能力</strong>，其声明如下：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">VkResult <span class="title">vkGetPhysicalDeviceSurfaceCapabilitiesKHR</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">    VkPhysicalDevice physicalDevice,</span></span></span><br><span class="line"><span class="params"><span class="function">    VkSurfaceKHR surface,</span></span></span><br><span class="line"><span class="params"><span class="function">    VkSurfaceCapabilitiesKHR* pSurfaceCapabilities</span></span></span><br><span class="line"><span class="params"><span class="function">)</span></span>;</span><br></pre></td></tr></table></figure></div>
+
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>参数</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>输入参数</td>
+<td>physicalDevice</td>
+<td>物理设备句柄</td>
+<td>指定要查询的物理设备。</td>
+</tr>
+<tr>
+<td>输入参数</td>
+<td>surface</td>
+<td>窗口表面句柄</td>
+<td>指定需要查询的窗口表面。</td>
+</tr>
+<tr>
+<td>输出参数</td>
+<td>pSurfaceCapabilities</td>
+<td>指向一个 <code>VkSurfaceCapabilitiesKHR</code> 结构的指针</td>
+<td>函数会填充该结构以返回表面能力的信息。</td>
+</tr>
+<tr>
+<td>返回值</td>
+<td></td>
+<td>表示能力查询是否成功</td>
+<td><code>VK_SUCCESS</code>：表示查询成功。  其他错误代码：表示查询失败，具体原因可能包括无效参数或设备不支持该功能。</td>
+</tr>
+</tbody></table>
+<p>注意：在调用此函数之前，确保 <code>physicalDevice</code> 和 <code>surface</code> 都已经有效初始化。</p>
+<p>在结构体 <code>VkSurfaceCapabilitiesKHR</code> 中包含了 Vulkan 表面的基本能力信息，其声明如下：</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">typedef struct VkSurfaceCapabilitiesKHR &#123;</span><br><span class="line"> uint32_t                         minImageCount;</span><br><span class="line"> uint32_t                         maxImageCount;</span><br><span class="line"> VkExtent2D                       currentExtent;</span><br><span class="line"> VkExtent2D                       minImageExtent;</span><br><span class="line"> VkExtent2D                       maxImageExtent;</span><br><span class="line"> uint32_t                         maxImageArrayLayers;</span><br><span class="line"> VkSurfaceTransformFlagsKHR       supportedTransforms;</span><br><span class="line"> VkSurfaceTransformFlagBitsKHR    currentTransform;</span><br><span class="line"> VkCompositeAlphaFlagsKHR         supportedCompositeAlpha;</span><br><span class="line"> VkImageUsageFlags                supportedUsageFlags;</span><br><span class="line">&#125; VkSurfaceCapabilitiesKHR;</span><br></pre></td></tr></table></figure></div>
+
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>minImageCount</td>
+<td>表示交换链中至少需要的图像数量</td>
+<td>交换链的图像数量必须大于或等于此值</td>
+</tr>
+<tr>
+<td>xxxxxxxxxx &#x2F;&#x2F; image_manager.cppvoid DepthImageManager::clear(){    vkDestroyImage(pContentManager-&gt;device, this-&gt;image, nullptr);    vkFreeMemory(pContentManager-&gt;device, this-&gt;imageMemory, nullptr);    vkDestroyImageView(pContentManager-&gt;device, this-&gt;imageView, nullptr);}c++</td>
+<td>表示交换链中最多允许的图像数量</td>
+<td>如果此值为 <code>0</code>，则表示没有上限</td>
+</tr>
+<tr>
+<td>currentExtent</td>
+<td>表示当前表面的分辨率（宽度和高度），单位为像素</td>
+<td>如果 <code>currentExtent</code> 的宽度和高度都为 <code>uint32_t</code> 的最大值（<code>0xFFFFFFFF</code>），则表明窗口管理器允许选择不同的分辨率</td>
+</tr>
+<tr>
+<td>minImageExtent</td>
+<td>表示交换链图像分辨率的最小宽度和高度</td>
+<td>单位为像素</td>
+</tr>
+<tr>
+<td>maxImageExtent</td>
+<td>表示交换链图像分辨率的最大宽度和高度</td>
+<td>单位为像素</td>
+</tr>
+<tr>
+<td>maxImageArrayLayers</td>
+<td>表示交换链中单个图像所支持的最大数组层数</td>
+<td>对于大多数应用，这个值通常为 <code>1</code>，除非需要使用图像数组。</td>
+</tr>
+<tr>
+<td>supportedTransforms</td>
+<td>表示支持的图像变换操作（如旋转、镜像等）</td>
+<td>使用 <code>VkSurfaceTransformFlagsKHR</code> 标志位表示。</td>
+</tr>
+<tr>
+<td>currentTransform</td>
+<td>表示当前表面应用的变换操作</td>
+<td>使用 <code>VkSurfaceTransformFlagBitsKHR</code> 标志位表示。</td>
+</tr>
+<tr>
+<td>supportedCompositeAlpha</td>
+<td>表示支持的 alpha 混合操作</td>
+<td>使用 <code>VkCompositeAlphaFlagsKHR</code> 标志位表示。</td>
+</tr>
+<tr>
+<td>supportedUsageFlags</td>
+<td>表示交换链图像的支持用途</td>
+<td>使用 <code>VkImageUsageFlags</code> 标志位表示。</td>
+</tr>
+</tbody></table>
+<p>示例如下：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// swap_chain_manager.cpp</span></span><br><span class="line"><span class="function">VkExtent2D <span class="title">SwapChainManager::getExtent</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">/* Query surface capabilities */</span></span><br><span class="line">    <span class="built_in">vkGetPhysicalDeviceSurfaceCapabilitiesKHR</span>(</span><br><span class="line">        pContentManager-&gt;physicalDevice, pContentManager-&gt;surface, &amp;<span class="keyword">this</span>-&gt;capabilities);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="选择正确的交换范围"><a href="#选择正确的交换范围" class="headerlink" title="选择正确的交换范围"></a>选择正确的交换范围</h2><p>在交换链中，图像的分辨率又称为<strong>交换范围</strong>（swap extent）。通常情况下，交换范围与渲染窗口的分辨率一致。但在部分情况下，窗口管理器允许选择不同的分辨率，此时，<code>currentExtent</code> 的宽度和高度都为 <code>uint32_t</code> 的最大值。在这种时候则需要使用函数 <code>glfwGetFramebufferSize</code> 来查询窗口的像素分辨率来作为实际的交换范围，同时限制交换范围到支持的最大和最小值之间，示例代码：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// swap_chain_manager.cpp</span></span><br><span class="line"><span class="function">VkExtent2D <span class="title">SwapChainManager::getExtent</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>-&gt;capabilities.currentExtent.width != std::numeric_limits&lt;<span class="type">uint32_t</span>&gt;::<span class="built_in">max</span>())</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>-&gt;capabilities.currentExtent;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> width, height;</span><br><span class="line">        <span class="built_in">glfwGetFramebufferSize</span>(pContentManager-&gt;window, &amp;width, &amp;height);</span><br><span class="line"></span><br><span class="line">        VkExtent2D resultlExtent = &#123;<span class="built_in">static_cast</span>&lt;<span class="type">uint32_t</span>&gt;(width), <span class="built_in">static_cast</span>&lt;<span class="type">uint32_t</span>&gt;(height)&#125;;</span><br><span class="line"></span><br><span class="line">        resultlExtent.width = std::<span class="built_in">clamp</span>(</span><br><span class="line">            resultlExtent.width, <span class="keyword">this</span>-&gt;capabilities.minImageExtent.width, </span><br><span class="line">            <span class="keyword">this</span>-&gt;capabilities.maxImageExtent.width);</span><br><span class="line">        resultlExtent.height = std::<span class="built_in">clamp</span>(</span><br><span class="line">            resultlExtent.height, <span class="keyword">this</span>-&gt;capabilities.minImageExtent.height, </span><br><span class="line">            <span class="keyword">this</span>-&gt;capabilities.maxImageExtent.height);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> resultlExtent;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h1 id="表面格式"><a href="#表面格式" class="headerlink" title="表面格式"></a>表面格式</h1><p>在类中添加 <code>std::vector&lt;VkSurfaceFormatKHR&gt;</code> 类型的成员变量用于存储查询得到的表面格式，并添加 <code>getFormat</code> 成员函数来查询并选择最佳的表面格式：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// swap_chain_manager.h</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SwapChainManager</span> : <span class="keyword">public</span> ImageManager</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    <span class="function">VkSurfaceFormatKHR <span class="title">getFormat</span><span class="params">()</span></span>;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	std::vector&lt;VkSurfaceFormatKHR&gt; formats;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="查询表面格式"><a href="#查询表面格式" class="headerlink" title="查询表面格式"></a>查询表面格式</h2><p>通过函数 <code>vkGetPhysicalDeviceSurfaceFormatsKHR</code> 来查询窗口表面的<strong>表面格式</strong> (Surface formats)，其声明如下：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">VkResult <span class="title">vkGetPhysicalDeviceSurfaceFormatsKHR</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">    VkPhysicalDevice physicalDevice,</span></span></span><br><span class="line"><span class="params"><span class="function">    VkSurfaceKHR surface,</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="type">uint32_t</span>* pSurfaceFormatCount,</span></span></span><br><span class="line"><span class="params"><span class="function">    VkSurfaceFormatKHR* pSurfaceFormats</span></span></span><br><span class="line"><span class="params"><span class="function">)</span></span>;</span><br></pre></td></tr></table></figure></div>
+
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>参数</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>输入参数</td>
+<td>physicalDevice</td>
+<td>物理设备句柄</td>
+<td>指定要查询的物理设备。</td>
+</tr>
+<tr>
+<td>输入参数</td>
+<td>surface</td>
+<td>窗口表面句柄</td>
+<td>指定需要查询的窗口表面。</td>
+</tr>
+<tr>
+<td>输出参数</td>
+<td>pSurfaceFormatCount</td>
+<td>整数变量指针</td>
+<td>第一次调用时，该变量会被填充为支持的表面格式的数量。如果第二次调用时 <code>pSurfaceFormats</code> 为非空，则该变量应包含可写入的表面格式数量。</td>
+</tr>
+<tr>
+<td>输出参数</td>
+<td>pSurfaceFormats</td>
+<td><code>VkSurfaceFormatKHR</code> 数组指针</td>
+<td>如果为 <code>nullptr</code>，函数只返回支持的表面格式的数量（写入 <code>pSurfaceFormatCount</code>。如果不为 <code>nullptr</code>，函数会填充该数组，包含所有支持的表面格式。</td>
+</tr>
+<tr>
+<td>返回值</td>
+<td></td>
+<td>表示表面格式是否成功</td>
+<td><code>VK_SUCCESS</code>：表示查询成功。  其他错误代码：表示查询失败，具体原因可能包括无效参数或设备不支持该功能。</td>
+</tr>
+</tbody></table>
+<p>注意：在调用此函数之前，确保 <code>physicalDevice</code> 和 <code>surface</code> 都已经有效初始化。</p>
+<p>由于查询结果是数组，需要先查询结果数组的大小，然后申请对应大小的内存，最后获取结果数组：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// swap_chain_manager.cpp</span></span><br><span class="line"><span class="function">VkSurfaceFormatKHR <span class="title">SwapChainManager::getFormat</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">/* Query surface format */</span></span><br><span class="line">    <span class="type">uint32_t</span> formatCount;</span><br><span class="line">    <span class="built_in">vkGetPhysicalDeviceSurfaceFormatsKHR</span>(</span><br><span class="line">        pContentManager-&gt;physicalDevice, pContentManager-&gt;surface, &amp;formatCount, <span class="literal">nullptr</span>);</span><br><span class="line">    <span class="keyword">if</span> (formatCount != <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;formats.<span class="built_in">resize</span>(formatCount);</span><br><span class="line">        <span class="built_in">vkGetPhysicalDeviceSurfaceFormatsKHR</span>(</span><br><span class="line">            pContentManager-&gt;physicalDevice, pContentManager-&gt;surface, &amp;formatCount, <span class="keyword">this</span>-&gt;formats.<span class="built_in">data</span>());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="选择最佳表现模式"><a href="#选择最佳表现模式" class="headerlink" title="选择最佳表现模式"></a>选择最佳表现模式</h2><p>在结构体 <code>VkSurfaceFormatKHR</code> 中，存在两个成员变量，分别为 <code>format</code> 和 <code>colorSpace</code> ，其声明如下：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">VkSurfaceFormatKHR</span> </span><br><span class="line">&#123;</span><br><span class="line">    VkFormat           format;</span><br><span class="line">    VkColorSpaceKHR    colorSpace;</span><br><span class="line">&#125; VkSurfaceFormatKHR;</span><br></pre></td></tr></table></figure></div>
+
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>format</td>
+<td>表示表面支持的颜色格式（像素格式）</td>
+<td>该值定义了每个像素的颜色通道（例如红、绿、蓝、透明度）的存储顺序和数据类型。例如<code>VK_FORMAT_B8G8R8A8_SRGB</code>: 每像素包含蓝 (B)、绿 (G)、红 (R) 和透明度 (A) 通道，每个通道 8 位，总计 32 位，使用 SRGB 色彩空间。</td>
+</tr>
+<tr>
+<td>colorSpace</td>
+<td>表示表面支持的色彩空间</td>
+<td>色彩空间定义了颜色如何被解释或显示。例如 <code>VK_COLOR_SPACE_SRGB_NONLINEAR_KHR</code> 表示支持 SRGB 非线性色彩空间。</td>
+</tr>
+</tbody></table>
+<p>选择最佳表现模式需要根据需求选择合适的颜色格式和色彩空间组合，通常使用 <code>VkSurfaceFormatKHR</code> 中的第一个元素：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// swap_chain_manager.cpp</span></span><br><span class="line"><span class="function">VkSurfaceFormatKHR <span class="title">SwapChainManager::getFormat</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">const</span> <span class="keyword">auto</span>&amp; format : <span class="keyword">this</span>-&gt;formats)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (format.format == VK_FORMAT_B8G8R8A8_SRGB &amp;&amp; </span><br><span class="line">            format.colorSpace == VK_COLOR_SPACE_SRGB_NONLINEAR_KHR)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> format;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>-&gt;formats[<span class="number">0</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h1 id="呈现模式"><a href="#呈现模式" class="headerlink" title="呈现模式"></a>呈现模式</h1><p>在类中添加 <code>std::vector&lt;VkPresentModeKHR&gt;</code> 类型的成员变量用于存储查询得到的呈现模式，并添加 <code>getPresentMode</code> 成员函数来查询并选择最佳的呈现模式：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// swap_chain_manager.h</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SwapChainManager</span> : <span class="keyword">public</span> ImageManager</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    <span class="function">VkPresentModeKHR <span class="title">getPresentMode</span><span class="params">()</span></span>;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	std::vector&lt;VkPresentModeKHR&gt; presentModes;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="查询呈现模式"><a href="#查询呈现模式" class="headerlink" title="查询呈现模式"></a>查询呈现模式</h2><p>通过函数 <code>vkGetPhysicalDeviceSurfacePresentModesKHR</code> 来查询窗口表面的可用<strong>呈现模式</strong>，其声明如下：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">VkResult <span class="title">vkGetPhysicalDeviceSurfacePresentModesKHR</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">    VkPhysicalDevice physicalDevice,</span></span></span><br><span class="line"><span class="params"><span class="function">    VkSurfaceKHR surface,</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="type">uint32_t</span>* pPresentModeCount,</span></span></span><br><span class="line"><span class="params"><span class="function">    VkPresentModeKHR* pPresentModes</span></span></span><br><span class="line"><span class="params"><span class="function">)</span></span>;</span><br></pre></td></tr></table></figure></div>
+
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>参数</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>输入参数</td>
+<td>physicalDevice</td>
+<td>物理设备句柄</td>
+<td>指定要查询的物理设备。</td>
+</tr>
+<tr>
+<td>输入参数</td>
+<td>surface</td>
+<td>窗口表面句柄</td>
+<td>指定需要查询的窗口表面。</td>
+</tr>
+<tr>
+<td>输出参数</td>
+<td>pPresentModeCount</td>
+<td>整数变量指针</td>
+<td>如果 <code>pPresentModes</code> 为 <code>nullptr</code>，则此变量将返回支持的呈现模式总数，否则表示返回的呈现模式数组的大小。</td>
+</tr>
+<tr>
+<td>输出参数</td>
+<td>pPresentModes</td>
+<td><code>VkPresentModeKHR</code> 数组指针</td>
+<td>如果为 <code>nullptr</code>，函数只返回支持的呈现模式的数量（写入 <code>pPresentModeCount</code>。如果不为 <code>nullptr</code>，函数会填充该数组，包含所有支持的呈现模式。</td>
+</tr>
+<tr>
+<td>返回值</td>
+<td></td>
+<td>表示表面格式是否成功</td>
+<td>**<code>VK_SUCCESS</code>**：表示查询成功。  <strong>其他错误代码</strong>：表示查询失败，具体原因可能包括无效参数或设备不支持该功能。</td>
+</tr>
+</tbody></table>
+<p>注意：在调用此函数之前，确保 <code>physicalDevice</code> 和 <code>surface</code> 都已经有效初始化。</p>
+<p>由于查询结果是数组，需要先查询结果数组的大小，然后申请对应大小的内存，最后获取结果数组：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// swap_chain_manager.cpp</span></span><br><span class="line"><span class="function">VkPresentModeKHR <span class="title">SwapChainManager::getPresentMode</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">/* Query rendering mode */</span></span><br><span class="line">    <span class="type">uint32_t</span> presentModeCount;</span><br><span class="line">    <span class="built_in">vkGetPhysicalDeviceSurfacePresentModesKHR</span>(</span><br><span class="line">        pContentManager-&gt;physicalDevice, pContentManager-&gt;surface, &amp;presentModeCount, <span class="literal">nullptr</span>);</span><br><span class="line">    <span class="keyword">if</span> (presentModeCount != <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;presentModes.<span class="built_in">resize</span>(presentModeCount);</span><br><span class="line">        <span class="built_in">vkGetPhysicalDeviceSurfacePresentModesKHR</span>(</span><br><span class="line">            pContentManager-&gt;physicalDevice, pContentManager-&gt;surface, &amp;presentModeCount, <span class="keyword">this</span>-&gt;presentModes.<span class="built_in">data</span>());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="选择最佳呈现模式"><a href="#选择最佳呈现模式" class="headerlink" title="选择最佳呈现模式"></a>选择最佳呈现模式</h2><p><code>VkPresentModeKHR</code> 是枚举类型，其控制图像的呈现模式：</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>VK_PRESENT_MODE_IMMEDIATE_KHR</td>
+<td>图像在提交后立即传输到屏幕</td>
+<td>优点：延迟最低<br/>缺点：可能导致屏幕撕裂</td>
+</tr>
+<tr>
+<td>VK_PRESENT_MODE_FIFO_KHR</td>
+<td>图像按照队列顺序呈现，显示器刷新时从队列前端取出图像，队列满时，程序会阻塞，等待空间。</td>
+<td>优点：垂直同步，画面流畅，无撕裂<br/>缺点：可能导致延迟增加</td>
+</tr>
+<tr>
+<td>VK_PRESENT_MODE_FIFO_RELAXED_KHR</td>
+<td>如果程序未及时提交图像（队列为空），新图像会立即传输到屏幕，而无需等待下一次显示器刷新。</td>
+<td>优点：减少延迟<br/>缺点：可能导致撕裂</td>
+</tr>
+<tr>
+<td>VK_PRESENT_MODE_MAILBOX_KHR</td>
+<td>如果队列已满，新图像会覆盖旧图像，而不是等待队列变为空</td>
+<td>优点：三重缓冲，支持高帧率渲染，避免撕裂<br/>缺点：对性能要求较高</td>
+</tr>
+<tr>
+<td>VK_PRESENT_MODE_SHARED_DEMAND_REFRESH_KHR</td>
+<td>在共享模式下，图像的显示由应用程序控制，只有在应用程序请求刷新时，显示器才会更新图像</td>
+<td>适用于对显示刷新频率有特定需求的场景。</td>
+</tr>
+<tr>
+<td>VK_PRESENT_MODE_SHARED_CONTINUOUS_REFRESH_KHR</td>
+<td>在共享模式下，显示器会持续刷新图像，而不需要应用程序的明确请求</td>
+<td>适用于需要持续刷新显示的场景，例如动态内容或视频播放</td>
+</tr>
+<tr>
+<td>VK_PRESENT_MODE_MAX_ENUM_KHR</td>
+<td>表示枚举的最大值，通常用于验证或保留</td>
+<td>实际使用中不会选择此值</td>
+</tr>
+</tbody></table>
+<p>其中 <code>VK_PRESENT_MODE_FIFO_KHR</code> 是 Vulkan 保证支持的模式，其他模式的支持情况依赖于具体的硬件和驱动。为了最佳性能，在可用时，通常选择 <code>VK_PRESENT_MODE_MAILBOX_KHR</code>：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">VkPresentModeKHR <span class="title">SwapChainManager::getPresentMode</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">const</span> <span class="keyword">auto</span>&amp; presentMode : <span class="keyword">this</span>-&gt;presentModes)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (presentMode == VK_PRESENT_MODE_MAILBOX_KHR)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> presentMode;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> VK_PRESENT_MODE_FIFO_KHR;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h1 id="创建与清理"><a href="#创建与清理" class="headerlink" title="创建与清理"></a>创建与清理</h1><p>在类中添加 <code>VkSwapchainKHR</code> 类型的成员变量用于存储创建的交换链，并添加 <code>createSwapChain</code> 成员函数来创建交换链：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// swap_chain_manager.h</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SwapChainManager</span> : <span class="keyword">public</span> ImageManager</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    VkSwapchainKHR swapchain;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">createSwapChain</span><span class="params">()</span></span>;	</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="配置交换链"><a href="#配置交换链" class="headerlink" title="配置交换链"></a>配置交换链</h2><p>使用结构体 <code>VkSwapchainCreateInfoKHR</code> 来描述一个交换链的创建信息，其声明如下：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">VkSwapchainCreateInfoKHR</span> &#123;</span><br><span class="line">    VkStructureType                  sType;</span><br><span class="line">    <span class="type">const</span> <span class="type">void</span>*                      pNext;</span><br><span class="line">    VkSwapchainCreateFlagsKHR        flags;</span><br><span class="line">    VkSurfaceKHR                     surface;</span><br><span class="line">    <span class="type">uint32_t</span>                         minImageCount;</span><br><span class="line">    VkFormat                         imageFormat;</span><br><span class="line">    VkColorSpaceKHR                  imageColorSpace;</span><br><span class="line">    VkExtent2D                       imageExtent;</span><br><span class="line">    <span class="type">uint32_t</span>                         imageArrayLayers;</span><br><span class="line">    VkImageUsageFlags                imageUsage;</span><br><span class="line">    VkSharingMode                    imageSharingMode;</span><br><span class="line">    <span class="type">uint32_t</span>                         queueFamilyIndexCount;</span><br><span class="line">    <span class="type">const</span> <span class="type">uint32_t</span>*                  pQueueFamilyIndices;</span><br><span class="line">    VkSurfaceTransformFlagBitsKHR    preTransform;</span><br><span class="line">    VkCompositeAlphaFlagBitsKHR      compositeAlpha;</span><br><span class="line">    VkPresentModeKHR                 presentMode;</span><br><span class="line">    VkBool32                         clipped;</span><br><span class="line">    VkSwapchainKHR                   oldSwapchain;</span><br><span class="line">&#125; VkSwapchainCreateInfoKHR;</span><br></pre></td></tr></table></figure></div>
+
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>sType</td>
+<td>指定结构体的类型</td>
+<td>必须设置为 <code>VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR</code>。</td>
+</tr>
+<tr>
+<td>pNext</td>
+<td>指向扩展信息的指针</td>
+<td>通常设置为 <code>nullptr</code>。</td>
+</tr>
+<tr>
+<td>flags</td>
+<td>交换链的创建标志</td>
+<td>通常设置为 <code>0</code>。</td>
+</tr>
+<tr>
+<td>surface</td>
+<td>窗口表面句柄</td>
+<td>交换链所关联的窗口表面。</td>
+</tr>
+<tr>
+<td>minImageCount</td>
+<td>交换链中的最小图像数量</td>
+<td>交换链至少会包含这些图像。</td>
+</tr>
+<tr>
+<td>imageFormat</td>
+<td>交换链中图像的像素格式</td>
+<td>例如 <code>VK_FORMAT_B8G8R8A8_SRGB</code>。</td>
+</tr>
+<tr>
+<td>imageColorSpace</td>
+<td>图像的颜色空间</td>
+<td>例如 <code>VK_COLOR_SPACE_SRGB_NONLINEAR_KHR</code>。</td>
+</tr>
+<tr>
+<td>imageExtent</td>
+<td>交换链中图像的分辨率</td>
+<td>以像素为单位。</td>
+</tr>
+<tr>
+<td>imageArrayLayers</td>
+<td>每个图像的层数</td>
+<td>通常为 <code>1</code>，除非用于立体3D应用。</td>
+</tr>
+<tr>
+<td>imageUsage</td>
+<td>指定图像的用途</td>
+<td>例如 <code>VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT</code> 表示用于颜色附件，使得能够直接渲染图像到交换链中。</td>
+</tr>
+<tr>
+<td>imageSharingMode</td>
+<td>指定图像的共享模式</td>
+<td><code>VK_SHARING_MODE_EXCLUSIVE</code>，独占模式，图像一次只能被一个队列族拥有，转移所有权需要显式进行，性能最佳；<br/><code>VK_SHARING_MODE_CONCURRENT</code>，并发模式，图像被多个队列族共享使用，无需显式进行所有权转移；<br/>如果图形队列族和呈现队列族相同，应该使用独占模式。</td>
+</tr>
+<tr>
+<td>queueFamilyIndexCount</td>
+<td>共享图像的队列族数量</td>
+<td>在使用并发模式时起效</td>
+</tr>
+<tr>
+<td>pQueueFamilyIndices</td>
+<td>指向队列族索引的指针</td>
+<td>指定哪些队列族可以访问图像。</td>
+</tr>
+<tr>
+<td>preTransform</td>
+<td>指定交换链中的图像需要进行的变换</td>
+<td>例如旋转或翻转。</td>
+</tr>
+<tr>
+<td>compositeAlpha</td>
+<td>指定与窗口系统的 alpha 混合方式</td>
+<td>例如 <code>VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR</code>。</td>
+</tr>
+<tr>
+<td>presentMode</td>
+<td>指定交换链的呈现模式</td>
+<td>例如 <code>VK_PRESENT_MODE_FIFO_KHR</code> 或 <code>VK_PRESENT_MODE_MAILBOX_KH</code>。</td>
+</tr>
+<tr>
+<td>clipped</td>
+<td>指定是否对被其他窗口遮挡的像素进行裁剪</td>
+<td><code>VK_TRUE</code> 表示裁剪。在窗口被遮挡时，被遮挡像素的颜色将不可获取。</td>
+</tr>
+<tr>
+<td>oldSwapchain</td>
+<td>旧的交换链句柄</td>
+<td>用于重建交换链时传入，首次创建时设置为 <code>VK_NULL_HANDLE</code>。</td>
+</tr>
+</tbody></table>
+<p>示例如下：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// swap_chain_manager.cpp</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">SwapChainManager::createSwapChain</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    VkSwapchainCreateInfoKHR createInfo&#123;&#125;;</span><br><span class="line">    createInfo.sType = VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR;</span><br><span class="line">    createInfo.pNext = <span class="literal">nullptr</span>;</span><br><span class="line">    createInfo.flags = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    createInfo.surface = pContentManager-&gt;surface;</span><br><span class="line"></span><br><span class="line">    <span class="type">uint32_t</span> imageCount = <span class="keyword">this</span>-&gt;capabilities.minImageCount + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>-&gt;capabilities.maxImageCount &gt; <span class="number">0</span> &amp;&amp; imageCount &gt; <span class="keyword">this</span>-&gt;capabilities.maxImageCount)</span><br><span class="line">    &#123;</span><br><span class="line">        imageCount = <span class="keyword">this</span>-&gt;capabilities.maxImageCount;</span><br><span class="line">    &#125;</span><br><span class="line">    createInfo.minImageCount = imageCount;</span><br><span class="line"></span><br><span class="line">    VkSurfaceFormatKHR surfaceFormat = <span class="built_in">getFormat</span>();</span><br><span class="line">    createInfo.imageFormat = surfaceFormat.format;</span><br><span class="line">    createInfo.imageColorSpace = surfaceFormat.colorSpace;</span><br><span class="line"></span><br><span class="line">    VkExtent2D extent = <span class="built_in">getExtent</span>();</span><br><span class="line">    createInfo.imageExtent = extent;</span><br><span class="line"></span><br><span class="line">    createInfo.imageArrayLayers = <span class="number">1</span>;</span><br><span class="line">    createInfo.imageUsage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT;</span><br><span class="line"></span><br><span class="line">    <span class="type">uint32_t</span> queueFamilyIndices[] = &#123;pContentManager-&gt;graphicsFamily, pContentManager-&gt;presentFamily&#125;;</span><br><span class="line">    <span class="keyword">if</span> (pContentManager-&gt;graphicsFamily != pContentManager-&gt;presentFamily)</span><br><span class="line">    &#123;</span><br><span class="line">        createInfo.imageSharingMode = VK_SHARING_MODE_CONCURRENT;</span><br><span class="line">        createInfo.queueFamilyIndexCount = <span class="number">2</span>;</span><br><span class="line">        createInfo.pQueueFamilyIndices = queueFamilyIndices;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        createInfo.imageSharingMode = VK_SHARING_MODE_EXCLUSIVE;</span><br><span class="line">        createInfo.queueFamilyIndexCount = <span class="number">0</span>;</span><br><span class="line">        createInfo.pQueueFamilyIndices = <span class="literal">nullptr</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    createInfo.preTransform = <span class="keyword">this</span>-&gt;capabilities.currentTransform;</span><br><span class="line">    createInfo.compositeAlpha = VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR;</span><br><span class="line"></span><br><span class="line">    VkPresentModeKHR presentMode = <span class="built_in">getPresentMode</span>();</span><br><span class="line">    createInfo.presentMode = presentMode;</span><br><span class="line"></span><br><span class="line">    createInfo.clipped = VK_TRUE;</span><br><span class="line">    createInfo.oldSwapchain = VK_NULL_HANDLE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="创建交换链"><a href="#创建交换链" class="headerlink" title="创建交换链"></a>创建交换链</h2><p>然后调用 <code>vkCreateSwapchainKHR</code> 完成交换链的创建，其声明如下：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">VkResult <span class="title">vkCreateSwapchainKHR</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">    VkDevice                                    device,</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="type">const</span> VkSwapchainCreateInfoKHR*             pCreateInfo,</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="type">const</span> VkAllocationCallbacks*                pAllocator,</span></span></span><br><span class="line"><span class="params"><span class="function">    VkSwapchainKHR*                             pSwapchain)</span></span>;</span><br></pre></td></tr></table></figure></div>
+
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>参数</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>输入参数</td>
+<td>device</td>
+<td>Vulkan 逻辑设备的句柄</td>
+<td>指定要创建交换链的的逻辑设备。</td>
+</tr>
+<tr>
+<td>输入参数</td>
+<td>pCreateInfo</td>
+<td>指向描述交换链创建信息的结构体指针</td>
+<td>该结构体包含了交换链配置的详细信息，例如图像格式、分辨率等。</td>
+</tr>
+<tr>
+<td>输入参数</td>
+<td>pAllocator</td>
+<td>自定义内存分配器</td>
+<td>如果为 <code>nullptr</code>，则使用默认的内存分配器。如果应用程序需要对内存分配和释放进行控制，可实现自定义分配器并通过此参数传递。</td>
+</tr>
+<tr>
+<td>输出参数</td>
+<td>pSwapchain</td>
+<td>交换链句柄指针</td>
+<td>指向存储创建的交换链句柄的变量指针</td>
+</tr>
+</tbody></table>
+<p>示例如下：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// swap_chain_manager.cpp</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">SwapChainManager::createSwapChain</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">/* Create a swap chain */</span></span><br><span class="line">	<span class="keyword">if</span> (<span class="built_in">vkCreateSwapchainKHR</span>(pContentManager-&gt;device, &amp;createInfo, <span class="literal">nullptr</span>, &amp;<span class="keyword">this</span>-&gt;swapChain) != VK_SUCCESS)</span><br><span class="line">	&#123;</span><br><span class="line">	    <span class="keyword">throw</span> std::<span class="built_in">runtime_error</span>(<span class="string">&quot;Failed to create swap chain!&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>最后在 <code>init</code> 函数中调用 <code>createSwapChain</code>：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// swap_chain_manager.cpp</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">SwapChainManager::init</span><span class="params">()</span> </span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">	<span class="built_in">createSwapChain</span>(); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="清理交换链"><a href="#清理交换链" class="headerlink" title="清理交换链"></a>清理交换链</h2><p>在不再使用交换链之后，需要通过 <code>vkDestroySwapchainKHR</code> 对于交换链进行销毁，其声明如下：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">vkDestroySwapchainKHR</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">    VkDevice                                    device,</span></span></span><br><span class="line"><span class="params"><span class="function">    VkSwapchainKHR                              swapchain,</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="type">const</span> VkAllocationCallbacks*                pAllocator)</span></span>;</span><br></pre></td></tr></table></figure></div>
+
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>参数</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>输入参数</td>
+<td>device</td>
+<td>Vulkan 逻辑设备的句柄</td>
+<td>指定要销毁交换链的的逻辑设备。</td>
+</tr>
+<tr>
+<td>输入参数</td>
+<td>swapchain</td>
+<td>交换链句柄</td>
+<td>要销毁的交换链的句柄。如果是 <code>VK_NULL_HANDLE</code>，函数将忽略并直接返回。</td>
+</tr>
+<tr>
+<td>输入参数</td>
+<td>pAllocator</td>
+<td>自定义内存分配器</td>
+<td>如果为 <code>nullptr</code>，则使用默认的内存分配器。如果在创建交换链时使用了自定义的分配器，则在销毁时需要提供相同的分配器。</td>
+</tr>
+</tbody></table>
+<p>在 <code>clear</code> 函数中进行清理：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">SwapChainManager::clear</span><span class="params">()</span> </span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">	<span class="built_in">vkDestroySwapchainKHR</span>(pContentManager-&gt;device, <span class="keyword">this</span>-&gt;swapChain, <span class="literal">nullptr</span>); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h1 id="交换链操作句柄"><a href="#交换链操作句柄" class="headerlink" title="交换链操作句柄"></a>交换链操作句柄</h1><p>在完成交换链的创建之后，需要从其中获取一些交换链的属性来为后续渲染做准备，主要涉及四项，交换链图像、交换链图像视图、交换链图像格式，交换链的布局：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// swap_chain_manager.h</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SwapChainManager</span> : <span class="keyword">public</span> ImageManager</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    VkSwapchainKHR swapChain;</span><br><span class="line">	std::vector&lt;VkImage&gt; images;</span><br><span class="line">	std::vector&lt;VkImageView&gt; imageViews;</span><br><span class="line">	VkFormat format;</span><br><span class="line">	VkExtent2D extent;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="交换链图像"><a href="#交换链图像" class="headerlink" title="交换链图像"></a>交换链图像</h2><p>通过函数 <code>vkGetSwapchainImagesKHR</code> 来获取交换链图像，其声明如下：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">VkResult <span class="title">vkGetSwapchainImagesKHR</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">    VkDevice                                    device,</span></span></span><br><span class="line"><span class="params"><span class="function">    VkSwapchainKHR                              swapchain,</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="type">uint32_t</span>*                                   pSwapchainImageCount,</span></span></span><br><span class="line"><span class="params"><span class="function">    VkImage*                                    pSwapchainImages)</span></span>;</span><br></pre></td></tr></table></figure></div>
+
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>参数</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>输入参数</td>
+<td>device</td>
+<td>逻辑设备句柄</td>
+<td>指定创建获取交换链图像的逻辑设备。</td>
+</tr>
+<tr>
+<td>输入参数</td>
+<td>swapchain</td>
+<td>交换链句柄</td>
+<td>指定要查询的交换链对象。</td>
+</tr>
+<tr>
+<td>输入参数</td>
+<td>pSwapchainImageCount</td>
+<td>交换链图像句柄数量</td>
+<td>指向存储交换链图像数量的变量的指针。如果 <code>pSwapchainImages</code> 为 <code>nullptr</code>，则返回交换链中的图像数量；否则，返回实际写入的图像数量。</td>
+</tr>
+<tr>
+<td>输出参数</td>
+<td>pSwapchainImages</td>
+<td>交换链图像句柄数组</td>
+<td>指向存储交换链图像句柄数组的指针。如果为 <code>nullptr</code>，函数仅返回交换链中的图像数量。</td>
+</tr>
+<tr>
+<td>返回值</td>
+<td></td>
+<td>表示获取交换链图像是否创建成功</td>
+<td><code>VK_SUCCESS</code>：表示获取交换链图像创建成功，其他错误码表示创建失败。</td>
+</tr>
+</tbody></table>
+<p>一个示例如下：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// swap_chain_manager.cpp</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">SwapChainManager::createSwapChain</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">	<span class="comment">/* Get the operation handle of the image in the swap chain */</span></span><br><span class="line">	<span class="built_in">vkGetSwapchainImagesKHR</span>(pContentManager-&gt;device, <span class="keyword">this</span>-&gt;swapChain, &amp;imageCount, <span class="literal">nullptr</span>);</span><br><span class="line">	<span class="keyword">this</span>-&gt;images.<span class="built_in">resize</span>(imageCount);</span><br><span class="line">	<span class="built_in">vkGetSwapchainImagesKHR</span>(pContentManager-&gt;device, <span class="keyword">this</span>-&gt;swapChain, &amp;imageCount, <span class="keyword">this</span>-&gt;images.<span class="built_in">data</span>());</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">this</span>-&gt;format = surfaceFormat.format;</span><br><span class="line">	<span class="keyword">this</span>-&gt;extent = extent;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="交换链图像视图"><a href="#交换链图像视图" class="headerlink" title="交换链图像视图"></a>交换链图像视图</h2><p>然后，使用图像视图创建函数来创建交换链图像的图像视图：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// swap_chain_manager.cpp</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">SwapChainManager::createSwapChain</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">	<span class="keyword">this</span>-&gt;imageViews.<span class="built_in">resize</span>(imageCount);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">uint32_t</span> i = <span class="number">0</span>; i &lt; imageCount; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;imageViews[i] = <span class="built_in">createView</span>(<span class="keyword">this</span>-&gt;images[i], <span class="keyword">this</span>-&gt;format, VK_IMAGE_ASPECT_COLOR_BIT);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="清理交换链操作句柄"><a href="#清理交换链操作句柄" class="headerlink" title="清理交换链操作句柄"></a>清理交换链操作句柄</h2><p>在清理交换链之前，从交换链上创建的图像会随着交换链的销毁而自动清理，所以只需要清理创建的图像视图对象，在 <code>clear</code> 函数中执行清理：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// swap_chain_manager.cpp</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">SwapChainManager::clear</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">size_t</span> i = <span class="number">0</span>; i &lt; imageViews.<span class="built_in">size</span>(); i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">vkDestroyImageView</span>(pContentManager-&gt;device, <span class="keyword">this</span>-&gt;imageViews[i], <span class="literal">nullptr</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">vkDestroySwapchainKHR</span>(pContentManager-&gt;device, <span class="keyword">this</span>-&gt;swapChain, <span class="literal">nullptr</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h1 id="交换链重建"><a href="#交换链重建" class="headerlink" title="交换链重建"></a>交换链重建</h1><p>在渲染过程中，某些事件会导致窗口表面发生变化，从而使得目前的交换链与其不再兼容。因此，需要捕捉这些事件并重新创建交换链。一个导致<strong>交换链重建</strong>的常见事件就是窗口大小改变。重新创建交换链的简单方法就是销毁交换链，然后再重新创建：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// swap_chain_manager.h</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SwapChainManager</span> : <span class="keyword">public</span> ImageManager</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">recreate</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div>
+
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// swap_chain_manager.cpp</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">SwapChainManager::recreate</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">this</span>-&gt;<span class="built_in">clear</span>();</span><br><span class="line">	<span class="keyword">this</span>-&gt;<span class="built_in">init</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>一种更符合实践的方法是在旧的交换链图像仍在被渲染的同时创建一个新的交换链。为此，需要在 <code>VkSwapchainCreateInfoKHR</code> 结构体的 <code>oldSwapchain</code> 字段中传入旧的交换链，并在完成对旧交换链的使用后立即销毁它。</p>
+
+		</div>
+
+		
+		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+			<div class="article-copyright-info-container">
+    <ul>
+        <li><strong>标题:</strong> 交换链</li>
+        <li><strong>作者:</strong> 王小龙</li>
+        <li><strong>创建于
+                :</strong> 2025-03-20 14:52:08</li>
+        
+            <li>
+                <strong>更新于
+                    :</strong> 2025-03-26 17:45:50
+            </li>
+        
+        <li>
+            <strong>链接:</strong> https://xiaolong-work.github.io/2025/03/20/Vulkan/5.交换链/
+        </li>
+        <li>
+            <strong>
+                版权声明:
+            </strong>
+            
+
+            
+                本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a> 进行许可。
+            
+        </li>
+    </ul>
+</div>
+
+		</div>
+		
+
+		
+		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/Vulkan/">#Vulkan</a>&nbsp;
+			</li>
+			
+		</ul>
+		
+
+		
+
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="prev" rel="prev" href="/2025/03/20/Vulkan/3.%E7%BC%93%E5%86%B2%E5%8C%BA/">
+					<span class="left arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-left"></i>
+					</span>
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item">缓冲区</span>
+						<span class="post-nav-item">上一篇</span>
+					</span>
+				</a>
+			</div>
+			
+			
+			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="next" rel="next" href="/2025/03/20/Vulkan/4.%E5%9B%BE%E5%83%8F/">
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item">图像</span>
+						<span class="post-nav-item">下一篇</span>
+					</span>
+					<span class="right arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-right"></i>
+					</span>
+				</a>
+			</div>
+			
+		</div>
+		
+
+
+		
+	</div>
+
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">目录</div>
+		<div class="page-title">交换链</div>
+		<ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E6%A1%86%E6%9E%B6"><span class="nav-text">基础框架</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E8%A1%A8%E9%9D%A2%E8%83%BD%E5%8A%9B"><span class="nav-text">基本表面能力</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E5%9F%BA%E6%9C%AC%E8%A1%A8%E9%9D%A2%E8%83%BD%E5%8A%9B"><span class="nav-text">查询基本表面能力</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E6%AD%A3%E7%A1%AE%E7%9A%84%E4%BA%A4%E6%8D%A2%E8%8C%83%E5%9B%B4"><span class="nav-text">选择正确的交换范围</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A1%A8%E9%9D%A2%E6%A0%BC%E5%BC%8F"><span class="nav-text">表面格式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E8%A1%A8%E9%9D%A2%E6%A0%BC%E5%BC%8F"><span class="nav-text">查询表面格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E6%9C%80%E4%BD%B3%E8%A1%A8%E7%8E%B0%E6%A8%A1%E5%BC%8F"><span class="nav-text">选择最佳表现模式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%91%88%E7%8E%B0%E6%A8%A1%E5%BC%8F"><span class="nav-text">呈现模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E5%91%88%E7%8E%B0%E6%A8%A1%E5%BC%8F"><span class="nav-text">查询呈现模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E6%9C%80%E4%BD%B3%E5%91%88%E7%8E%B0%E6%A8%A1%E5%BC%8F"><span class="nav-text">选择最佳呈现模式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%8E%E6%B8%85%E7%90%86"><span class="nav-text">创建与清理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E4%BA%A4%E6%8D%A2%E9%93%BE"><span class="nav-text">配置交换链</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E4%BA%A4%E6%8D%A2%E9%93%BE"><span class="nav-text">创建交换链</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%85%E7%90%86%E4%BA%A4%E6%8D%A2%E9%93%BE"><span class="nav-text">清理交换链</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%A4%E6%8D%A2%E9%93%BE%E6%93%8D%E4%BD%9C%E5%8F%A5%E6%9F%84"><span class="nav-text">交换链操作句柄</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%A4%E6%8D%A2%E9%93%BE%E5%9B%BE%E5%83%8F"><span class="nav-text">交换链图像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%A4%E6%8D%A2%E9%93%BE%E5%9B%BE%E5%83%8F%E8%A7%86%E5%9B%BE"><span class="nav-text">交换链图像视图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%85%E7%90%86%E4%BA%A4%E6%8D%A2%E9%93%BE%E6%93%8D%E4%BD%9C%E5%8F%A5%E6%9F%84"><span class="nav-text">清理交换链操作句柄</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%A4%E6%8D%A2%E9%93%BE%E9%87%8D%E5%BB%BA"><span class="nav-text">交换链重建</span></a></li></ol>
+
+	</div>
+</div>
+	</div>
+	
+</div>
+			</div>
+
+			
+		</div>
+
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2025&nbsp;&nbsp;<i class="fa-regular fa-computer-classic"></i>&nbsp;&nbsp;<a href="/">王小龙</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        共撰写了 22 篇文章
+                    </span>
+                    
+                        <span>
+                            共 85.6k 字
+                        </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">访问人数</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">总访问量</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
+            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.2</a></span>
+        </div>
+        
+        
+            <div>
+                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+		</div>
+	</div>
+
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
+
+		<!-- go comment -->
+		
+	</ul>
+</div>
+	</div>
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container">
+	<img src="">
+</div>
+
+	
+	<div class="search-pop-overlay">
+	<div class="popup search-popup">
+		<div class="search-header">
+			<span class="search-input-field-pre">
+				<i class="fa-solid fa-keyboard"></i>
+			</span>
+			<div class="search-input-container">
+				<input autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="站内搜索您需要的内容..." spellcheck="false" type="search" class="search-input">
+			</div>
+			<span class="popup-btn-close">
+				<i class="fa-solid fa-times"></i>
+			</span>
+		</div>
+		<div id="search-result">
+			<div id="no-result">
+				<i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+			</div>
+		</div>
+	</div>
+</div>
+	
+
+</main>
+
+
+
+<script src="/js/build/libs/Swup.min.js"></script>
+
+<script src="/js/build/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/build/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+	
+<script src="/js/build/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/build/utils.js" type="module"></script>
+
+<script src="/js/build/main.js" type="module"></script>
+
+<script src="/js/build/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/build/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/build/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/build/layouts/categoryList.js" type="module"></script>
+
+
+
+    
+<script src="/js/build/tools/localSearch.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/tools/runtime.js"></script>
+
+    
+<script src="/js/build/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/build/libs/Typed.min.js"></script>
+
+  
+<script src="/js/build/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+    
+<script src="/js/build/libs/anime.min.js"></script>
+
+
+
+
+
+    
+<script src="/js/build/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+<script src="/js/build/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/js/build/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+
+	
+</body>
+
+</html>
